@@ -13,7 +13,7 @@ public class Layer {
             for (int j = 0; j < numberOfWeights; j++) {
                 weights[j] = NeuralUtil.RandomFloatNum(Neuron.minWeight, Neuron.maxWeight);
             }
-            neurons[i] = new Neuron(weights, NeuralUtil.RandomFloatNum(0, 1));
+            neurons[i] = new Neuron(weights, NeuralUtil.RandomFloatNum(0, 1)); // get random number for bias between 0 and 1
         }
     }
 

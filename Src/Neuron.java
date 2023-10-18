@@ -20,18 +20,25 @@ public class Neuron {
     /** for input Neuron */
     public Neuron(float value) {
         this.weights = null;
-        this.bias = -1;
+        this.bias = 0; // set this to 0 as this is the input. DO NOT CHANGE!!!
         this.value = value;
         // this.newWeights = this.weights; // shouldn't initialize it twice hahaha
         this.gradient = 0;
     }
 
-    /** function to determine output signal (still in devPhase, cause not understanding it well) */
+    /** function to determine output signal (still in devPhase, cause not understanding it well)
+     * still running into some issues using ReLu. Doesn't work properly.
+     *  --> not learnable Bias. would like to know how to do that, but couldn't find any resources*/
     public static float ReLu(float num) {
         if (num <= 0) {
             return 0;
         }
         return num;
+    }
+
+    /**Sigmoid Function to determine the output of a single Neuron*/
+    public static float SigmoidFunction(float num) {
+        return (float) (1/(1 + Math.exp(-num)));
     }
 
 

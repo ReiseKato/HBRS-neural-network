@@ -7,16 +7,26 @@ public class NeuralNetwork {
 
 
     public static void main(String[] args) {
-        int numberOfLayers = 3;
-        int[] numberOfWeights = {2, 6}; // first after input one gets two weights
-        int[] numberOfNeurons = {6, 1}; // first after input hast 6 neurons
+        int numberOfLayers;
+        int[] numberOfNeurons;
+        int[] numberOfWeights;
+        // for triple logical statement
+//        numberOfLayers = 6;
+//        numberOfNeurons = new int[]{20, 30, 20, 5, 1}; // first after input hast 6 neurons (input Layer is not included)
+//        numberOfWeights = new int[]{8, 20, 30, 20, 5}; // first after input one gets two weights
+
+        numberOfLayers = 3;
+        numberOfNeurons = new int[]{6, 1};
+        numberOfWeights = new int[]{2, 6};
+
+
         Neuron.setWeightRange(-1, 1);
 
         getTrainingData();
 
         createLayers(numberOfLayers, numberOfWeights, numberOfNeurons);
 
-        train(1000000, 0.5f);
+        train(100000, 0.05f);
         for(int i = 0; i < trainingData_t.length; i++) {
             run(trainingData_t[i].inputData);
             System.out.println(layers_t[layers_t.length - 1].neurons[0].value);
@@ -26,23 +36,51 @@ public class NeuralNetwork {
 
 
     public static void getTrainingData() {
-        // code to generate Training Data
-        float[] input1 = new float[] {0, 0}; // Expect 0
-        float[] input2 = new float[] {0, 1}; // Expect 1
-        float[] input3 = new float[] {1, 0}; // Expect 1
-        float[] input4 = new float[] {1, 1}; // Expect 1
+        float[] input0 = new float[] {0, 0}; // expect 0
+        float[] input1 = new float[] {0, 1}; // expect 1
+        float[] input2 = new float[] {1, 0}; // expect 1
+        float[] input3 = new float[] {1, 1}; // expect 1
 
-        float[] expectedOutput1 = new float[] {0};
-        float[] expectedOutput2 = new float[] {1};
-        float[] expectedOutput3 = new float[] {1};
-        float[] expectedOutput4 = new float[] {1};
+        float[] expectedResult0 = new float[] {0};
+        float[] expectedResult1 = new float[] {1};
+        float[] expectedResult2 = new float[] {1};
+        float[] expectedResult3 = new float[] {1};
 
-        // My changes (using an array for the data sets)
+        // initialize Training Data
         trainingData_t = new TrainingData[4];
-        trainingData_t[0] = new TrainingData(input1, expectedOutput1);
-        trainingData_t[1] = new TrainingData(input2, expectedOutput2);
-        trainingData_t[2] = new TrainingData(input3, expectedOutput3);
-        trainingData_t[3] = new TrainingData(input4, expectedOutput4);
+        trainingData_t[0] = new TrainingData(input0, expectedResult0);
+        trainingData_t[1] = new TrainingData(input1, expectedResult1);
+        trainingData_t[2] = new TrainingData(input2, expectedResult2);
+        trainingData_t[3] = new TrainingData(input3, expectedResult3);
+
+        // still having problems with triple logical statement
+//        float[] input0 = new float[] {0, 0, 0}; // expect 0
+//        float[] input1 = new float[] {0, 0, 1}; // expect 1
+//        float[] input2 = new float[] {0, 1, 0}; // expect 0
+//        float[] input3 = new float[] {0, 1, 1}; // expect 1
+//        float[] input4 = new float[] {1, 0, 0}; // expect 0
+//        float[] input5 = new float[] {1, 0, 1}; // expect 1
+//        float[] input6 = new float[] {1, 1, 0}; // expect 1
+//        float[] input7 = new float[] {1, 1, 1}; // expect 1
+//
+//        float[] expectedResult0 = new float[] {0};
+//        float[] expectedResult1 = new float[] {1};
+//        float[] expectedResult2 = new float[] {0};
+//        float[] expectedResult3 = new float[] {1};
+//        float[] expectedResult4 = new float[] {0};
+//        float[] expectedResult5 = new float[] {1};
+//        float[] expectedResult6 = new float[] {1};
+//        float[] expectedResult7 = new float[] {1};
+//
+//        trainingData_t = new TrainingData[8];
+//        trainingData_t[0] = new TrainingData(input0, expectedResult0);
+//        trainingData_t[1] = new TrainingData(input1, expectedResult1);
+//        trainingData_t[2] = new TrainingData(input2, expectedResult2);
+//        trainingData_t[3] = new TrainingData(input3, expectedResult3);
+//        trainingData_t[4] = new TrainingData(input4, expectedResult4);
+//        trainingData_t[5] = new TrainingData(input5, expectedResult5);
+//        trainingData_t[6] = new TrainingData(input6, expectedResult6);
+//        trainingData_t[7] = new TrainingData(input7, expectedResult7);
     }
 
     public static void createLayers(int numberOfLayers, int[] numberOfWeights, int[] numberOfNeurons) { // parse input data, how many layers, how many weights, how many neurons in each layer
@@ -65,7 +103,8 @@ public class NeuralNetwork {
                     sum += layers_t[i].neurons[j].weights[k]*layers_t[i - 1].neurons[k].value;
                 }
                 sum += layers_t[i].neurons[j].bias;
-                layers_t[i].neurons[j].value = Neuron.ReLu(sum);
+                // layers_t[i].neurons[j].value = Neuron.ReLu(sum); // ReLu
+                layers_t[i].neurons[j].value = Neuron.SigmoidFunction(sum);
             }
         }
     }
@@ -78,38 +117,44 @@ public class NeuralNetwork {
         float errorTotal = 0.0f;
         float deltaOfValue = 0.0f;
         float deriviate = 0.0f;
-        float deltaRule = 0.0f; //should be renamed
+        float delta;
+        float deltaErr = 0.0f; //should be renamed
         float oldWeight;
 
         // loop for optimizing the output Layer (-> already in output Layer (note for Reise))
-        for(int i = 0; i < layers_t[layers_t.length - 1].neurons.length; i++) { // i: represents Neuron in output Layer. loop while i < number of neurons in output Layer
+        for(int i = 0; i < layers_t[layers_t.length - 1].neurons.length; i++) { // i: indexing for Neurons in output Layer. loop while i < number of neurons in output Layer
             out = layers_t[layers_t.length - 1].neurons[i].value;
             target = __trainingData_t.expectedResult[i];
             errorTotal += 0.5*(out -  target)*(out* - target);
             deltaOfValue = out - target; // output - target (M. Mazur)
             deriviate = out*(1 - out);
-
-            for(int j = 0; j < layers_t[layers_t.length - 1].neurons[i].weights.length; j++) { // j: represents Neurons of ex. 1 Layer before output Layer. iterate as often as values each Neuron in output Layer gets
-                deltaRule = deltaOfValue*deriviate*layers_t[layers_t.length - 2].neurons[j].value;
+            delta = deriviate*deltaOfValue;
+            layers_t[layers_t.length - 1].neurons[i].gradient = delta;
+            for(int j = 0; j < layers_t[layers_t.length - 1].neurons[i].weights.length; j++) { // j: indexing for Neurons of exactly 1 Layer before output Layer. iterate as often as values each Neuron in output Layer gets
+                deltaErr = delta*layers_t[layers_t.length - 2].neurons[j].value;
                 oldWeight = layers_t[layers_t.length - 1].neurons[i].weights[j];
-                layers_t[layers_t.length - 1].neurons[i].newWeights[j] = oldWeight - trainingRate*deltaRule;
-                // layers_t[layers_t.length - 1].neurons[i].weights[j] = oldWeight - trainingRate*deltaRule;
+                layers_t[layers_t.length - 1].neurons[i].newWeights[j] = oldWeight - trainingRate*deltaErr;
+                // layers_t[layers_t.length - 1].neurons[i].weights[j] = oldWeight - trainingRate*deltaErr;
             }
         }
 
         float gradientSum;
-        float delta;
         // loop for optimizing the hidden Layers -> has to go backwards
         for(int i = layers_t.length - 2; i > 0; i--) { // i; indexing for Layers
             //out = layers_t[i].neurons[]
             for(int j = 0; j < layers_t[i].neurons.length; j++) { // indexing for Neurons
                 gradientSum = gradientSum(i + 1, j); // i+1: needs the outputs of the Layer before
                 out = layers_t[i].neurons[j].value;
-                delta = gradientSum*out*(1 - out); // delta of Error to Weight
+                delta = gradientSum*(out*(1 - out)); // delta of Error to Weight
                 layers_t[i].neurons[j].gradient = delta; // just assuming it because I need to update the gradient and that's the best value I can find
                 // loop for updating all weights for each Neuron
                 for(int k = 0; k < layers_t[i].neurons[j].weights.length; k++) { // k: indexing for weights
-                    layers_t[i].neurons[j].newWeights[k] = layers_t[i].neurons[j].weights[k] - trainingRate*delta;
+                    /*if training via output, use code below till block comment*/
+                    deltaErr = layers_t[i - 1].neurons[k].value*delta;
+                    layers_t[i].neurons[j].newWeights[k] = layers_t[i].neurons[j].weights[k] - trainingRate*deltaErr;
+
+                    /*if it needs to train via weight, use the upper code below*/
+                    // layers_t[i].neurons[j].newWeights[k] = layers_t[i].neurons[j].weights[k] - trainingRate*delta;
                     // layers_t[i].neurons[j].weights[k] = layers_t[i].neurons[j].weights[k] - trainingRate*delta;
                 }
             }
