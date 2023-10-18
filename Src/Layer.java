@@ -1,0 +1,27 @@
+package Src;
+
+
+public class Layer {
+    public Neuron neurons[];
+
+    /** for hidden layer and output layer */
+    public Layer(int numberOfWeights, int numberOfNeurons) {
+        this.neurons = new Neuron[numberOfNeurons];
+
+        for (int i = 0; i < numberOfNeurons; i++) {
+            float[] weights = new float[numberOfWeights];
+            for (int j = 0; j < numberOfWeights; j++) {
+                weights[j] = NeuralUtil.RandomFloatNum(Neuron.minWeight, Neuron.maxWeight);
+            }
+            neurons[i] = new Neuron(weights, NeuralUtil.RandomFloatNum(0, 1));
+        }
+    }
+
+    /** for input layer -> input[] is TrainingData.inputData */
+    public Layer(float input[]) {
+        this.neurons = new Neuron[input.length];
+        for(int i = 0; i < input.length; i++) {
+            this.neurons[i] = new Neuron(input[i]);
+        }
+    }
+}
