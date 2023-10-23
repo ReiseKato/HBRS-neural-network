@@ -1,5 +1,7 @@
 package Src;
 
+import java.util.*;
+
 public class NeuralNetwork {
     static Layer[] layers_t;
     static TrainingData[] trainingData_t;
@@ -92,9 +94,17 @@ public class NeuralNetwork {
         }
     }
 
+    /** manual NN creation */
     public static void createLayers(String path) {
         int[] layerConfig = NeuralUtil.getlayerConfig(path);
-        layers_t = new Layer[layerConfig.length];
+        int[] numberOfWeights = Arrays.copyOfRange(layerConfig, 0, layerConfig.length - 1);
+        int[] numberOfNeurons = Arrays.copyOfRange(layerConfig, 1, layerConfig.length);
+        int numberOfLayers = layerConfig.length;
+        layers_t = new Layer[layerConfig.length - 1];
+
+        for(int i = 1; i < numberOfLayers; i++) {
+            layers_t[i] = new Layer(numberOfWeights[i - 1], numberOfNeurons[i - 1]);
+        }
     }
 
     public static void run(float[] input) {
@@ -108,7 +118,7 @@ public class NeuralNetwork {
                     sum += layers_t[i].neurons[j].weights[k]*layers_t[i - 1].neurons[k].value;
                 }
                 sum += layers_t[i].neurons[j].bias;
-                // layers_t[i].neurons[j].value = Neuron.ReLu(sum); // ReLu
+                // layers_t[i].neurons[j].value = Neuron.ReLu(sum); // ReLu -> not fixed yet
                 layers_t[i].neurons[j].value = Neuron.SigmoidFunction(sum);
             }
         }
