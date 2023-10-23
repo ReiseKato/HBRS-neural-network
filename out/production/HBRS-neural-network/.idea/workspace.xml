@@ -6,8 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/NeuralUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NeuralUtil.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Neuron.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Neuron.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/TrainingData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/TrainingData.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,5 +49,15 @@
       <updated>1696523799911</updated>
     </task>
     <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

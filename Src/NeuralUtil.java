@@ -1,4 +1,10 @@
 package Src;
+import java.io.*;
+import java.util.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
 
 public class NeuralUtil {
 
@@ -21,6 +27,41 @@ public class NeuralUtil {
         Layer curentLayer;
 
         return sum;
+    }
+
+
+    public void readWeightsAndBias(String path) {
+        String line;
+        try{
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+
+            while(bufferedReader.readLine() != null) {
+                line = bufferedReader.readLine();
+                System.out.println(line);
+            }
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public static void main(String[] args) {
+        Path path = Paths.get("KW43_weights_trafficlights_classification_simplified.csv");
+        String sPath = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_weights_trafficlights_classification_simplified.csv";
+        String line;
+        try{
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(sPath));
+            while(bufferedReader.readLine() != null) {
+                line = bufferedReader.readLine();
+                System.out.println(line);
+            }
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
     }
 
 }

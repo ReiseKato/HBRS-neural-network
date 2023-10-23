@@ -22,8 +22,19 @@ public class Neuron {
         this.weights = null;
         this.bias = 0; // set this to 0 as this is the input. DO NOT CHANGE!!!
         this.value = value;
-        // this.newWeights = this.weights; // shouldn't initialize it twice hahaha
+        // this.newWeights = this.weights; // doesn't have weights hahaha
         this.gradient = 0;
+    }
+
+    /** set weights manually */
+    public void setWeights(float[] weightsManual) {
+        this.weights = weightsManual;
+    }
+
+    /** set bias manually
+     * most probably not being used because constructor parameter */
+    public void setBias(float bias) {
+        this.bias = bias;
     }
 
     /** function to determine output signal (still in devPhase, cause not understanding it well)
@@ -40,6 +51,9 @@ public class Neuron {
     public static float SigmoidFunction(float num) {
         return (float) (1/(1 + Math.exp(-num)));
     }
+
+
+    /** methods beneath this are all for automated learning */
 
 
     /** update all the weights. relevant for machine learning*/
