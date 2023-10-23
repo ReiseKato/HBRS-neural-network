@@ -92,6 +92,11 @@ public class NeuralNetwork {
         }
     }
 
+    public static void createLayers(String path) {
+        int[] layerConfig = NeuralUtil.getlayerConfig(path);
+        layers_t = new Layer[layerConfig.length];
+    }
+
     public static void run(float[] input) {
         layers_t[0] = new Layer(input);
         float sum;
