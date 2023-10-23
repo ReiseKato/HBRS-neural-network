@@ -26,7 +26,7 @@ public class NeuralNetwork {
 
         createLayers(numberOfLayers, numberOfWeights, numberOfNeurons);
 
-        train(100000, 0.05f);
+        train(10000000, 0.05f);
         for(int i = 0; i < trainingData_t.length; i++) {
             run(trainingData_t[i].inputData);
             System.out.println(layers_t[layers_t.length - 1].neurons[0].value);
@@ -125,7 +125,7 @@ public class NeuralNetwork {
         for(int i = 0; i < layers_t[layers_t.length - 1].neurons.length; i++) { // i: indexing for Neurons in output Layer. loop while i < number of neurons in output Layer
             out = layers_t[layers_t.length - 1].neurons[i].value;
             target = __trainingData_t.expectedResult[i];
-            errorTotal += 0.5*(out -  target)*(out* - target);
+            // errorTotal += 0.5*(out -  target)*(out* - target);
             deltaOfValue = out - target; // output - target (M. Mazur)
             deriviate = out*(1 - out);
             delta = deriviate*deltaOfValue;
@@ -181,6 +181,7 @@ public class NeuralNetwork {
         }
     }
 
+    /**don't know why*/
     public static void train(int countOfTraining, float trainingRate) {
         for(int i = 0; i < countOfTraining; i++) {
             for(int j = 0; j < trainingData_t.length; j++) {
