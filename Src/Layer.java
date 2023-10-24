@@ -8,7 +8,7 @@ import java.util.*;
 public class Layer {
     public Neuron neurons[];
 
-    /** for hidden layer and output layer */
+    /** for hidden layer and output layer (automated) */
     public Layer(int numberOfWeights, int numberOfNeurons) {
         this.neurons = new Neuron[numberOfNeurons];
 
@@ -16,6 +16,19 @@ public class Layer {
             float[] weights = new float[numberOfWeights];
             for (int j = 0; j < numberOfWeights; j++) {
                 weights[j] = NeuralUtil.RandomFloatNum(Neuron.minWeight, Neuron.maxWeight);
+            }
+            neurons[i] = new Neuron(weights, NeuralUtil.RandomFloatNum(0, 1)); // get random number for bias between 0 and 1
+        }
+    }
+
+    /** for hidden layer and output layer (manual) */
+    public Layer(int numberOfWeights, int numberOfNeurons, float[][] weights2d, float bias) {
+        this.neurons = new Neuron[numberOfNeurons];
+
+        for (int i = 0; i < numberOfNeurons; i++) {
+            float[] weights = new float[numberOfWeights];
+            for (int j = 0; j < numberOfWeights; j++) {
+                // weights[j] = NeuralUtil.RandomFloatNum(Neuron.minWeight, Neuron.maxWeight);
             }
             neurons[i] = new Neuron(weights, NeuralUtil.RandomFloatNum(0, 1)); // get random number for bias between 0 and 1
         }

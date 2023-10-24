@@ -5,6 +5,7 @@ import java.util.*;
 public class NeuralNetwork {
     static Layer[] layers_t;
     static TrainingData[] trainingData_t;
+    static int[] layerConfig;
 
 
 
@@ -12,48 +13,97 @@ public class NeuralNetwork {
         int numberOfLayers;
         int[] numberOfNeurons;
         int[] numberOfWeights;
+        String sPath = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_weights_trafficlights_classification_simplified.csv"; // Layer, Weight and Bias
+        String sPathForTData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_traindata_trafficlights_classification.csv"; // Training Data
         // for triple logical statement
 //        numberOfLayers = 6;
 //        numberOfNeurons = new int[]{20, 30, 20, 5, 1}; // first after input hast 6 neurons (input Layer is not included)
 //        numberOfWeights = new int[]{8, 20, 30, 20, 5}; // first after input one gets two weights
 
-        numberOfLayers = 3;
-        numberOfNeurons = new int[]{6, 1};
-        numberOfWeights = new int[]{2, 6};
+//        numberOfLayers = 3;
+//        numberOfNeurons = new int[]{8, 1};
+//        numberOfWeights = new int[]{2, 8};
 
 
         Neuron.setWeightRange(-1, 1);
 
-        getTrainingData();
 
-        createLayers(numberOfLayers, numberOfWeights, numberOfNeurons);
+        // createLayers(numberOfLayers, numberOfWeights, numberOfNeurons);
+        createLayers(sPath);
+        getTrainingData(sPathForTData);
 
-        train(10000000, 0.05f);
+        // train(10000000, 0.05f);
+        for(int i = 1; i < layers_t.length; i++) {
+            for(int j = 0; j < layers_t[i].neurons.length; j++) {
+                float[] weights;
+                float bias;
+                float[] weightsAndBias = NeuralUtil.getSpecificWeights(NeuralUtil.readWeightsAndBias(sPath),
+                        layerConfig, j, i);
+                weights = Arrays.copyOfRange(weightsAndBias, 0, weightsAndBias.length - 1);
+                bias = weightsAndBias[weightsAndBias.length - 1];
+                layers_t[i].neurons[j].setWeights(weights);
+                layers_t[i].neurons[j].setBias(bias);
+            }
+        }
+
         for(int i = 0; i < trainingData_t.length; i++) {
             run(trainingData_t[i].inputData);
-            System.out.println(layers_t[layers_t.length - 1].neurons[0].value);
+            System.out.println("\nInput: " + i);
+            for(int j = 0; j < layers_t[layers_t.length - 1].neurons.length; j++) {
+                System.out.println(layers_t[layers_t.length - 1].neurons[j].value);
+            }
         }
+
+//        for(int i = 1; i < layers_t.length; i++) {
+//            System.out.println("\nLayer: " + i);
+//            for(int j = 0; j < layers_t[i].neurons.length; j++) {
+//                System.out.println("\nNeuron: " + j);
+//                for(int k = 0; k < layers_t[i].neurons[j].weights.length; k++) {
+//                    System.out.println(layers_t[i].neurons[j].weights[k]);
+//                }
+//            }
+//        }
     }
 
 
 
+    public static void getTrainingData(String path) {
+        int numberOfTrainingData = NeuralUtil.getTrainingInputCount(path);
+        trainingData_t = new TrainingData[numberOfTrainingData];
+
+        for(int i = 0; i < numberOfTrainingData; i++) {
+            trainingData_t[i] = new TrainingData(NeuralUtil.getTrainingInputData(path, layerConfig, i));
+        }
+    }
+
+
     public static void getTrainingData() {
-        float[] input0 = new float[] {0, 0}; // expect 0
-        float[] input1 = new float[] {0, 1}; // expect 1
-        float[] input2 = new float[] {1, 0}; // expect 1
-        float[] input3 = new float[] {1, 1}; // expect 1
+//        float[] input0 = new float[] {1, 0, 0}; // expect {1, 0, 0, 0}
+//        float[] input1 = new float[] {0.8f, 0.0f, 0.1f}; // expect {1, 0, 0, 0}
+//
+//        float[] expectedResult0 = new float[] {1, 0, 0, 0};
+//        float[] expectedResult1 = new float[] {1, 0, 0, 0};
+//
+//        trainingData_t = new TrainingData[2];
+//        trainingData_t[0] = new TrainingData(input0, expectedResult0);
+//        trainingData_t[1] = new TrainingData(input1, expectedResult1);
 
-        float[] expectedResult0 = new float[] {0};
-        float[] expectedResult1 = new float[] {1};
-        float[] expectedResult2 = new float[] {1};
-        float[] expectedResult3 = new float[] {1};
-
-        // initialize Training Data
-        trainingData_t = new TrainingData[4];
-        trainingData_t[0] = new TrainingData(input0, expectedResult0);
-        trainingData_t[1] = new TrainingData(input1, expectedResult1);
-        trainingData_t[2] = new TrainingData(input2, expectedResult2);
-        trainingData_t[3] = new TrainingData(input3, expectedResult3);
+//        float[] input0 = new float[] {0, 0}; // expect 0
+//        float[] input1 = new float[] {0, 1}; // expect 1
+//        float[] input2 = new float[] {1, 0}; // expect 1
+//        float[] input3 = new float[] {1, 1}; // expect 1
+//
+//        float[] expectedResult0 = new float[] {0};
+//        float[] expectedResult1 = new float[] {1};
+//        float[] expectedResult2 = new float[] {1};
+//        float[] expectedResult3 = new float[] {1};
+//
+//        // initialize Training Data
+//        trainingData_t = new TrainingData[4];
+//        trainingData_t[0] = new TrainingData(input0, expectedResult0);
+//        trainingData_t[1] = new TrainingData(input1, expectedResult1);
+//        trainingData_t[2] = new TrainingData(input2, expectedResult2);
+//        trainingData_t[3] = new TrainingData(input3, expectedResult3);
 
         // still having problems with triple logical statement
 //        float[] input0 = new float[] {0, 0, 0}; // expect 0
@@ -85,6 +135,8 @@ public class NeuralNetwork {
 //        trainingData_t[7] = new TrainingData(input7, expectedResult7);
     }
 
+    /** quite useful for trainable kNN because I don't have to initialize all weights manually
+     *          --> just use random floats :) */
     public static void createLayers(int numberOfLayers, int[] numberOfWeights, int[] numberOfNeurons) { // parse input data, how many layers, how many weights, how many neurons in each layer
         layers_t = new Layer[numberOfLayers];
 
@@ -96,17 +148,18 @@ public class NeuralNetwork {
 
     /** manual NN creation */
     public static void createLayers(String path) {
-        int[] layerConfig = NeuralUtil.getlayerConfig(path);
+        layerConfig = NeuralUtil.getlayerConfig(path);
         int[] numberOfWeights = Arrays.copyOfRange(layerConfig, 0, layerConfig.length - 1);
         int[] numberOfNeurons = Arrays.copyOfRange(layerConfig, 1, layerConfig.length);
         int numberOfLayers = layerConfig.length;
-        layers_t = new Layer[layerConfig.length - 1];
+        layers_t = new Layer[layerConfig.length];
 
         for(int i = 1; i < numberOfLayers; i++) {
             layers_t[i] = new Layer(numberOfWeights[i - 1], numberOfNeurons[i - 1]);
         }
     }
 
+    /** basically parse the weights, calculate the values. voila! */
     public static void run(float[] input) {
         layers_t[0] = new Layer(input);
         float sum;
@@ -196,7 +249,7 @@ public class NeuralNetwork {
         }
     }
 
-    /**don't know why*/
+    /** calculate the appropriate output for each input */
     public static void train(int countOfTraining, float trainingRate) {
         for(int i = 0; i < countOfTraining; i++) {
             for(int j = 0; j < trainingData_t.length; j++) {

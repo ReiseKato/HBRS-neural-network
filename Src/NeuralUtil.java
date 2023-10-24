@@ -1,5 +1,6 @@
 package Src;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -7,6 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class NeuralUtil {
+    static int counter;
 
     /** create a random float number between float min and float max */
     public static float RandomFloatNum(float min, float max) {
@@ -76,7 +78,6 @@ public class NeuralUtil {
         return fWeightConfig;
     }
 
-
     /** get Layer configuration and parse it as array of int */
     public static int[] getlayerConfig(String path) {
         String sLayerConfig;
@@ -99,11 +100,110 @@ public class NeuralUtil {
         return iLayerConfig;
     }
 
+    /** shitty implementation of whole kNN lead to this */
+    public static float[] getSpecificWeights(Float[][] weightsAndBias, int[] layerConfig,
+                                             int neuronNumber, int layerNumber) {
+        float[] arr = new float[layerConfig[layerNumber - 1] + 1];
+        int layerCountInCsv = 0;
+        if(layerNumber != 1) {
+             layerCountInCsv = layerConfig[layerNumber] + 1;
+        }
+        for(int i = 0; i <= layerConfig[layerNumber - 1]; i++) {
+            arr[i] = weightsAndBias[layerCountInCsv + i][neuronNumber];
+        }
+
+        return arr;
+    }
+
+    /** get Input Data count */
+    public static int getTrainingInputCount(String path) {
+//        int counter = 0;
+        String line;
+
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            counter = 0;
+            while((line = br.readLine()) != null) {
+                counter++;
+            }
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return counter;
+    }
+
+    /** get the Training Input Data only */
+    public static float[] getTrainingInputData(String path, int[] layerConfig, int index) {
+//        int[] layerConfig = NeuralUtil.getlayerConfig(sPath);
+//        int inputLength = layerConfig[0];
+//        int outputLength = layerConfig[layerConfig.length - 1];
+//        int counter = 0;
+//        String line;
+//
+//        try{
+//            BufferedReader br = new BufferedReader(new FileReader(path));
+//            counter = 0;
+//            while((line = br.readLine()) != null) {
+//                counter++;
+//            }
+//        } catch(FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch(IOException e) {
+//            e.printStackTrace();
+//        }
+
+        String line;
+        String[] data;
+        String[][] training = new String[counter][];
+        Float[][] fTraining = new Float[counter][];
+        int inputLength = layerConfig[0];
+
+        try{
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
+            // System.out.println(layerConfig);
+            int i = 0;
+            while((line = bufferedReader.readLine()) != null) {
+                //line = bufferedReader.readLine();
+                data = line.split(";");
+                // System.out.println(Arrays.toString(data));
+                training[i] = data;
+                fTraining[i] = Arrays.stream(data).map(Float::valueOf).toArray(Float[]::new);
+                i++;
+            }
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+//        for(Float[] row : fTraining) {
+//            System.out.println(Arrays.toString(row));
+//        }
+
+        Float[] inputData_t;
+        inputData_t = Arrays.copyOfRange(fTraining[index], 0, inputLength);
+//        for(int i = 0; i < counter; i++) {
+//            inputData_t = Arrays.copyOfRange(fTraining[i], 0, inputLength);
+//            System.out.println(Arrays.toString(inputData_t));
+//        }
+        float[] fInpuData = new float[inputData_t.length];
+        int i = 0;
+        for(float __num__ : inputData_t) {
+            fInpuData[i] = __num__;
+            i++;
+        }
+
+        return fInpuData;
+    }
+
 
     public static void main(String[] args) {
         Path path = Paths.get("KW43_weights_trafficlights_classification_simplified.csv");
         String sPath = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_weights_trafficlights_classification_simplified.csv"; // Desktop
-        //String sPath = "/Users/samuraireise/Documents/HBRS/neural network/HBRS-neural-network/Src/KW43_weights_trafficlights_classification_simplified.csv"; // Mac
+        String sPathForTData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_traindata_trafficlights_classification.csv"; // Desktop
+//        String sPath = "/Users/samuraireise/Documents/HBRS/neural network/HBRS-neural-network/Src/KW43_weights_trafficlights_classification_simplified.csv"; // Mac
 
 //        int[] arrLayer = NeuralUtil.getlayerConfig(sPath);
 //        int sum = 0;
@@ -154,13 +254,70 @@ public class NeuralUtil {
 //        for(float[] row : fWeightConfig) {
 //            System.out.println(Arrays.toString(row));
 //        }
+//
+//        Float[][] weightsAndBias = NeuralUtil.readWeightsAndBias(sPath);
+//        for(Float[] row : weightsAndBias) {
+//            System.out.println(Arrays.toString(row));
+//        }
+//
+//        System.out.println("\n");
+//
+//        float[] arr = NeuralUtil.getSpecificWeights(weightsAndBias, NeuralUtil.getlayerConfig(sPath), 2, 2);
+//        System.out.println(Arrays.toString(arr));
+//
+//        // System.out.println(weightsAndBias[3][0]);
+//        System.out.println(Arrays.toString(NeuralUtil.getlayerConfig(sPath)));
 
-        Float[][] weightsAndBias = NeuralUtil.readWeightsAndBias(sPath);
-        for(Float[] row : weightsAndBias) {
+        int[] layerConfig = NeuralUtil.getlayerConfig(sPath);
+        int inputLength = layerConfig[0];
+        int outputLength = layerConfig[layerConfig.length - 1];
+        int counter = 0;
+        String line;
+
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(sPathForTData));
+            counter = 0;
+            while((line = br.readLine()) != null) {
+                counter++;
+            }
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        String[] data;
+        String[][] training = new String[counter][];
+        Float[][] fTraining = new Float[counter][];
+
+        try{
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(sPathForTData));
+            // System.out.println(layerConfig);
+            int i = 0;
+            while((line = bufferedReader.readLine()) != null) {
+                //line = bufferedReader.readLine();
+                data = line.split(";");
+                // System.out.println(Arrays.toString(data));
+                training[i] = data;
+                fTraining[i] = Arrays.stream(data).map(Float::valueOf).toArray(Float[]::new);
+                i++;
+            }
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        for(Float[] row : fTraining) {
             System.out.println(Arrays.toString(row));
         }
 
-
+        Float[] inputData_t;
+        float[] fInputata;
+        for(int i = 0; i < counter; i++) {
+            inputData_t = Arrays.copyOfRange(fTraining[i], 0, inputLength);
+            System.out.println(Arrays.toString(inputData_t));
+        }
     }
 
 }
