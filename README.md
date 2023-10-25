@@ -104,6 +104,7 @@ Not initiable helper class.
         - had to test each method in a safe environment before using them in the actual neural Network --> saves time and headache
 
 <h3>NeuralNetwork</h3>
+
   -  public static void getTrainingData(String path)
         - specify the correct path to the trainind data dataset (csv) and it will take care of getting the right dataset for the trainingData objects
 
