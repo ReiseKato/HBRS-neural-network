@@ -135,8 +135,10 @@ public class NeuralNetwork {
 //        trainingData_t[7] = new TrainingData(input7, expectedResult7);
     }
 
-    /** quite useful for trainable kNN because I don't have to initialize all weights manually
-     *          --> just use random floats :) */
+    /**
+     * quite useful for trainable kNN because I don't have to initialize all weights manually
+     *          --> just use random floats :)
+     */
     public static void createLayers(int numberOfLayers, int[] numberOfWeights, int[] numberOfNeurons) { // parse input data, how many layers, how many weights, how many neurons in each layer
         layers_t = new Layer[numberOfLayers];
 

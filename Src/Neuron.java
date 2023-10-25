@@ -1,7 +1,7 @@
 package Src;
 
 public class Neuron {
-    static float minWeight, maxWeight; // range of the weights
+    static float minWeight, maxWeight; // range of the weights  -->  static because has to be same for all Neurons
     float value; // each Neuron has exactly one value, which will be parsed to the Neurons in the next Layer except for the output Layer -> value = result
     float[] weights; // array because each neuron will be given as many weights as values from the previous layer
     float[] newWeights;
@@ -32,14 +32,16 @@ public class Neuron {
     }
 
     /** set bias manually
-     * most probably not being used because constructor parameter */
+     * most probably not being used because of constructor parameter */
     public void setBias(float bias) {
         this.bias = bias;
     }
 
-    /** function to determine output signal (still in devPhase, cause not understanding it well)
+    /**
+     * function to determine output signal (still in devPhase, cause not understanding it well)
      * still running into some issues using ReLu. Doesn't work properly.
-     *  --> not learnable Bias. would like to know how to do that, but couldn't find any resources*/
+     *  --> not learnable Bias. would like to know how to do that, but couldn't find any resources
+     */
     public static float ReLu(float num) {
         if (num <= 0) {
             return 0;
@@ -47,7 +49,7 @@ public class Neuron {
         return num;
     }
 
-    /**Sigmoid Function to determine the output of a single Neuron*/
+    /** Sigmoid Function to determine the output of a single Neuron */
     public static float SigmoidFunction(float num) {
         return (float) (1/(1 + Math.exp(-num)));
     }
@@ -56,7 +58,7 @@ public class Neuron {
     /** methods beneath this are all for automated learning */
 
 
-    /** update all the weights. relevant for machine learning*/
+    /** update all the weights. relevant for machine learning */
     public void updateWeights() { // doesn't need parameter as we are saving all new weights inside the class
         this.weights = newWeights;
     }

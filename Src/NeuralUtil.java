@@ -21,8 +21,10 @@ public class NeuralUtil {
         }
     }
 
-    /**have to see if this really makes sense
-     * probably better in class "NeuralNetwork" because I need to use the Layers created there*/
+    /**
+     * have to see if this really makes sense
+     * probably better in class "NeuralNetwork" because I need to use the Layers created there
+     */
     public static float gradientSum(float gradient, int indexCurrentLayer, int indexCurrentNeuron) {
         float sum = 0.0f;
 
