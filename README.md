@@ -68,38 +68,37 @@ this class is completly optional, but I found it easier to use a dedicated class
 <h3>NueralUtil</h3>
 Not initiable helper class. 
 
-    -  public static float RandomFloatNum(float min, float max)
-          - method to get a random float number
-          - helpful for creating a random bias and random weights for the very first initialisation
+  -  public static float RandomFloatNum(float min, float max)
+        - method to get a random float number
+        - helpful for creating a random bias and random weights for the very first initialisation
           
-    -  public static float gradientSum(float gradient, int indexCurrentLayer, int indexCurrentNeuron)
-          - if this is still here, I completly forgot to remove this from the code, just ignore this method
+  -  public static float gradientSum(float gradient, int indexCurrentLayer, int indexCurrentNeuron)
+        - if this is still here, I completly forgot to remove this from the code, just ignore this method
 
-    -  public static Float[][] readWeightsAndBias(String path)
-          - read the weights and bias for the Neurons from a csv file (specify path)
-          - the output is a 2d matrix of Floats the use of the objects Float over float is due to BufferedReader returning Strings. 
-            To convert these arrays of Strings I mapped them to a Float 2d matrix. This step requires Float.
+  -  public static Float[][] readWeightsAndBias(String path)
+        - read the weights and bias for the Neurons from a csv file (specify path)
+        - the output is a 2d matrix of Floats the use of the objects Float over float is due to BufferedReader returning Strings. 
+          To convert these arrays of Strings I mapped them to a Float 2d matrix. This step requires Float.
           
-    -  public static int[] getlayerConfig(String path)
-          - specify path of the csv file
-          - as the layer configuration is the very first line in our provided csv files, I just read the first line and used the important configuration numbers
+  -  public static int[] getlayerConfig(String path)
+        - specify path of the csv file
+        - as the layer configuration is the very first line in our provided csv files, I just read the first line and used the important configuration numbers
 
-    -  public static float[] getSpecificWeights(Float[][] weightsAndBias, int[] layerConfig, int neuronNumber, int layerNumber)
-          - method for reading the specifc weights and bias for aech Neuron
-          - to get the right configuration, you have to hand over the right index of your Neuron of your Neuron in your right Layer
-          - the implementation of this method is quite weird as I have build the neural Network without taking the dataset into consideration.
-            Next time I should definetly take the layout of the dataset into consideration
+  -  public static float[] getSpecificWeights(Float[][] weightsAndBias, int[] layerConfig, int neuronNumber, int layerNumber)
+        - method for reading the specifc weights and bias for aech Neuron
+        - to get the right configuration, you have to hand over the right index of your Neuron of your Neuron in your right Layer
+        - the implementation of this method is quite weird as I have build the neural Network without taking the dataset into consideration.
+          Next time I should definetly take the layout of the dataset into consideration
 
-    -  public static int getTrainingInputCount(String path)
-          - specify the path of the trainig data csv file
-          - it just counts how many inputs the Neural Network will get
-          - this way I can specify the amount of trainingData objects I need for this dataset
+  -  public static int getTrainingInputCount(String path)
+        - specify the path of the trainig data csv file
+        - it just counts how many inputs the Neural Network will get
+        - this way I can specify the amount of trainingData objects I need for this dataset
+  -  public static float[] getTrainingInputData(String path, int[] layerConfig, int index)
+        - get each input data line by line
+        - layerConfig is needed to determine what is the input data and what is the expected result dataset
+        - only get the input data --> possible by only taking the amount of input Neurons I have read from the layer configuration
+        - index is needed to specify which line of dataset I currently am interested in and want to be returned
 
-    -  public static float[] getTrainingInputData(String path, int[] layerConfig, int index)
-          - get each input data line by line
-          - layerConfig is needed to determine what is the input data and what is the expected result dataset
-          - only get the input data --> possible by only taking the amount of input Neurons I have read from the layer configuration
-          - index is needed to specify which line of dataset I currently am interested in and want to be returned
-
-    -  public static void main(String[] args)
-          - had to test each method in a safe environment before using them in the actual neural Network --> saves time and headache
+  -  public static void main(String[] args)
+        - had to test each method in a safe environment before using them in the actual neural Network --> saves time and headache
