@@ -13,7 +13,9 @@ README zu Reises Implemention eines künstlichen neuronalen Netzwerks.
         - constructor for the input Neuron only
         - the input Neuron has no weights nor a bias
         - each inpout Neron has only one value
-
+    
+&nbsp;
+&nbsp;
 
   -  void setWeights(float[] weightManual)
         - use this method to set the weights o the Neuron manually
@@ -37,6 +39,7 @@ README zu Reises Implemention eines künstlichen neuronalen Netzwerks.
   
   
   <h3>Layer</h3>
+  
   -  public Layer(int numberOfWeights, int numberOfNeurons)
         - constructor for the automated Layers (only use this, if you want to have your neural Network to be learnable)
         - currently used in both modes as it turned out to be more useful and less complicated  -->  all needed Parameters are now in Neuron Class
