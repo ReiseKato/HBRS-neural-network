@@ -180,7 +180,8 @@ public class NeuralNetwork {
     }
 
     /** training rate:  optional. can be used to determine how fast the model should train.
-     *                  too low -> can get stuck | too high ->  can cause the model to converge too quickly to a suboptimal solution */
+     *                  too low -> can get stuck | too high ->  can cause the model to converge too quickly to a suboptimal solution
+     */
     public static void backpropagation(TrainingData __trainingData_t, float trainingRate) {
         float out = 0.0f;
         float target = 0.0f;
