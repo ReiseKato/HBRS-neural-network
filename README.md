@@ -102,3 +102,49 @@ Not initiable helper class.
 
   -  public static void main(String[] args)
         - had to test each method in a safe environment before using them in the actual neural Network --> saves time and headache
+
+<h3>NeuralNetwork</h3>
+  -  public static void getTrainingData(String path)
+        - specify the correct path to the trainind data dataset (csv) and it will take care of getting the right dataset for the trainingData objects
+
+  -  public static void getTrainingData()
+        - if you want to manually create trainig data, you can still do this inside this method
+        - look at the examples which have been commented out for further details
+
+  -  public static void createLayers(int numberOfLayers, int[] numberOfWeights, int[] numberOfNeurons)
+        - create the Layers without having to parse the right weights nor bias
+        - just parse how many layers, how many weights the Neurons (array) will get and how many Neurons aech Layer will have as an array
+        - the input Layer has to be excluded expect for "int numberOfLayers"
+        - layout might change over time to make it more efficient (was first idea and hasn't changed since)
+        - example: you want a Layer configuration of 2, 8, 12, 20, 6
+                - int numberOfLayers: 5
+                - int[] numberOfWeights: {2, 8, 12, 20}
+                - int[] numberOfNeurons: {8, 12, 20, 6}
+  -  public static void createLayers(String path)
+        - specify the path to the layer configuration file (csv)
+        - everything else will be taken care by the helper methods explained in "NeuralUtil"
+  
+  -  public static void run(float[] input)
+        - parse the input data here to calculate the output result of the Neural Network
+        - it iterates through each Layer, inside each Layer, it iterates thorugh each Neuron inside that Layer to get their weights and iterates through each Neuron inside the Layer before to get their values
+        - after it's done iterating though the Neruons of the Layer before, the value of the current Neuorn will be calculated by the activation function
+
+  -  public static void backpropagation(TrainingData __trainingData_t, float trainingRate)
+        - method to make the Neural Network learnable
+        - I followed a step-by-step guide by Matt Mazur (https://mattmazur.com/2015/03/17/a-step-by-step-backpropagation-example/)
+        - it did help me quite a lot to make the backpropagation work
+        - to be honest I still don't quite understand how it works and have mostly just implemented the functions he used to manually calculate the backprpagation phase
+        - especially the gradients are still somewhat weird
+
+  -  public static float gradientSum(int indexCurrentLayer, int indexCurrentNeuron)
+        - it sums up all the gradients from the current Layer (parameter) multiplied by the weight of the current Neuron (parameter)
+        - method can't be explained without going into further detials of backpropagation
+          
+  -  public static void updateAllWeights()
+        - all the new weights calculated in the backpropagation method have been stored inside an array of the associated Neuron
+        - these weights now need to be parsed as the new current weight
+        - iterate through each Layer and each Nueron inside that Layer to update their weights
+          
+  -  public static void train(int countOfTraining, float trainingRate)
+        - parse how often it should iterate/use backpropagationfor each training dataset
+        - parse how high the training rate (learning rate) should be  -->  too high: fast training, but can also lead to suboptimal conclusions; too low: can get stuck during training and doesn't really update the weights enough (new values are too close to the old values --> like running the same Network over and over without changing anything)
