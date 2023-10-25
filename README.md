@@ -67,6 +67,7 @@ this class is completly optional, but I found it easier to use a dedicated class
 
 <h3>NueralUtil</h3>
 Not initiable helper class. 
+
     -  public static float RandomFloatNum(float min, float max)
           - method to get a random float number
           - helpful for creating a random bias and random weights for the very first initialisation
