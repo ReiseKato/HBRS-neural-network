@@ -1,5 +1,8 @@
 package Src;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.*;
 
 public class NeuralNetwork {
@@ -15,6 +18,9 @@ public class NeuralNetwork {
         int[] numberOfWeights;
         String sPath = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_weights_trafficlights_classification_simplified.csv"; // Layer, Weight and Bias
         String sPathForTData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_traindata_trafficlights_classification.csv"; // Training Data
+
+        boolean printMatirx = true;
+
         // for triple logical statement
 //        numberOfLayers = 6;
 //        numberOfNeurons = new int[]{20, 30, 20, 5, 1}; // first after input hast 6 neurons (input Layer is not included)
@@ -31,6 +37,7 @@ public class NeuralNetwork {
         // createLayers(numberOfLayers, numberOfWeights, numberOfNeurons);
         createLayers(sPath);
         getTrainingData(sPathForTData);
+
 
         // train(10000000, 0.05f);
         for(int i = 1; i < layers_t.length; i++) {
@@ -63,6 +70,51 @@ public class NeuralNetwork {
 //                }
 //            }
 //        }
+
+
+//        if(printMatirx==true) {
+//            int sumOfNeurons = 0;
+//            int[] layerConfigMat = NeuralUtil.getlayerConfig(sPath);
+//            for(int i = 0; i < layerConfigMat.length; i++) {
+//                sumOfNeurons += layerConfigMat[i] + 1;
+//            }
+//            float[][] weightsAndBiasMatrix = new float[sumOfNeurons][Arrays.stream(layerConfigMat).max().getAsInt()];
+//
+//            for(int i = 0; i < layers_t.length; i++) {
+//                for(int j = 0; j < layers_t[i].neurons.length; j++) {
+//                    for(int k = 0; k < layers_t[i].neurons[k].weights.length; k++) {
+//                        weightsAndBiasMatrix[j][k] = layers_t[i].neurons[k].weights[j];
+//                    }
+//                }
+//            }
+//
+//            for(float[] weight : weightsAndBiasMatrix) {
+//                System.out.println(Arrays.toString(weight));
+//            }
+//        }
+
+        PrintWriter printWriter;
+//        float[][] weights = {{0.2f, 0.5f, 0.7f},
+//                {0.8f, 0.9f, 0.0f}};
+
+        try {
+            File csvFile = new File("weights.csv");
+            printWriter = new PrintWriter(csvFile);
+
+            for(int i = 1; i < layers_t.length; i++) { // i = 1 because input Layer doesn't have weights
+                printWriter.println("\nLayer: " + i);
+                for(int j = 0; j < layers_t[i].neurons.length; j++) {
+                    printWriter.println("Neuron: " + j);
+                    printWriter.println(Arrays.toString(layers_t[i].neurons[j].weights) + ";" +
+                            layers_t[i].neurons[j].bias);
+                }
+            }
+
+            printWriter.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
     }
 
 

@@ -200,6 +200,25 @@ public class NeuralUtil {
         return fInpuData;
     }
 
+    public static void writeWeights(float[][] weights) {
+        PrintWriter printWriter;
+//        float[][] weights = {{0.2f, 0.5f, 0.7f},
+//                {0.8f, 0.9f, 0.0f}};
+
+        try {
+            File csvFile = new File("weights.csv");
+            printWriter = new PrintWriter(csvFile);
+
+            for(float weight[] : weights) {
+                printWriter.println(Arrays.toString(weight));
+            }
+
+            printWriter.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void main(String[] args) {
         Path path = Paths.get("KW43_weights_trafficlights_classification_simplified.csv");
@@ -270,55 +289,71 @@ public class NeuralUtil {
 //        // System.out.println(weightsAndBias[3][0]);
 //        System.out.println(Arrays.toString(NeuralUtil.getlayerConfig(sPath)));
 
-        int[] layerConfig = NeuralUtil.getlayerConfig(sPath);
-        int inputLength = layerConfig[0];
-        int outputLength = layerConfig[layerConfig.length - 1];
-        int counter = 0;
-        String line;
+//        int[] layerConfig = NeuralUtil.getlayerConfig(sPath);
+//        int inputLength = layerConfig[0];
+//        int outputLength = layerConfig[layerConfig.length - 1];
+//        int counter = 0;
+//        String line;
+//
+//        try{
+//            BufferedReader br = new BufferedReader(new FileReader(sPathForTData));
+//            counter = 0;
+//            while((line = br.readLine()) != null) {
+//                counter++;
+//            }
+//        } catch(FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch(IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        String[] data;
+//        String[][] training = new String[counter][];
+//        Float[][] fTraining = new Float[counter][];
+//
+//        try{
+//            BufferedReader bufferedReader = new BufferedReader(new FileReader(sPathForTData));
+//            // System.out.println(layerConfig);
+//            int i = 0;
+//            while((line = bufferedReader.readLine()) != null) {
+//                //line = bufferedReader.readLine();
+//                data = line.split(";");
+//                // System.out.println(Arrays.toString(data));
+//                training[i] = data;
+//                fTraining[i] = Arrays.stream(data).map(Float::valueOf).toArray(Float[]::new);
+//                i++;
+//            }
+//        } catch(FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch(IOException e) {
+//            e.printStackTrace();
+//        }
+//
+//        for(Float[] row : fTraining) {
+//            System.out.println(Arrays.toString(row));
+//        }
+//
+//        Float[] inputData_t;
+//        float[] fInputata;
+//        for(int i = 0; i < counter; i++) {
+//            inputData_t = Arrays.copyOfRange(fTraining[i], 0, inputLength);
+//            System.out.println(Arrays.toString(inputData_t));
+//        }
+        PrintWriter printWriter;
+        float[][] weights = {{0.2f, 0.5f, 0.7f},
+                {0.8f, 0.9f, 0.0f}};
 
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(sPathForTData));
-            counter = 0;
-            while((line = br.readLine()) != null) {
-                counter++;
+        try {
+            File csvFile = new File("weights.csv");
+            printWriter = new PrintWriter(csvFile);
+
+            for(float weight[] : weights) {
+                printWriter.println(Arrays.toString(weight));
             }
+
+            printWriter.close();
         } catch(FileNotFoundException e) {
             e.printStackTrace();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-
-        String[] data;
-        String[][] training = new String[counter][];
-        Float[][] fTraining = new Float[counter][];
-
-        try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(sPathForTData));
-            // System.out.println(layerConfig);
-            int i = 0;
-            while((line = bufferedReader.readLine()) != null) {
-                //line = bufferedReader.readLine();
-                data = line.split(";");
-                // System.out.println(Arrays.toString(data));
-                training[i] = data;
-                fTraining[i] = Arrays.stream(data).map(Float::valueOf).toArray(Float[]::new);
-                i++;
-            }
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-
-        for(Float[] row : fTraining) {
-            System.out.println(Arrays.toString(row));
-        }
-
-        Float[] inputData_t;
-        float[] fInputata;
-        for(int i = 0; i < counter; i++) {
-            inputData_t = Arrays.copyOfRange(fTraining[i], 0, inputLength);
-            System.out.println(Arrays.toString(inputData_t));
         }
     }
 
