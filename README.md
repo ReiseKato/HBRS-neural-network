@@ -1,6 +1,6 @@
 <h1>2023 WS - Projekt-Seminar: Lernen in natürlichen und künstlichen neuronalen Netzen</h1>
 
-README to Reises' implementation eineofs a Neural Network.
+README to Reises' implementation of a Neural Network.
 
 
 <h3>Neuron</h3>
