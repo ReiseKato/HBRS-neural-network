@@ -4,6 +4,7 @@ README zu Reises Implemention eines künstlichen neuronalen Netzwerks.
 
 
 <h3>Neuron</h3>
+
   - public Neuron(float[] weights, float bias)
         - constructor for the hidden and output Neurons
         - set the first weights and bias of the Neuron here
