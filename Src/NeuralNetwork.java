@@ -39,7 +39,7 @@ public class NeuralNetwork {
         getTrainingData(sPathForTData);
 
 
-        // train(10000000, 0.05f);
+
         for(int i = 1; i < layers_t.length; i++) {
             for(int j = 0; j < layers_t[i].neurons.length; j++) {
                 float[] weights;
@@ -53,6 +53,8 @@ public class NeuralNetwork {
             }
         }
 
+
+
         for(int i = 0; i < trainingData_t.length; i++) {
             run(trainingData_t[i].inputData);
             System.out.println("\nInput: " + i);
@@ -60,6 +62,10 @@ public class NeuralNetwork {
                 System.out.println(layers_t[layers_t.length - 1].neurons[j].value);
             }
         }
+
+
+        // train(10000000, 0.05f);
+
 
 //        for(int i = 1; i < layers_t.length; i++) {
 //            System.out.println("\nLayer: " + i);
@@ -225,8 +231,13 @@ public class NeuralNetwork {
                     sum += layers_t[i].neurons[j].weights[k]*layers_t[i - 1].neurons[k].value;
                 }
                 sum += layers_t[i].neurons[j].bias;
-                // layers_t[i].neurons[j].value = Neuron.ReLu(sum); // ReLu -> not fixed yet
                 layers_t[i].neurons[j].value = Neuron.SigmoidFunction(sum);
+                // layers_t[i].neurons[j].value = Neuron.ReLu(sum); // ReLu -> not fixed yet
+//                if(i != layers_t.length - 2) {
+//                    layers_t[i].neurons[j].value = Neuron.SigmoidFunction(sum);
+//                } else {
+//                    layers_t[i].neurons[j].value = sum;
+//                }
             }
         }
     }
