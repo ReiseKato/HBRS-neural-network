@@ -77,7 +77,8 @@ Not initiable helper class.
 
     -  public static Float[][] readWeightsAndBias(String path)
           - read the weights and bias for the Neurons from a csv file (specify path)
-          - the output is a 2d matrix of Floats the use of the objects Float over float is due to BufferedReader returning Strings. To convert these arrays of Strings I mapped them to a Float 2d matrix. This step requires Float
+          - the output is a 2d matrix of Floats the use of the objects Float over float is due to BufferedReader returning             Strings. 
+            To convert these arrays of Strings I mapped them to a Float 2d matrix. This step requires Float.
           
     -  public static int[] getlayerConfig(String path)
           - specify path of the csv file
@@ -86,7 +87,8 @@ Not initiable helper class.
     -  public static float[] getSpecificWeights(Float[][] weightsAndBias, int[] layerConfig, int neuronNumber, int layerNumber)
           - method for reading the specifc weights and bias for aech Neuron
           - to get the right configuration, you have to hand over the right index of your Neuron of your Neuron in your right Layer
-          - the implementation of this method is quite weird as I have build the neural Network without taking the dataset into consideration. next time I should definetly take the layout of the dataset into consideration
+          - the implementation of this method is quite weird as I have build the neural Network without taking the dataset             into consideration.
+            Next time I should definetly take the layout of the dataset into consideration
 
     -  public static int getTrainingInputCount(String path)
           - specify the path of the trainig data csv file
