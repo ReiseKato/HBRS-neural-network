@@ -12,18 +12,24 @@ import java.io.IOException;
 public class NNTest {
     NeuralNetwork network;
 
+    String[][] weighttxt;
+    String[][] traintxt;
+
+    TrainingData t;
     @BeforeEach
-    void init() {
+    void init() throws IOException {
         network = new NeuralNetwork();
+        weighttxt =NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/weight_trafficlights.csv");
+        traintxt = NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/traindata_trafficlights.csv");
+        t = new TrainingData(weighttxt, traintxt);
     }
 
     @Test
     void testCSV() throws IOException {
 
         String[][] s =NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/weight_trafficlights.csv");
-        TrainingData t = new TrainingData(s);
-        t.determineLayout();
-        t.determineWeightsBiases();
+        TrainingData t = new TrainingData(weighttxt, traintxt);
+
     }
 
     @Test
@@ -49,79 +55,40 @@ public class NNTest {
     }
     @Test
     void testNeuron() {
-        int[] ar = {2,1};
-        double[] data = {0,0};
+        int[] ar = {2, 1};
+        double[] data = {0, 0};
         network.init(ar);
         network.compute(data);
 
 
-
-    }
-    @Test
-    void testMatrixVector() {
-        Double[][] matrix = {{1.0, 2.0, 3.0},
-                             {4.0, 5.0, 6.0}};
-        double z = 7.0;
-        Neuron[] v = new Neuron[3];
-        for (int i = 0; i < v.length; i++) {
-            v[i] = new Neuron();
-            //v[i].setValue(z);
-            z++;
-        }
-
-    //    Neuron[] res = network.matrixVectorMultiplication(matrix, v);
-
-     //   assertTrue(res[0].getValue()== 50);
-   //     assertTrue(res[1].getValue()== 122);
-
-        Double[][] matrix2 = {{1.0,1.0}};
-        Neuron[] v2 = new Neuron[2];
-        for (int i = 0; i < v2.length; i++) {
-            v2[i] = new Neuron();
-         //   v2[i].setValue(0);
-        }
-     //   res = network.matrixVectorMultiplication(matrix2, v2);
-
-      //
-        //  assertTrue(res[0].getValue()== 0);
     }
 
 
     @Test
     void testNeuralNetworkWithBiases() throws IOException {
-        String[][] s =NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/weight_trafficlights.csv");
-        TrainingData t = new TrainingData(s);
-        t.determineLayout();
-        t.determineWeightsBiases();
-        network.init(t.getLayout());
-        network.initWeights(t.getWeightcfg());
-        network.initBiases(t.getBiases());
+
+        network.init(weighttxt);
+        network.initWeightsBiases(weighttxt);
         network.setFunc(new String[] {"","sigmoid",""});
         network.compute(new double[]{1.0, 0, 0});
     }
 
     @Test
     void test() throws IOException {
-        String[][] s =NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/weight_trafficlights.csv");
-        TrainingData t = new TrainingData(s);
-        t.determineLayout();
-        t.determineWeightsBiases();
-        t.updateFile();
+
+        network.init(weighttxt);
+        network.initWeightsBiases(weighttxt);
+        t.updateFile(network.getWeights(), network.getBiases());
         String[][] strings = t.getFile();
         NeuralNetworkUtil.writeCSV(strings,"/Users/victor/IdeaProjects/Projektseminar/test.csv" );
     }
 
     @Test
     void testTrain() throws IOException {
-        String[][] st =NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/weight_trafficlights.csv");
-
-        String[][] s = NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/traindata_trafficlights.csv");
-        TrainingData t = new TrainingData(st);
-        t.determineLayout();
-        t.setTrainData(s);
-        t.setTrain();
         Double[] i = {0.69,0.69,0.69};
         Double[] o = {1.0,1.0,1.0,1.0};
+        network.init(weighttxt);
+        t.initInputsOutputs();
         t.addInputOutput(i, o);
         t.updateTrainData();
         NeuralNetworkUtil.writeCSV(t.getTraindata(), "/Users/victor/IdeaProjects/Projektseminar/test2.csv");
