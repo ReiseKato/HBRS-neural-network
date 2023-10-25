@@ -47,6 +47,8 @@ README zu Reises Implemention eines künstlichen neuronalen Netzwerks.
         - constructor for the input Layer as it doesn't need weights
         - number of needed Neurons will be calculated by the length of input array
 
+&nbsp;
+&nbsp;
   
   -  void readCsvWeights(String path)
         - method to read the correct weights for each Neuron from a csv file
