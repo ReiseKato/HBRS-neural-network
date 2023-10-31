@@ -52,6 +52,19 @@ public class NeuralNetworkUtil {
         return res;
     }
 
+    public static Neuron[] subVectors(Neuron[] v1, Neuron[] v2) {
+        Neuron[] res = null;
+        //schaue, ob die Anzahl an Komponenten gleich ist
+        if(v1.length == v2.length) {
+            res = new Neuron[v1.length];//erzeuge ergebnis Vektor
+            for (int i = 0; i < v1.length; i++) {
+                //subtrahiere Komponentenweise
+                res[i] = new Neuron(v1[i].value - v2[i].value);
+            }
+        }
+        return res;
+    }
+
     /**
      * Methode zum Einlesen von einer CSV-Datei in ein String[][]
      * @param csvpath Pfad zur CSV-Datei
@@ -211,6 +224,37 @@ public class NeuralNetworkUtil {
 
         }
         return temp;
+    }
+
+    public static Double[][][] addArrays(Double[][][] array1, double[][][] array2) {
+
+
+        for (int i = 0; i < array1.length; i++) {
+            for (int j = 0; j < array1[i].length; j++) {
+                for (int k = 0; k < array1[i][j].length; k++) {
+                    array1[i][j][k] = array1[i][j][k] + array2[i][j][k];
+                }
+            }
+        }
+
+        return array1;
+    }
+
+    public static Double calcAbsValOfVector(Neuron[] vektor) {
+
+        double temp = 0;
+        for (Neuron i: vektor) {
+            temp += Math.pow(i.getValue(), 2);
+        }
+        return Math.sqrt(temp);
+    }
+
+    public static double[] neuronToDouble(Neuron[] temp) {
+        double[] temp2 = new double[temp.length];
+        for (int i = 0; i < temp2.length; i++) {
+            temp2[i] = temp[i].value;
+        }
+        return temp2;
     }
 }
 

@@ -70,7 +70,9 @@ public class NNTest {
         network.init(weighttxt);
         network.initWeightsBiases(weighttxt);
         network.setFunc(new String[] {"","sigmoid",""});
-        network.compute(new double[]{1.0, 0, 0});
+        t.initInputsOutputs();
+        network.train();
+
     }
 
     @Test

@@ -2,6 +2,9 @@ package Code;
 
 import java.util.*;
 
+import static Code.TrainingData.inputs;
+import static Code.TrainingData.outputs;
+
 /**
  * Klasse NeuralNetwork
  * @author vkowal2s
@@ -17,6 +20,8 @@ public class NeuralNetwork {
     Neuron[] output;//Referenz auf den output Layer
     static int[] layers;
     String[] func;//Funktionen für den jeweiligen Layer
+
+    Double LR = 10e-6;
 
     /**
      * initialisiere die Neuronen, anhand des Arrays layers
@@ -127,6 +132,7 @@ public class NeuralNetwork {
 
     }
 
+
     /**
      * berechnet für einen input vektor den passenden output vektor mithilfe von Matrix Vektor Multiplikation
      * @param dataset enthält den Input Datensatz, idealerweise: Dim(dataset)=Dim(network[0])
@@ -155,6 +161,91 @@ public class NeuralNetwork {
         }
         //output layer aktualisieren
         output = network[network.length-1];
+       // this.saves= save.toArray(new Neuron[0][]);
+    }
+
+    public Double determineLossFunction(Neuron[] expectedoutput) {
+        Neuron[] temp = NeuralNetworkUtil.subVectors(output, expectedoutput);
+        double sum = 0;
+        for (Neuron value : temp) {
+            value.value = Math.pow(value.value, 2);
+        }
+        for (Neuron neuron : temp) {
+            sum += neuron.value;
+        }
+        return sum;
+    }
+
+    public void train() {
+
+        double netzfehler = 0;
+        double olderror = 1.0907851768508634;
+        int z = 0;
+        do {
+            for (int i = 0; i < outputs.size(); i++) {
+                double[] in = NeuralNetworkUtil.neuronToDouble(inputs.get(i));
+                compute(in);
+                netzfehler += determineLossFunction(outputs.get(i));
+                double[][][] updateweights = backwardparse(outputs.get(i));
+                NeuralNetworkUtil.addArrays(weights, updateweights);
+
+            }
+            if(netzfehler > olderror) {
+                LR /= 2;
+            } else {
+                LR += 10e-5;
+            }
+            olderror = netzfehler;
+            System.out.println(z);
+            z++;
+
+        } while (/*netzfehler > 0.9 ||*/ z < 1000000);
+    }
+
+    public double[] calcDeltaOuputError(Neuron[] expectedoutput) {
+        double[] delta = new double[output.length];
+        for (int i = 0; i < delta.length; i++) {
+            delta[i] = expectedoutput[i].value - output[i].value;
+        }
+        return delta;
+    }
+
+    public double[][][] backwardparse(Neuron[] expectedoutput) {
+        Double[][] dellMatrix;
+        //für die Augabeschicht:
+        double[] delK = calcDeltaOuputError(expectedoutput);
+        double[][][] delWeights = new double[weights.length][][];
+
+        for (int i = 0; i < output.length; i++) {
+            output[i].delta = delK[i];
+            output[i].computeDerivative("sigmoid");
+        }
+        
+        // für die hidden layers:
+        for (int i = network.length-2; i >= 1; i--) {
+
+            for (int j = 0; j < network[i].length; j++) {
+                Neuron temp = network[i][j];
+                for (int k = 0; k < network[i+1].length; k++) {
+                    temp.delta += (delK[k] * weights[i][j][k]);
+                }
+                temp.computeDerivative(func[i]);
+            }
+        }
+
+       for (int l = weights.length-1; l >= 0; l--) {
+           delWeights[l] = new double[weights[l].length][];
+            for (int i = 0; i < weights[l].length; i++) {
+                Neuron[] out = network[l];
+                Neuron[] delj = network[l+1];
+                delWeights[l][i] = new double[weights[l][i].length];
+                for (int j = 0; j < weights[l][i].length ; j++) {
+                    delWeights[l][i][j] = LR * out[i].value * delj[j].value;
+                }
+            }
+        }
+       return delWeights;
+
     }
 
     /**

@@ -14,8 +14,8 @@ public class TrainingData {
 
     String[][] file; // layer+weight Konfiguration
     String[][] traindata;// Trainingssätze: input   (expected)output
-    List<Neuron[]> inputs;
-    List<Neuron[]> outputs;
+    static List<Neuron[]> inputs;
+    static List<Neuron[]> outputs;
     public TrainingData() {
 
     }
