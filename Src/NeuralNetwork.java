@@ -9,6 +9,9 @@ public class NeuralNetwork {
     static Layer[] layers_t;
     static TrainingData[] trainingData_t;
     static int[] layerConfig;
+    static double totalErrorPrior;
+    static double totalErrorCurrent;
+    static List<Double> totalError = new ArrayList<Double>();
 
 
 
@@ -19,41 +22,31 @@ public class NeuralNetwork {
         String sPath = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_weights_trafficlights_classification_simplified.csv"; // Layer, Weight and Bias
         String sPathForTData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_traindata_trafficlights_classification.csv"; // Training Data
 
+        String sPathBestWeights = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\weights.csv"; // best weights
+        String sPathKnownTData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\known_training_data.csv"; // known Training Data
+        String sPathUnknownData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\unknown_data.csv"; // unknown for checking implementation
+
         boolean printMatirx = true;
-
-        // for triple logical statement
-//        numberOfLayers = 6;
-//        numberOfNeurons = new int[]{20, 30, 20, 5, 1}; // first after input hast 6 neurons (input Layer is not included)
-//        numberOfWeights = new int[]{8, 20, 30, 20, 5}; // first after input one gets two weights
-
-//        numberOfLayers = 3;
-//        numberOfNeurons = new int[]{8, 1};
-//        numberOfWeights = new int[]{2, 8};
-
 
         Neuron.setWeightRange(-1, 1);
 
-
-        // createLayers(numberOfLayers, numberOfWeights, numberOfNeurons);
+        // if using whole dataset
         createLayers(sPath);
-        getTrainingData(sPathForTData);
+        getTrainingDataLearnable(sPathForTData);
+        weightAndBiasConfig(sPath);
+
+        // if using only specifc datase --> same as whole set
+//        createLayers(sPath);
+//        getTrainingDataLearnable(sPathKnownTData);
+//        weightAndBiasConfig(sPath);
+
+        // if checking with unkown dataset
+//        createLayers(sPathBestWeights);
+//        getTrainingData(sPathUnknownData);
+//        weightAndBiasConfig(sPathBestWeights);
 
 
-
-        for(int i = 1; i < layers_t.length; i++) {
-            for(int j = 0; j < layers_t[i].neurons.length; j++) {
-                float[] weights;
-                float bias;
-                float[] weightsAndBias = NeuralUtil.getSpecificWeights(NeuralUtil.readWeightsAndBias(sPath),
-                        layerConfig, j, i);
-                weights = Arrays.copyOfRange(weightsAndBias, 0, weightsAndBias.length - 1);
-                bias = weightsAndBias[weightsAndBias.length - 1];
-                layers_t[i].neurons[j].setWeights(weights);
-                layers_t[i].neurons[j].setBias(bias);
-            }
-        }
-
-
+        train(10000, 0.05f);
 
         for(int i = 0; i < trainingData_t.length; i++) {
             run(trainingData_t[i].inputData);
@@ -63,65 +56,15 @@ public class NeuralNetwork {
             }
         }
 
-
-        // train(10000000, 0.05f);
-
-
-//        for(int i = 1; i < layers_t.length; i++) {
-//            System.out.println("\nLayer: " + i);
-//            for(int j = 0; j < layers_t[i].neurons.length; j++) {
-//                System.out.println("\nNeuron: " + j);
-//                for(int k = 0; k < layers_t[i].neurons[j].weights.length; k++) {
-//                    System.out.println(layers_t[i].neurons[j].weights[k]);
-//                }
-//            }
-//        }
-
-
-//        if(printMatirx==true) {
-//            int sumOfNeurons = 0;
-//            int[] layerConfigMat = NeuralUtil.getlayerConfig(sPath);
-//            for(int i = 0; i < layerConfigMat.length; i++) {
-//                sumOfNeurons += layerConfigMat[i] + 1;
-//            }
-//            float[][] weightsAndBiasMatrix = new float[sumOfNeurons][Arrays.stream(layerConfigMat).max().getAsInt()];
-//
-//            for(int i = 0; i < layers_t.length; i++) {
-//                for(int j = 0; j < layers_t[i].neurons.length; j++) {
-//                    for(int k = 0; k < layers_t[i].neurons[k].weights.length; k++) {
-//                        weightsAndBiasMatrix[j][k] = layers_t[i].neurons[k].weights[j];
-//                    }
-//                }
-//            }
-//
-//            for(float[] weight : weightsAndBiasMatrix) {
-//                System.out.println(Arrays.toString(weight));
-//            }
-//        }
-
-        PrintWriter printWriter;
-//        float[][] weights = {{0.2f, 0.5f, 0.7f},
-//                {0.8f, 0.9f, 0.0f}};
-
-        try {
-            File csvFile = new File("weights.csv");
-            printWriter = new PrintWriter(csvFile);
-
-            for(int i = 1; i < layers_t.length; i++) { // i = 1 because input Layer doesn't have weights
-                printWriter.println("\nLayer: " + i);
-                for(int j = 0; j < layers_t[i].neurons.length; j++) {
-                    printWriter.println("Neuron: " + j);
-                    printWriter.println(Arrays.toString(layers_t[i].neurons[j].weights) + ";" +
-                            layers_t[i].neurons[j].bias);
-                }
-            }
-
-            printWriter.close();
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        }
-
+        writeWeightAndBias();
+        getAndWriteTotalErrors();
     }
+
+
+
+    /**
+     * Methods
+     * */
 
 
 
@@ -131,6 +74,16 @@ public class NeuralNetwork {
 
         for(int i = 0; i < numberOfTrainingData; i++) {
             trainingData_t[i] = new TrainingData(NeuralUtil.getTrainingInputData(path, layerConfig, i));
+        }
+    }
+
+    public static void getTrainingDataLearnable(String path) {
+        int numberOfTrainingData = NeuralUtil.getTrainingInputCount(path);
+        trainingData_t = new TrainingData[numberOfTrainingData];
+
+        for(int i = 0; i < numberOfTrainingData; i++) {
+            trainingData_t[i] = new TrainingData(NeuralUtil.getTrainingInputData(path, layerConfig, i),
+                    NeuralUtil.getTrainingOutputData(path, layerConfig, i));
         }
     }
 
@@ -163,7 +116,7 @@ public class NeuralNetwork {
 //        trainingData_t[2] = new TrainingData(input2, expectedResult2);
 //        trainingData_t[3] = new TrainingData(input3, expectedResult3);
 
-        // still having problems with triple logical statement
+
 //        float[] input0 = new float[] {0, 0, 0}; // expect 0
 //        float[] input1 = new float[] {0, 0, 1}; // expect 1
 //        float[] input2 = new float[] {0, 1, 0}; // expect 0
@@ -219,6 +172,64 @@ public class NeuralNetwork {
         }
     }
 
+    /** get weights and bias form csv and initialize Neurons */
+    public static void weightAndBiasConfig(String path) {
+        for(int i = 1; i < layers_t.length; i++) {
+            for(int j = 0; j < layers_t[i].neurons.length; j++) {
+                float[] weights;
+                float bias;
+                float[] weightsAndBias = NeuralUtil.getSpecificWeights(NeuralUtil.readWeightsAndBias(path),
+                        layerConfig, j, i);
+                weights = Arrays.copyOfRange(weightsAndBias, 0, weightsAndBias.length - 1);
+                bias = weightsAndBias[weightsAndBias.length - 1];
+                layers_t[i].neurons[j].setWeights(weights);
+                layers_t[i].neurons[j].setBias(bias);
+            }
+        }
+    }
+
+    public static void writeWeightAndBias() {
+        PrintWriter printWriter;
+
+        try {
+            File csvFile = new File("weights.csv");
+            printWriter = new PrintWriter(csvFile);
+            String sLayers = "layers;";
+            for(int i = 0; i < layerConfig.length; i++) {
+                sLayers += layerConfig[i];
+                if(i != layerConfig.length - 1) {
+                    sLayers += ";";
+                }
+            }
+
+            printWriter.println(sLayers);
+
+            for(int i = 1; i < layers_t.length; i++) { // i = 1 because input Layer doesn't have weights
+                int num = 0;
+                for(int j = 0; j < layers_t[i].neurons[0].weights.length; j++) {
+                    String sWeights ="";
+                    for (int k = 0; k < layers_t[i].neurons.length; k++) {
+                        sWeights += layers_t[i].neurons[k].weights[j] + ";";
+                    }
+                    printWriter.println(sWeights);
+                    num++;
+                }
+                String sBias = "";
+                for(int j = 0; j < layers_t[i].neurons.length; j++) {
+                    sBias += layers_t[i].neurons[j].bias + ";";
+                }
+                printWriter.println(sBias);
+                if(i != layers_t.length - 1) {
+                    printWriter.println(";;;");
+                }
+            }
+
+            printWriter.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
     /** basically parse the weights, calculate the values. voila! */
     public static void run(float[] input) {
         layers_t[0] = new Layer(input);
@@ -232,7 +243,7 @@ public class NeuralNetwork {
                 }
                 sum += layers_t[i].neurons[j].bias;
                 layers_t[i].neurons[j].value = Neuron.SigmoidFunction(sum);
-                // layers_t[i].neurons[j].value = Neuron.ReLu(sum); // ReLu -> not fixed yet
+//                 layers_t[i].neurons[j].value = Neuron.ReLu(sum); // ReLu -> not fixed yet
 //                if(i != layers_t.length - 2) {
 //                    layers_t[i].neurons[j].value = Neuron.SigmoidFunction(sum);
 //                } else {
@@ -246,9 +257,9 @@ public class NeuralNetwork {
      *                  too low -> can get stuck | too high ->  can cause the model to converge too quickly to a suboptimal solution
      */
     public static void backpropagation(TrainingData __trainingData_t, float trainingRate) {
+        double totalErrorDouble = 0.0f;
         float out = 0.0f;
         float target = 0.0f;
-        float errorTotal = 0.0f;
         float deltaOfValue = 0.0f;
         float deriviate = 0.0f;
         float delta;
@@ -259,8 +270,8 @@ public class NeuralNetwork {
         for(int i = 0; i < layers_t[layers_t.length - 1].neurons.length; i++) { // i: indexing for Neurons in output Layer. loop while i < number of neurons in output Layer
             out = layers_t[layers_t.length - 1].neurons[i].value;
             target = __trainingData_t.expectedResult[i];
-            // errorTotal += 0.5*(out -  target)*(out* - target);
-            deltaOfValue = out - target; // output - target (M. Mazur)
+            totalErrorDouble += 0.5*(out -  target)*(out* - target);
+            deltaOfValue = out - target; // get delta of value
             deriviate = out*(1 - out);
             delta = deriviate*deltaOfValue;
             layers_t[layers_t.length - 1].neurons[i].gradient = delta;
@@ -289,20 +300,21 @@ public class NeuralNetwork {
 
                     /*if it needs to train via weight, use the upper code below*/
                     // layers_t[i].neurons[j].newWeights[k] = layers_t[i].neurons[j].weights[k] - trainingRate*delta;
-                    // layers_t[i].neurons[j].weights[k] = layers_t[i].neurons[j].weights[k] - trainingRate*delta;
                 }
             }
         }
+        totalErrorCurrent = totalErrorDouble;
+        totalError.add(totalErrorCurrent);
 
         updateAllWeights();
     }
 
-    public static float gradientSum(int indexCurrentLayer, int indexCurrentNeuron) { // maybe float gradient has to be given as Parameter -> test
+    public static float gradientSum(int indexCurrentLayer, int indexCurrentNeuron) {
         float sum = 0.0f;
         Layer currentLayer = layers_t[indexCurrentLayer];
         for(int i = 0; i < currentLayer.neurons.length; i++) {
             Neuron currentNeuron = currentLayer.neurons[i];
-            sum += currentNeuron.gradient*currentNeuron.weights[indexCurrentNeuron]; // tried a bunch of different values -> weights seems to work so far
+            sum += currentNeuron.gradient*currentNeuron.weights[indexCurrentNeuron];
         }
         return sum;
     }
@@ -321,7 +333,36 @@ public class NeuralNetwork {
             for(int j = 0; j < trainingData_t.length; j++) {
                 run(trainingData_t[j].inputData);
                 backpropagation(trainingData_t[j], trainingRate);
+
+//                if(totalErrorPrior >= totalErrorCurrent && j > 0) {
+//                    trainingRate = trainingRate/2;
+//                }
+//                totalErrorPrior = totalErrorCurrent;
             }
         }
     }
+
+    public static Double[] getAndWriteTotalErrors() {
+        Double[] arrTotalError = new Double[totalError.size()];
+        int i = 0;
+        for(Double x : totalError) {
+            arrTotalError[i] = x;
+            i++;
+        }
+        PrintWriter printWriter;
+
+        try {
+            File csvFile = new File("totalError.csv");
+            printWriter = new PrintWriter(csvFile);
+            for(double error : arrTotalError) {
+                printWriter.print(error + ",");
+            }
+
+            printWriter.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        return arrTotalError;
+    }
+
 }

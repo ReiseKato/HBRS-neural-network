@@ -22,14 +22,14 @@ public class Layer {
     }
 
     /** for hidden layer and output layer (manual) */
-    public Layer(int numberOfWeights, int numberOfNeurons, float[][] weights2d, float bias) {
+    public Layer(int numberOfWeights, int numberOfNeurons, int num) {
         this.neurons = new Neuron[numberOfNeurons];
 
         for (int i = 0; i < numberOfNeurons; i++) {
             float[] weights = new float[numberOfWeights];
-            for (int j = 0; j < numberOfWeights; j++) {
-                // weights[j] = NeuralUtil.RandomFloatNum(Neuron.minWeight, Neuron.maxWeight);
-            }
+//            for (int j = 0; j < numberOfWeights; j++) {
+//                // weights[j] = NeuralUtil.RandomFloatNum(Neuron.minWeight, Neuron.maxWeight);
+//            }
             neurons[i] = new Neuron(weights, NeuralUtil.RandomFloatNum(0, 1)); // get random number for bias between 0 and 1
         }
     }
