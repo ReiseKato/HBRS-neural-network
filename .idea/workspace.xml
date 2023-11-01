@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Layer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Layer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NeuralNetwork.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NeuralUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NeuralUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Layer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Layer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralNetwork.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/weights.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/weights.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src with README.zip" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/weights.csv" beforeDir="false" afterPath="$PROJECT_DIR$/weights.csv" afterDir="false" />
-    </list>
+    <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
