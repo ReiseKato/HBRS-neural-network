@@ -14,8 +14,8 @@ public class TrainingData {
 
     String[][] file; // layer+weight Konfiguration
     String[][] traindata;// Trainingssätze: input   (expected)output
-    static List<Neuron[]> inputs;
-    static List<Neuron[]> outputs;
+    static List<Double[]> inputs;
+    static List<Double[]> outputs;
     public TrainingData() {
 
     }
@@ -34,7 +34,7 @@ public class TrainingData {
      * @param traindata Input/Output sets
      */
     public TrainingData(String[][] doc, String[][] traindata) {
-        new TrainingData(doc);
+        this.file = doc;
         this.traindata = traindata;
 
     }
@@ -59,8 +59,9 @@ public class TrainingData {
             System.arraycopy(traindatum, 0, a, 0, numofinputs);
             System.arraycopy(traindatum, numofinputs, b, 0, numofoutputs);
             // füge die eingelesen Werte in die entsprechende Liste hinzu
-            inputs.add(NeuralNetworkUtil.stringToNeuron(a));
-            outputs.add(NeuralNetworkUtil.stringToNeuron(b));
+            inputs.add(NeuralNetworkUtil.stringArrayToDouble(a));
+            outputs.add(NeuralNetworkUtil.stringArrayToDouble(b));
+
 
         }
     }
@@ -71,18 +72,9 @@ public class TrainingData {
      * @param out Output Vektor
      */
     public void addInputOutput(Double[] in, Double[] out) {
-        //erzeuge ein Neuron[] aus den in and out Double[]
-        Neuron[] temp1 = new Neuron[in.length];
-        Neuron[] temp2 = new Neuron[out.length];
-        for (int i = 0; i < in.length; i++) {
-            temp1[i] = new Neuron(in[i]);
-        }
-        for (int i = 0; i < out.length; i++) {
-            temp2[i] = new Neuron(out[i]);
-        }
         //füge sie in die Liste hinzu
-        inputs.add(temp1);
-        outputs.add(temp2);
+        inputs.add(in);
+        outputs.add(out);
     }
 
     /**
@@ -93,12 +85,14 @@ public class TrainingData {
         //neue String[][] anlegen mit der Anzahl an akt Datensätzen in der Liste
         //für jede Zeile
         for (int i = 0; i < temp.length; i++) {
-            Neuron[] input = inputs.get(i);// i-ter input
-            Neuron[] output = outputs.get(i);// passender i-ter output
-            String[] st = NeuralNetworkUtil.neuronToString(output);
+            Double[] input = inputs.get(i);// i-ter input
+            Double[] output = outputs.get(i);// passender i-ter output
+            String[] st = NeuralNetworkUtil.doubleArrayToString(output);
             // wandel den Input Neuron[] in ein String[] um
             st[0] = "\t\t" + st[0];
-            temp[i] = NeuralNetworkUtil.concatArrays(NeuralNetworkUtil.neuronToString(input),st);
+            temp[i] = new String[input.length + output.length];
+            System.arraycopy(st, 0, temp[i], 0, st.length);
+            System.arraycopy(NeuralNetworkUtil.doubleArrayToString(input), 0, temp[i], input.length, output.length);
             // füge zum letzten El zwei taps hinzu
             // wandel den Output Neuron[] in ein String[]
             // füge beide Strings[] zusammen und weise sie der akt Zeile zu

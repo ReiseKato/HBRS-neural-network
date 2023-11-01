@@ -9,6 +9,7 @@ public class Neuron {
 
     double value;
     double delta = 0.0;
+    double bias; // bei einem reg. Neuron = null
 
     double valbeforcomp;
 
@@ -25,6 +26,11 @@ public class Neuron {
      */
     public Neuron(double value) {
         this.value = value;
+    }
+
+    public Neuron(double value, double bias) {
+        this.value = value;
+        this.bias = bias;
     }
 
     /**
@@ -85,7 +91,7 @@ public class Neuron {
         this.value = 1 / (1 + Math.exp((-1) * value));
     }
     public void derivativeSigmoid() {
-        delta *= Math.exp(valbeforcomp) / Math.pow((Math.exp(valbeforcomp) + 1), 2);
+        value *= Math.exp(valbeforcomp) / Math.pow((Math.exp(valbeforcomp) + 1), 2);
     }
 
     //Gleichgerichtete Linearität Keyword: ReLu

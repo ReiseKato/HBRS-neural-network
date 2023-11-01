@@ -16,21 +16,41 @@ public class NeuralNetworkUtil {
      * @return Produkt von Matrix * Vektor
      */
     public static Neuron[] matrixVectorMultiplication(Double[][] matrix, Neuron[] v) {
-        Neuron[] res = new Neuron[matrix[0].length];// Ergebnis Vektor mit Länge = Anzahl der Zeilen der Matrix
+        Neuron[] res = new Neuron[matrix.length];// Ergebnis Vektor mit Länge = Anzahl der Zeilen der Matrix
         //matrix[] = Zeilen, matrix = Spalten
         //prüfe ob Anzahl der Spalten = Anzahl Zeilen von Vektor
         //falls die Anzahl der Spalten != die Anzahl der Zeilen des Vektors
-        if (matrix.length != v.length) {
+        if (matrix[0].length != v.length) {
             System.out.println("n nicht gleich n");
         }
-        for (int i = 0; i < matrix[0].length; i++) {
+
+
+        for (int i = 0; i < matrix.length; i++) {
             res[i] = new Neuron();
             //berechne die Summe von der Multiplikation von jedem Element der it-Zeile mit der j-ten Komponente des Vektors
-            for (int j = 0; j < matrix.length; j++) {
-                res[i].value += matrix[j][i] * v[j].value;
+            for (int j = 0; j < matrix[0].length; j++) {
+                res[i].value += matrix[i][j] * v[j].value;
             }
         }
         return res;
+    }
+
+    public static Double[][] vectorMatrixMultiplication(Neuron[] v, Double[][] matrix) {
+        Double[][] result = null;
+        if (1 == matrix.length) {
+            result = new Double[v.length][matrix[0].length];
+
+            for (int i = 0; i < result.length; i++) {
+                for (int j = 0; j < result[0].length; j++) {
+
+                    for (Double[] doubles : matrix) {
+                        result[i][j] = v[i].value * doubles[j];
+                    }
+                }
+            }
+        }
+
+        return result;
     }
 
     /**
@@ -225,6 +245,20 @@ public class NeuralNetworkUtil {
         }
         return temp;
     }
+    public static Neuron[] stringToBiasNeuron(String[] st) {
+        Neuron[] temp = new Neuron[st.length];
+        //erzeuge Neuron[] mit Länge von Parameter
+        for (int i = 0; i < temp.length; i++) {
+            try {
+                //versuche für jeden String ein Neuron zu erstellen
+                temp[i] = new Neuron(1, Double.parseDouble(st[i]));
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+
+        }
+        return temp;
+    }
 
     public static Double[][][] addArrays(Double[][][] array1, double[][][] array2) {
 
@@ -255,6 +289,80 @@ public class NeuralNetworkUtil {
             temp2[i] = temp[i].value;
         }
         return temp2;
+    }
+
+    public static Neuron[] doubleToNeuronBias(Double[] temp) {
+        Neuron[] res = new Neuron[temp.length];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = new Neuron(1, temp[i]);
+        }
+        return res;
+    }
+    public static Neuron[] doubleToNeuron(Double[] temp) {
+        Neuron[] res = new Neuron[temp.length];
+        for (int i = 0; i < res.length; i++) {
+            res[i] = new Neuron(temp[i]);
+        }
+        return res;
+    }
+
+
+
+    public static void skalarMatrixMultiplikation(double skalar, Double[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                matrix[i][j] *= skalar;
+            }
+
+        }
+    }
+    public static Neuron[] vektorMultiplikation(Neuron[] v1, Neuron[] v2) {
+        Neuron[] res = null;
+        if(v1.length == v2.length) {
+            res = new Neuron[v1.length];
+            for (int i = 0; i < v1.length; i++) {
+                res[i] = new Neuron(v1[i].value * v2[i].value);
+            }
+        }
+        return res;
+    }
+
+    public static Double[][] transposeMatrix(Double[][] matrix) {
+        int numRows = matrix.length;
+        int numCols = matrix[0].length;
+
+        // Erstellen Sie eine neue Matrix mit vertauschten Zeilen und Spalten
+        Double[][] transpose = new Double[numCols][numRows];
+
+        for (int i = 0; i < numRows; i++) {
+            for (int j = 0; j < numCols; j++) {
+                transpose[j][i] = matrix[i][j];
+            }
+        }
+
+        return transpose;
+    }
+
+    public static Double[][] addMatrices(Double[][] m1, Double[][] m2) {
+        Double[][] res = null;
+        if (m1.length == m2.length && m1[0].length == m2[0].length) {
+            res = new Double[m1.length][m1[0].length];
+            for (int i = 0; i < res.length; i++) {
+                for (int j = 0; j < res[0].length; j++) {
+                    res[i][j] = m1[i][j] + m2[i][j];
+                }
+            }
+
+        }
+        return res;
+    }
+
+    public static String[] doubleArrayToString(Double[] ar) {
+        String[] temp = new String[ar.length];
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = ar[i].toString();
+        }
+        return temp;
     }
 }
 
