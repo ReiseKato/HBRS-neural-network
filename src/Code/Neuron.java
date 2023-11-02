@@ -8,10 +8,8 @@ package Code;
 public class Neuron {
 
     double value;
-    double delta = 0.0;
+    double valbeforecomp;
     double bias; // bei einem reg. Neuron = null
-
-    double valbeforcomp;
 
     /**
      * erzeugt ein Neuron mit value = null
@@ -44,9 +42,7 @@ public class Neuron {
      * @param function Aktivierungsfunktion
      */
     public void compute(String function) {
-
-        this.valbeforcomp = value;
-
+        this.valbeforecomp = value;
         if(function.equals("binary")) {
             binaryThresholdFunc();
         } else if (function.equals("sigmoid")) {
@@ -65,6 +61,9 @@ public class Neuron {
             derivitiveReLu();
         } else if (function.equals("tanh")) {
             derivativeTangensHyperbolicus();
+        } else if (function.equals("")) {
+            this.value = 1;
+
         }
     }
 
@@ -91,7 +90,7 @@ public class Neuron {
         this.value = 1 / (1 + Math.exp((-1) * value));
     }
     public void derivativeSigmoid() {
-        value *= Math.exp(valbeforcomp) / Math.pow((Math.exp(valbeforcomp) + 1), 2);
+        value *= Math.exp(value) / Math.pow((Math.exp(value) + 1), 2);
     }
 
     //Gleichgerichtete Linearität Keyword: ReLu

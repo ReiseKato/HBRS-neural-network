@@ -7,21 +7,22 @@ import static Code.TrainingData.outputs;
 
 /**
  * Klasse NeuralNetwork
+ *
  * @author vkowal2s
  * @version 1.0
  */
 public class NeuralNetwork {
 
     Neuron[][] network;//Neuronen
-    Double[][][] weights;//Netztopologie
+    double[][][] weights;//Netztopologie
 
     Neuron[][] biases;
     Neuron[] input;//Referenz auf den input Layer
-    public Neuron[] output;//Referenz auf den output Layer
+    Neuron[] output;//Referenz auf den output Layer
     static int[] layers;
     String[] func;//Funktionen für den jeweiligen Layer
 
-    Double LR =0.5;//10e-8;
+    double LR = 0.5;
 
    /* public ArrayList<Double> x = new ArrayList<>();
     public ArrayList<Double> lr = new ArrayList<>();
@@ -30,11 +31,12 @@ public class NeuralNetwork {
 
     /**
      * initialisiere die Neuronen, anhand des Arrays layers
+     *
      * @param layers beinhaltet die Anzahl der Neuronen pro Layer
      *               Anzahl der Layer wird implizit abgeleitet
      *               Bsp: {1,2,3} => Network mit 3 Layern
-     *                               1. Layer: 1 Neuron
-     *                               2. Layer: 2 Neuronen usw.
+     *               1. Layer: 1 Neuron
+     *               2. Layer: 2 Neuronen usw.
      */
     public void init(int[] layers) {
         //initialisiere die erste Dimension mit der Länge des Arrays
@@ -49,7 +51,7 @@ public class NeuralNetwork {
         }
 
         input = network[0];
-        output = network[network.length-1];
+        output = network[network.length - 1];
         //speichere das layout in der Klassen variable
         NeuralNetwork.layers = layers;
 
@@ -57,17 +59,18 @@ public class NeuralNetwork {
 
     /**
      * initialisiere die layers mithilfe eines Strings[][] bzw mithilfe der eingelesenen csv
+     *
      * @param file Text welche die Layer Konfiguration enthält
      */
     public void init(String[][] file) {
         String[] line = file[0];//instanz auf die erste Zeile
-        int[] layout = new int[file[0].length-1];
+        int[] layout = new int[file[0].length - 1];
 
-        if(line[0].equals("layers")) { // schaue, ob das Stichwort layers an erster Stelle der Zeile steht
+        if (line[0].equals("layers")) { // schaue, ob das Stichwort layers an erster Stelle der Zeile steht
             for (int i = 0; i < layout.length; i++) {
                 //lese die restichen Werte der ersten Zeile ein und wandle diese in Integer um
                 try {
-                    layout[i] = Integer.parseInt(line[i+1]);
+                    layout[i] = Integer.parseInt(line[i + 1]);
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
@@ -82,14 +85,14 @@ public class NeuralNetwork {
      */
     public void initWeights() {
         Random rand = new Random();//Klasse für zufällige Zahl
-        int dim = network.length-1;
+        int dim = network.length - 1;
 
         //initialisiere die Dimension
         //1. Dim = Netztiefe -1
-        weights = new Double[dim][][];
+        weights = new double[dim][][];
         for (int i = 0; i < dim; i++) {
             //2./3. Dim: Länge des iten Layers und Länge des i+1ten Layers
-            weights[i] = new Double[network[i].length][network[i+1].length];
+            weights[i] = new double[network[i].length][network[i + 1].length];
         }
         //initialisiere die weights mit random werten zwischen -1, 1
         for (int i = 0; i < weights.length; i++) {
@@ -104,12 +107,13 @@ public class NeuralNetwork {
     /**
      * initialisierung der Weights and Biases, anhand der Werte, die in der CSV-Datei stehen
      * CSV-Datei muss vorher mit NeuralNetworkUtil.readCSV() eingelesen werden und als Parameter übergeben werden
+     *
      * @param file eingelesene CSV-Datei mit weight Konfiguration
      */
     public void initWeightsBiases(String[][] file) {
         //erste Dimension ist jeweils die Netztiefe-1
-        weights = new Double[network.length-1][][];
-        biases = new Neuron[network.length-1][];
+        weights = new double[network.length - 1][][];
+        biases = new Neuron[network.length - 1][];
         //lese die weight-Konfiguration in eine verkettete Liste ein, schneide die erste Zeile raus
         //wegen der Layer Konfiguration
         LinkedList<String[]> document = new LinkedList<>(Arrays.asList(file).subList(1, file.length));
@@ -120,9 +124,9 @@ public class NeuralNetwork {
 
         for (int i = 0; i < weights.length; i++) { // i entspricht der weight-Ebene
 
-            int dimV = network[0].length; // Dimension der Domain
-            int dimW = network[i+1].length;// Dimension der Codomain
-            weights[i] = new Double[dimV][dimW];// weise der i-ten Weight-Ebene die Dimensionen zu
+            int dimV = network[i].length; // Dimension der Domain
+            int dimW = network[i + 1].length;// Dimension der Codomain
+            weights[i] = new double[dimV][dimW];// weise der i-ten Weight-Ebene die Dimensionen zu
             for (int j = 0; j < dimV; j++) { //j entspricht dem akt. Index der Domain
                 //wandel die akt. Zeile in ein Double[] um und weise sie zur i-ten Ebene mit dem j-ten Element der Domain
                 weights[i][j] = NeuralNetworkUtil.stringArrayToDouble(document.remove());
@@ -140,65 +144,81 @@ public class NeuralNetwork {
 
     /**
      * berechnet für einen input vektor den passenden output vektor mithilfe von Matrix Vektor Multiplikation
+     *
      * @param dataset enthält den Input Datensatz, idealerweise: Dim(dataset)=Dim(network[0])
      */
-    public void compute(Double[] dataset) {
+    public void compute(double[] dataset) {
         Neuron[] v; // Vektor
-        Double[][] wMatrix; // Matrix
+        double[][] wMatrix; // Matrix
 
         //setze den input des networks auf den übergebenen datensatz
         for (int i = 0; i < input.length; i++) {
             input[i].value = dataset[i];
+            input[i].valbeforecomp = dataset[i];
         }
 
         // gehe das Netzwerk Vektor für Vektor durch
-        for (int i = 0; i < network.length-1; i++) {
+        for (int i = 0; i < network.length - 1; i++) {
             v = network[i]; // i-ter Vektor
             wMatrix = NeuralNetworkUtil.transposeMatrix(weights[i]);// weight Matrix der iten Ebene
+            //vorher Matrix transponieren
             // berechne das matrix vektorprodukt aus wMatrix * v
             v = NeuralNetworkUtil.matrixVectorMultiplication(wMatrix, v);
             //addiere das Ergebnis mit dem BiasVektor der akt. Ebene
             for (int j = 0; j < v.length; j++) {
                 v[j].value += biases[i][j].bias;
             }
-            network[i+1] = v;
+            network[i + 1] = v;
             //führe für das Ergebnis aus der M*V, die Aktivierungsfunktion aus für alle Neuronen aus
-            for (int j = 0; j < network[i+1].length; j++) {
-                network[i+1][j].compute(func[i+1]);
+            for (int j = 0; j < network[i + 1].length; j++) {
+                network[i + 1][j].compute(func[i + 1]);
             }
         }
         //output layer aktualisieren
-        output = network[network.length-1];
-       // this.saves= save.toArray(new Neuron[0][]);
+        output = network[network.length - 1];
+        // this.saves= save.toArray(new Neuron[0][]);
     }
 
-    public Double determineLossFunction(Double[] expectedoutput) {
+    /**
+     * bestime den Fehler für einen Datensatz
+     * @param expectedoutput erwarteter output
+     * @return
+     */
+    public double determineLossFunction(double[] expectedoutput) {
         double sum = 0;
         for (int i = 0; i < expectedoutput.length; i++) {
-            sum += Math.pow(output[i].value - expectedoutput[i], 2.0);
+            // summe von geschätzer output - erwarteter potenziert
+            sum += 0.5 * (Math.pow(expectedoutput[i] - output[i].value , 2.0));
         }
-        return sum / expectedoutput.length;
+        // summe durch länge teilen
+        return sum;
     }
 
-    public void train() {
+    /**
+     * trainiere das Netz mit Backpropagation
+     * @param iterations Anzahl der Durchläufe des Datensatzes
+     */
+    public void train(int iterations) {
         int higher = 0;
         int lower = 0;
-       // ArrayList<Double> totalErrors = new ArrayList<>();
-   //     ArrayList<Double> error = new ArrayList<>();
-        System.out.println("LR star: " +LR);
-        int iterations = 100000;
+         ArrayList<Double> totalErrors = new ArrayList<>();
+        ArrayList<Double> error = new ArrayList<>();// liste um den vorher Fehler für einen Datensatz zu speichern
+       // System.out.println("LR start: " + LR);
+        //solange i < Anzahl festgelegter Iterationen
         for (int i = 0; i < iterations; i++) {
-            //double totalerror = 0;
+            double totalerror = 0;
+            //gehe nacheinander alle Datensätze durch
             for (int j = 0; j < inputs.size(); j++) {
-                Double[] input = inputs.get(j);
-                Double[] output = outputs.get(j);
+                double[] input =inputs.get(j);
+                double[] output = outputs.get(j);
                 //forward propagation
                 compute(input);
                 //calculate the loss
-                Double loss = determineLossFunction(output);
-             //   System.out.println("error " + loss);
-               // totalerror += loss;
-              /*  if(i == 0) {
+                double loss = determineLossFunction(output);
+                 System.out.println("error " + loss);
+                totalerror += loss;
+                // wenn nötig passe LR an
+                if(i == 0) {
                     error.add(j, loss);
                 }
                 if((loss < error.get(j))) {
@@ -208,77 +228,106 @@ public class NeuralNetwork {
                     LR *= 0.5;
                     lower++;
                 }
+
                 error.set(j, loss);
 
-               */
 
+
+                //backwardpass
                 backpropagation(output);
             }
-           /* if(i == 0|| i == iterations-1) {
+          //  System.out.println(totalerror);
+          /*  if(i == 0|| i == iterations-1) {
                 totalErrors.add(totalerror);
             }
 
+           */
 
-            */
 
 
         }
+
+        // nach dem training werte unbekannte wert reingeben
+        for (int i = 0; i < inputs.size(); i++) {
+            compute(inputs.get(i));
+            System.out.println("Input: " + i);
+            printOutput();
+        }
+       //    System.out.println("LR Ende: " + LR);
     }
 
-    public void backpropagation(Double[] expectedoutput) {
-        //backpropagation from output to hidden
-            //calculate the delta for each Neuron of the output layer
-            Double[][] delta_out = new Double[1][];
-            delta_out[0] = calcDeltaOuputError(expectedoutput);
-            //nehme den Output Vektor vom ersten HiddenLayer (von Rechts aus)
-            //wandle den Vektor in eine Matrix um -> transponieren
-            Neuron[] h_output = network[network.length-2];
-            // berechne Vektor*Matrix von h_output * delta_out
-           Double[][] newWeights = NeuralNetworkUtil.vectorMatrixMultiplication(h_output, delta_out);
-           //multipliziere die neuen Weights mit der Lernrate
-            NeuralNetworkUtil.skalarMatrixMultiplikation(LR, newWeights);
-            //setzte die neuen Weights ein für die letzte ebene
-            weights[weights.length-1] = NeuralNetworkUtil.addMatrices(weights[weights.length-1], newWeights);
-            //passe biases des hidden layers an
-            Neuron[] new_b = NeuralNetworkUtil.doubleToNeuronBias(delta_out[0]);
-            for (int i = 0; i < new_b.length; i++) {
-                new_b[i].bias *= (-1) * LR;
-                biases[biases.length-1][i].bias += new_b[i].bias;
-            }
+    public void printOutput() {
+        for (Neuron temp: output) {
+            System.out.println(temp.value);
+        }
+        System.out.println();
+    }
+
+    public void backpropagation(double[] expectedoutput) {
+        //backpropagation von output zu hidden
+        //berechne den delta wert für jedes Neuron im output layer
+        double[][] delta_out = new double[1][];
+        delta_out[0] = calcDeltaOuputError(expectedoutput);
+        //nehme den Output Vektor vom ersten HiddenLayer (von Rechts aus)
+        //wandle den Vektor in eine Matrix um -> transponieren
+        Neuron[] h_output = new Neuron[network[network.length-2].length];
+        for (int i = 0; i < h_output.length; i++) {
+            h_output[i] = new Neuron(network[network.length-2][i].valbeforecomp);
+            h_output[i].computeDerivative(func[func.length-2]);
+        }
+        // berechne Vektor*Matrix von h_output * delta_out
+        double[][] newWeights = NeuralNetworkUtil.vectorMatrixMultiplication(h_output, delta_out);
+        //multipliziere die neuen Weights mit der Lernrate
+        NeuralNetworkUtil.skalarMatrixMultiplikation((-1) * LR, newWeights);
+        //setzte die neuen Weights ein für die letzte ebene
+        NeuralNetworkUtil.addMatrices(weights[weights.length - 1], newWeights);
+        //passe biases des hidden layers an
+        Neuron[] new_b = NeuralNetworkUtil.doubleToNeuronBias(delta_out[0]);
+        for (int i = 0; i < new_b.length; i++) {
+            new_b[i].bias *= (-1) * LR;
+            biases[biases.length - 1][i].bias += new_b[i].bias;
+        }
         //backpropagaiton form hidden to input
-            Neuron[] delta_Output_Vector = NeuralNetworkUtil.doubleToNeuron(delta_out[0]);
-        for (int i = network.length-2; i > 0 ; i--) {
-            Neuron[] current_o = network[i];
+        Neuron[] delta_Output_Vector = NeuralNetworkUtil.doubleToNeuron(delta_out[0]);
+        for (int i = network.length - 2; i > 0; i--) {
+            Neuron[] current_o = new Neuron[network[i].length];
+            // nehme den output Werte des hidden Layer und führe die Ableitung der Aktivierungsfunktion auf den Vektor aus
             for (int j = 0; j < current_o.length; j++) {
-                current_o[i].computeDerivative(func[i]);
+                current_o[j] = new Neuron(network[i][j].valbeforecomp);
+                current_o[j].computeDerivative(func[i]);
             }
             //berechne delta werte des hiddenlayers
             Neuron[] delta_h = NeuralNetworkUtil.matrixVectorMultiplication(weights[i], delta_Output_Vector);
-            Neuron[] o_next = network[i-1];
+            // multipliziere den delta Vektor des hiddenlayers mit dem
             delta_h = NeuralNetworkUtil.vektorMultiplikation(delta_h, current_o);
-            Double[][] new_w_h = new Double[1][];
-            double[] temp = NeuralNetworkUtil.neuronToDouble(o_next);
-            Double[] boxedArray = Arrays.stream(temp).boxed().toArray(Double[]::new);
-            new_w_h[0] = boxedArray;
+            // zwischenspeichern des outputs von einem layer nach links
+            Neuron[] o_next = new Neuron[network[i - 1].length];
+            for (int j = 0; j < o_next.length; j++) {
+                o_next[j] = new Neuron(network[i-1][j].valbeforecomp);
+                o_next[j].computeDerivative(func[i-1]);
+            }
+            // schreibe den output von nächstem Layer in Matrix
+            double[][] new_w_h = new double[1][];
+            new_w_h[0] = NeuralNetworkUtil.neuronToDouble(o_next);
+            //multipliziere den delta hiddenlayer Vektor mit der Matrix
             new_w_h = NeuralNetworkUtil.vectorMatrixMultiplication(delta_h, new_w_h);
+            //rechne skalar(LR) mal Matrix
             NeuralNetworkUtil.skalarMatrixMultiplikation((-1) * LR, new_w_h);
-            weights[i-1] = NeuralNetworkUtil.addMatrices(weights[i-1],new_w_h);
+            //addiere die Matrix mit den Gewichtsänderungen zu den alten Weights
+            NeuralNetworkUtil.addMatrices(weights[i - 1], new_w_h);
             //biases berechnen
             Neuron[] b_v = new Neuron[delta_h.length];
             for (int j = 0; j < b_v.length; j++) {
                 b_v[j] = new Neuron(1, delta_h[j].value);
                 b_v[j].bias *= (-1) * LR;
-                biases[i-1][j].bias += b_v[j].bias;
+                biases[i - 1][j].bias += b_v[j].bias;
             }
-          //  Neuron[] b_v = NeuralNetworkUtil.skalarVektorMultiplikation((-1) * LR, delta_h);
-            //biases[i-1] = NeuralNetworkUtil.addVectors(biases[i-1], b_v);
-
         }
     }
 
 
-    public Double[] calcDeltaOuputError(Double[] expectedoutput) {
-        Double[] delta = new Double[expectedoutput.length];
+    public double[] calcDeltaOuputError(double[] expectedoutput) {
+        double[] delta = new double[expectedoutput.length];
         for (int i = 0; i < delta.length; i++) {
             delta[i] = output[i].value - expectedoutput[i];
         }
@@ -328,12 +377,12 @@ public class NeuralNetwork {
     /**
      * setze ein String[] functions auf die func des NN
      * Struktur von functions:
-     *      Jeder Index steht für die Aktivierungsfunktion des gesamten i-ten Layers
-     *      pro Layer eine funktion => könnte man erweitern für jedes Neuron eine andere
-     *      Bsp: ["","sigmoid", "ReLu"]
-     *              i=0: die Aktivierungsfunktion ist die id rel
-     *              i=1: die         "              "  "   Sigmoid Funktion
-     *              i=2: die         "              "  "  Gleichgerichtete Linearität
+     * Jeder Index steht für die Aktivierungsfunktion des gesamten i-ten Layers
+     * pro Layer eine funktion => könnte man erweitern für jedes Neuron eine andere
+     * Bsp: ["","sigmoid", "ReLu"]
+     * i=0: die Aktivierungsfunktion ist die id rel
+     * i=1: die         "              "  "   Sigmoid Funktion
+     * i=2: die         "              "  "  Gleichgerichtete Linearität
      *
      * @param functions Array mit jeweiligen Aktivierungsfunktionen
      */
@@ -342,7 +391,6 @@ public class NeuralNetwork {
     }
 
     /**
-     *
      * @return gibt die biases des NN zurück
      */
     public Neuron[][] getBiases() {
@@ -350,10 +398,9 @@ public class NeuralNetwork {
     }
 
     /**
-     *
      * @return gibt die weights des NN zurück
      */
-    public Double[][][] getWeights() {
+    public double[][][] getWeights() {
         return weights;
     }
 }

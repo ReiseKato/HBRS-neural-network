@@ -14,8 +14,8 @@ public class TrainingData {
 
     String[][] file; // layer+weight Konfiguration
     String[][] traindata;// Trainingssätze: input   (expected)output
-    static List<Double[]> inputs;
-    static List<Double[]> outputs;
+    static List<double[]> inputs;
+    static List<double[]> outputs;
     public TrainingData() {
 
     }
@@ -71,7 +71,7 @@ public class TrainingData {
      * @param in Input Vektor
      * @param out Output Vektor
      */
-    public void addInputOutput(Double[] in, Double[] out) {
+    public void addInputOutput(double[] in, double[] out) {
         //füge sie in die Liste hinzu
         inputs.add(in);
         outputs.add(out);
@@ -85,8 +85,8 @@ public class TrainingData {
         //neue String[][] anlegen mit der Anzahl an akt Datensätzen in der Liste
         //für jede Zeile
         for (int i = 0; i < temp.length; i++) {
-            Double[] input = inputs.get(i);// i-ter input
-            Double[] output = outputs.get(i);// passender i-ter output
+            double[] input = inputs.get(i);// i-ter input
+            double[] output = outputs.get(i);// passender i-ter output
             String[] st = NeuralNetworkUtil.doubleArrayToString(output);
             // wandel den Input Neuron[] in ein String[] um
             st[0] = "\t\t" + st[0];
@@ -106,7 +106,7 @@ public class TrainingData {
      * @param weights akt weight Konfiguration
      * @param biases akt bias Konfiguration
      */
-    public void updateFile(Double[][][] weights, Neuron[][] biases) {
+    public void updateFile(double[][][] weights, Neuron[][] biases) {
         ArrayList<String[]> text = new ArrayList<>();
         // erzeug temporäres dyn Array
         String[] line = new String[NeuralNetwork.layers.length + 1];
@@ -118,7 +118,7 @@ public class TrainingData {
 
 
         //erstelle alle weight Matrizen und füge sie zur entsprechenden Liste hinzu
-        for (Double[][] weight : weights) {
+        for (double[][] weight : weights) {
             //convert to string
             String[][] temp = NeuralNetworkUtil.doubleMatrixToStringArray(weight);
             wls.add(temp);

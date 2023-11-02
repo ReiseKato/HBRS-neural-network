@@ -15,7 +15,7 @@ public class NeuralNetworkUtil {
      * @param v Vektor
      * @return Produkt von Matrix * Vektor
      */
-    public static Neuron[] matrixVectorMultiplication(Double[][] matrix, Neuron[] v) {
+    public static Neuron[] matrixVectorMultiplication(double[][] matrix, Neuron[] v) {
         Neuron[] res = new Neuron[matrix.length];// Ergebnis Vektor mit Länge = Anzahl der Zeilen der Matrix
         //matrix[] = Zeilen, matrix = Spalten
         //prüfe ob Anzahl der Spalten = Anzahl Zeilen von Vektor
@@ -35,15 +35,15 @@ public class NeuralNetworkUtil {
         return res;
     }
 
-    public static Double[][] vectorMatrixMultiplication(Neuron[] v, Double[][] matrix) {
-        Double[][] result = null;
+    public static double[][] vectorMatrixMultiplication(Neuron[] v, double[][] matrix) {
+        double[][] result = null;
         if (1 == matrix.length) {
-            result = new Double[v.length][matrix[0].length];
+            result = new double[v.length][matrix[0].length];
 
             for (int i = 0; i < result.length; i++) {
                 for (int j = 0; j < result[0].length; j++) {
 
-                    for (Double[] doubles : matrix) {
+                    for (double[] doubles : matrix) {
                         result[i][j] = v[i].value * doubles[j];
                     }
                 }
@@ -67,19 +67,6 @@ public class NeuralNetworkUtil {
             for (int i = 0; i < v1.length; i++) {
                 //addiere Komponentenweise
                 res[i] = new Neuron(v1[i].value + v2[i].value);
-            }
-        }
-        return res;
-    }
-
-    public static Neuron[] subVectors(Neuron[] v1, Neuron[] v2) {
-        Neuron[] res = null;
-        //schaue, ob die Anzahl an Komponenten gleich ist
-        if(v1.length == v2.length) {
-            res = new Neuron[v1.length];//erzeuge ergebnis Vektor
-            for (int i = 0; i < v1.length; i++) {
-                //subtrahiere Komponentenweise
-                res[i] = new Neuron(v1[i].value - v2[i].value);
             }
         }
         return res;
@@ -165,8 +152,8 @@ public class NeuralNetworkUtil {
      * @param sar String Array, welches umgewandelt werden soll
      * @return gibt das umgewandelte Array zurück (Double)
      */
-    public static Double[] stringArrayToDouble(String[] sar) {
-        Double[] ar = new Double[sar.length];//erzeuge Double[] mit größe von sar
+    public static double[] stringArrayToDouble(String[] sar) {
+        double[] ar = new double[sar.length];//erzeuge Double[] mit größe von sar
         for (int i = 0; i < sar.length; i++) {
             try {
                 //versuche String in Double umzuwandeln
@@ -184,6 +171,7 @@ public class NeuralNetworkUtil {
      * @param ar2 2. String[]
      * @return 1. + 2. String[]
      */
+    /*
     public static String[] concatArrays(String[] ar1, String[] ar2) {
         String[] temp = new String[ar1.length + ar2.length];
         // erzeuge ein neues Feld mit der Länge des Ersten + Zweiten
@@ -194,12 +182,14 @@ public class NeuralNetworkUtil {
         return temp;
     }
 
+     */
+
     /**
      * Methode um eine Double[][] Matrix in eine String[][] Matrix zu konvertieren
      * @param matrix Matrix, welche in String[][] umgewandelt werden soll
      * @return umgewandelte Matrix
      */
-    public static String[][] doubleMatrixToStringArray(Double[][] matrix) {
+    public static String[][] doubleMatrixToStringArray(double[][] matrix) {
         //erzeuge eine Neue String Matrix mit entsprechend der Anzahl der Zeilen und Spalten vom Parameter
         String[][] stringArray = new String[matrix.length][matrix[0].length];
 
@@ -227,24 +217,10 @@ public class NeuralNetworkUtil {
     }
 
     /**
-     * Methode um einen String[] in ein Neuron[] umzuwandeln
-     * @param st String Feld
-     * @return Neuron[]
+     * ein string für ein bias in ein bias Neuron umwandeln
+     * @param st bias
+     * @return Bias Neuron
      */
-    public static Neuron[] stringToNeuron(String[] st) {
-        Neuron[] temp = new Neuron[st.length];
-        //erzeuge Neuron[] mit Länge von Parameter
-        for (int i = 0; i < temp.length; i++) {
-            try {
-                //versuche für jeden String ein Neuron zu erstellen
-                temp[i] = new Neuron(Double.parseDouble(st[i]));
-            } catch (NumberFormatException e) {
-                e.printStackTrace();
-            }
-
-        }
-        return temp;
-    }
     public static Neuron[] stringToBiasNeuron(String[] st) {
         Neuron[] temp = new Neuron[st.length];
         //erzeuge Neuron[] mit Länge von Parameter
@@ -260,28 +236,11 @@ public class NeuralNetworkUtil {
         return temp;
     }
 
-    public static Double[][][] addArrays(Double[][][] array1, double[][][] array2) {
-
-
-        for (int i = 0; i < array1.length; i++) {
-            for (int j = 0; j < array1[i].length; j++) {
-                for (int k = 0; k < array1[i][j].length; k++) {
-                    array1[i][j][k] = array1[i][j][k] + array2[i][j][k];
-                }
-            }
-        }
-
-        return array1;
-    }
-
-    public static Double calcAbsValOfVector(Neuron[] vektor) {
-
-        double temp = 0;
-        for (Neuron i: vektor) {
-            temp += Math.pow(i.getValue(), 2);
-        }
-        return Math.sqrt(temp);
-    }
+    /**
+     * wandelt ein Neuron in ein double[] um
+     * @param temp ein Neuronen Vektor
+     * @return umgewandelten Vektor
+     */
 
     public static double[] neuronToDouble(Neuron[] temp) {
         double[] temp2 = new double[temp.length];
@@ -291,14 +250,25 @@ public class NeuralNetworkUtil {
         return temp2;
     }
 
-    public static Neuron[] doubleToNeuronBias(Double[] temp) {
+    /**
+     * wandelt ein double Feld in ein bias Neuron[]
+     * @param temp double Feld, welches umgewandelt werden soll
+     * @return umgewandelte Feld
+     */
+    public static Neuron[] doubleToNeuronBias(double[] temp) {
         Neuron[] res = new Neuron[temp.length];
         for (int i = 0; i < res.length; i++) {
             res[i] = new Neuron(1, temp[i]);
         }
         return res;
     }
-    public static Neuron[] doubleToNeuron(Double[] temp) {
+
+    /**
+     * wandelt ein double Feld in ein Neuron[]
+     * @param temp double Feld, welches umgewandelt werden soll
+     * @return umgewandelte Feld
+     */
+    public static Neuron[] doubleToNeuron(double[] temp) {
         Neuron[] res = new Neuron[temp.length];
         for (int i = 0; i < res.length; i++) {
             res[i] = new Neuron(temp[i]);
@@ -307,8 +277,12 @@ public class NeuralNetworkUtil {
     }
 
 
-
-    public static void skalarMatrixMultiplikation(double skalar, Double[][] matrix) {
+    /**
+     * Multipliziere eine Matrix mit einem Skalar
+     * @param skalar Skalar
+     * @param matrix Matrix
+     */
+    public static void skalarMatrixMultiplikation(double skalar, double[][] matrix) {
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[0].length; j++) {
                 matrix[i][j] *= skalar;
@@ -316,6 +290,13 @@ public class NeuralNetworkUtil {
 
         }
     }
+
+    /**
+     * multiplizieren von Zwei Vektoren komponentenweise
+     * @param v1 Vektor 1
+     * @param v2 Vektor 2
+     * @return
+     */
     public static Neuron[] vektorMultiplikation(Neuron[] v1, Neuron[] v2) {
         Neuron[] res = null;
         if(v1.length == v2.length) {
@@ -327,12 +308,19 @@ public class NeuralNetworkUtil {
         return res;
     }
 
-    public static Double[][] transposeMatrix(Double[][] matrix) {
+    /**
+     * transponieren einer Matrix
+     * 1. Zeile = 1. Spalte usw.
+     * @param matrix Matrix die transponiert werden soll
+     * @return
+     */
+
+    public static double[][] transposeMatrix(double[][] matrix) {
         int numRows = matrix.length;
         int numCols = matrix[0].length;
 
         // Erstellen Sie eine neue Matrix mit vertauschten Zeilen und Spalten
-        Double[][] transpose = new Double[numCols][numRows];
+        double[][] transpose = new double[numCols][numRows];
 
         for (int i = 0; i < numRows; i++) {
             for (int j = 0; j < numCols; j++) {
@@ -343,24 +331,33 @@ public class NeuralNetworkUtil {
         return transpose;
     }
 
-    public static Double[][] addMatrices(Double[][] m1, Double[][] m2) {
-        Double[][] res = null;
+    /**
+     * Addiere Matrizen wenn Anzahl Spalten und Zeilen gleich sind
+     * @param m1 Matrix 1
+     * @param m2 Matrix 2
+     */
+    public static void addMatrices(double[][] m1, double[][] m2) {
+
         if (m1.length == m2.length && m1[0].length == m2[0].length) {
-            res = new Double[m1.length][m1[0].length];
-            for (int i = 0; i < res.length; i++) {
-                for (int j = 0; j < res[0].length; j++) {
-                    res[i][j] = m1[i][j] + m2[i][j];
+            for (int i = 0; i < m1.length; i++) {
+                for (int j = 0; j < m1[0].length; j++) {
+                    m1[i][j] += m2[i][j];
                 }
             }
 
         }
-        return res;
     }
 
-    public static String[] doubleArrayToString(Double[] ar) {
+    /**
+     * wandelt ein double[] ar in ein String[] um
+     * @param ar double array
+     * @return
+     */
+
+    public static String[] doubleArrayToString(double[] ar) {
         String[] temp = new String[ar.length];
         for (int i = 0; i < temp.length; i++) {
-            temp[i] = ar[i].toString();
+            temp[i] = "" + ar[i];
         }
         return temp;
     }
