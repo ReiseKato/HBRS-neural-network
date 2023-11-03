@@ -26,7 +26,7 @@ public class NNTest {
         weight3 = NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/example2_w.csv");
         train3 = NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/example2_t.csv");
         t2 = new TrainingData(weight3, train3);
-        t = new TrainingData(weighttxt, traintxt);
+       t = new TrainingData(weighttxt, traintxt);
 
         //t = new TrainingData(weight2, train2);
 
@@ -80,7 +80,7 @@ public class NNTest {
 
         network.init(weighttxt);
         network.initWeightsBiases(weighttxt);
-        network.setFunc(new String[]{"sigmoid", "sigmoid", "sigmoid"});
+        network.setFunc(new String[]{"", "sigmoid", "sigmoid"});
         t.initInputsOutputs();
         network.train(10000);
        // network.compute(new double[] {0.23, 0.30, 0.78});
@@ -151,13 +151,13 @@ public class NNTest {
 
     @Test
     void tesMattMazur() {
-        String[] func = {"", "sigmoid", "sigmoid"};
+        String[] func = {"sigmoid", "sigmoid", "sigmoid"};
         network.init(weight2);
         network.setFunc(func);
         t.initInputsOutputs();
         network.initWeightsBiases(weight2);
-        network.train(1000000);
-       network.compute(new double[]{0.05, 0.10});
+        network.train(10000);
+     //  network.compute(new double[]{0.05, 0.10});
 
      }
 
@@ -169,7 +169,7 @@ public class NNTest {
          network.setFunc(func);
          t2.initInputsOutputs();
          network.initWeightsBiases(weight3);
-         network.train(1);
+         network.train(10000);
    //      network.compute(new double[] {0, 0.2, 0.62, 1, 0.62});
      //    network.printOutput();
 

@@ -22,7 +22,7 @@ public class NeuralNetwork {
     static int[] layers;
     String[] func;//Funktionen für den jeweiligen Layer
 
-    double LR = 0.5;
+    double LR = 0.05;
 
    /* public ArrayList<Double> x = new ArrayList<>();
     public ArrayList<Double> lr = new ArrayList<>();
@@ -184,11 +184,11 @@ public class NeuralNetwork {
      * @param expectedoutput erwarteter output
      * @return
      */
-    public double determineLossFunction(double[] expectedoutput) {
+    public double determineTotalError(double[] expectedoutput) {
         double sum = 0;
         for (int i = 0; i < expectedoutput.length; i++) {
             // summe von geschätzer output - erwarteter potenziert
-            sum += 0.5 * (Math.pow(expectedoutput[i] - output[i].value , 2.0));
+            sum += 0.5 * (expectedoutput[i] - output[i].value) * (expectedoutput[i] - output[i].value);
         }
         // summe durch länge teilen
         return sum;
@@ -214,11 +214,11 @@ public class NeuralNetwork {
                 //forward propagation
                 compute(input);
                 //calculate the loss
-                double loss = determineLossFunction(output);
-                 System.out.println("error " + loss);
+                double loss = determineTotalError(output);
+                // System.out.println("error " + loss);
                 totalerror += loss;
                 // wenn nötig passe LR an
-                if(i == 0) {
+                /*if(i == 0) {
                     error.add(j, loss);
                 }
                 if((loss < error.get(j))) {
@@ -229,7 +229,10 @@ public class NeuralNetwork {
                     lower++;
                 }
 
+                 */
+
                 error.set(j, loss);
+
 
 
 
@@ -264,7 +267,7 @@ public class NeuralNetwork {
     }
 
     public void backpropagation(double[] expectedoutput) {
-        //backpropagation von output zu hidden
+       /* //backpropagation von output zu hidden
         //berechne den delta wert für jedes Neuron im output layer
         double[][] delta_out = new double[1][];
         delta_out[0] = calcDeltaOuputError(expectedoutput);
@@ -321,6 +324,59 @@ public class NeuralNetwork {
                 b_v[j] = new Neuron(1, delta_h[j].value);
                 b_v[j].bias *= (-1) * LR;
                 biases[i - 1][j].bias += b_v[j].bias;
+            }
+        }
+
+        */
+        double[][][] oldweights = new double[network.length-1][][];
+        int firsthidden = network.length-2;
+        int lastlayer = network.length-1;
+        oldweights[network.length-2] = weights[weights.length-1];
+        double[] delta = new double[output.length];
+        double[][] out_delta_weights = new double[network[firsthidden].length][network[lastlayer].length];
+        for (int i = 0; i < out_delta_weights.length ; i++) {
+            for (int j = 0; j < out_delta_weights[0].length; j++) {
+                out_delta_weights[i][j] = ((-1) * (expectedoutput[j] - output[j].value));
+                out_delta_weights[i][j] *= (output[j].value * (1.0 - output[j].value));
+                delta[j] = out_delta_weights[i][j];
+                out_delta_weights[i][j] *= network[firsthidden][i].value;
+            }
+        }
+        Neuron[] bias = biases[biases.length-1];
+        for (int i = 0; i < bias.length; i++) {
+            bias[i].bias = bias[i].bias - ((-1) * LR * delta[i]);
+        }
+
+        NeuralNetworkUtil.skalarMatrixMultiplikation((-1) * LR, out_delta_weights);
+        double[][] newWeights = NeuralNetworkUtil.addMatrices(oldweights[oldweights.length-1], out_delta_weights);
+        weights[network.length-2] = newWeights;
+
+        for (int h = network.length-2; h > 0; h--) {
+            int currenth = h;
+            int nexth = h-1;
+            oldweights[h-1] = weights[h-1];
+            double[][] h_delta_weights = new double[network[nexth].length][network[currenth].length];
+            Neuron[] h_bias_delta = null;
+            for (int i = 0; i < h_delta_weights.length ; i++) {
+                if(i == 0) h_bias_delta = new Neuron[biases[h-1].length];
+                for (int j = 0; j < h_delta_weights[0].length; j++) {
+                    for (int k = 0; k < delta.length; k++) {
+                        h_delta_weights[i][j] += (delta[k] * oldweights[h][j][k]);
+                    }
+                    h_delta_weights[i][j] *= (network[h][j].value * (1.0 - network[h][j].value));
+                    if(i==0) h_bias_delta[j] = new Neuron(1, h_delta_weights[i][j]);
+                    h_delta_weights[i][j] *=  network[h-1][i].valbeforecomp;
+                }
+            }
+
+            NeuralNetworkUtil.skalarMatrixMultiplikation((-1) * LR, h_delta_weights);
+            newWeights = NeuralNetworkUtil.addMatrices(oldweights[h-1], h_delta_weights);
+            weights[h-1] = newWeights;
+
+            bias = biases[h-1];
+            for (int i = 0; i < bias.length; i++) {
+                assert h_bias_delta != null;
+                bias[i].bias = bias[i].bias - ((-1) * LR * h_bias_delta[i].bias);
             }
         }
     }

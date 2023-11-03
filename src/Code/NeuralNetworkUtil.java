@@ -336,16 +336,18 @@ public class NeuralNetworkUtil {
      * @param m1 Matrix 1
      * @param m2 Matrix 2
      */
-    public static void addMatrices(double[][] m1, double[][] m2) {
-
+    public static double[][] addMatrices(double[][] m1, double[][] m2) {
+        double[][] res = null;
         if (m1.length == m2.length && m1[0].length == m2[0].length) {
+            res = new double[m1.length][m1[0].length];
             for (int i = 0; i < m1.length; i++) {
                 for (int j = 0; j < m1[0].length; j++) {
-                    m1[i][j] += m2[i][j];
+                    res[i][j] = m1[i][j] + m2[i][j];
                 }
             }
 
         }
+        return res;
     }
 
     /**
