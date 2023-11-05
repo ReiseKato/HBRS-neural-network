@@ -6,12 +6,12 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class NeuralNetwork {
-    static Layer[] layers_t;
-    static TrainingData[] trainingData_t;
-    static int[] layerConfig;
-    static double totalErrorPrior;
-    static double totalErrorCurrent;
-    static List<Double> totalError = new ArrayList<Double>();
+    static Layer[] layers_t; // array to keep the Neural Network in place
+    static TrainingData[] trainingData_t; // array of all the training data given by the user
+    static int[] layerConfig; // array for the layer configuration (example: [3,3,4]
+    static double totalErrorPrior; // made for optimizing the neural Network, but still not working
+    static double totalErrorCurrent; // made for optimizing the neural Network, but still not working
+    static List<Double> totalError = new ArrayList<Double>(); // list for keeping all the total Error --> easier to handle as a list than an array, if over 100000 elements
 
 
 
@@ -40,7 +40,7 @@ public class NeuralNetwork {
 //        getTrainingDataLearnable(sPathKnownTData);
 //        weightAndBiasConfig(sPath);
 
-        // if checking with unkown dataset
+        // if checking with unknown dataset
 //        createLayers(sPathBestWeights);
 //        getTrainingData(sPathUnknownData);
 //        weightAndBiasConfig(sPathBestWeights);
@@ -88,6 +88,7 @@ public class NeuralNetwork {
     }
 
 
+    /** method for manually creating Training Data */
     public static void getTrainingData() {
 //        float[] input0 = new float[] {1, 0, 0}; // expect {1, 0, 0, 0}
 //        float[] input1 = new float[] {0.8f, 0.0f, 0.1f}; // expect {1, 0, 0, 0}
@@ -149,6 +150,8 @@ public class NeuralNetwork {
     /**
      * quite useful for trainable kNN because I don't have to initialize all weights manually
      *          --> just use random floats :)
+     *          especially for manually created Training Data
+     *          useful, when not having Weight or Bias Data
      */
     public static void createLayers(int numberOfLayers, int[] numberOfWeights, int[] numberOfNeurons) { // parse input data, how many layers, how many weights, how many neurons in each layer
         layers_t = new Layer[numberOfLayers];
@@ -188,6 +191,7 @@ public class NeuralNetwork {
         }
     }
 
+    /** method for creating a csv file with the optimal weights and bias for each Neuron */
     public static void writeWeightAndBias() {
         PrintWriter printWriter;
 
@@ -230,7 +234,7 @@ public class NeuralNetwork {
         }
     }
 
-    /** basically parse the weights, calculate the values. voila! */
+    /** basically parse the weights, calculate the values. forward-pass */
     public static void run(float[] input) {
         layers_t[0] = new Layer(input);
         float sum;
@@ -309,6 +313,7 @@ public class NeuralNetwork {
         updateAllWeights();
     }
 
+    /** calculating the sum over the gradients of the Neurons in a Layer multiplied by the weight */
     public static float gradientSum(int indexCurrentLayer, int indexCurrentNeuron) {
         float sum = 0.0f;
         Layer currentLayer = layers_t[indexCurrentLayer];
@@ -319,6 +324,7 @@ public class NeuralNetwork {
         return sum;
     }
 
+    /** updating all the weights of each Neuron --> used in backpropagation */
     public static void updateAllWeights() {
         for(int i = 0; i < layers_t.length; i++) { // i: indexing for Layers
             for(int j = 0; j < layers_t[i].neurons.length; j++) {
@@ -342,6 +348,9 @@ public class NeuralNetwork {
         }
     }
 
+    /** create a csv file named "totalError.csv" to write down the total Error to the expected Output.
+     * can be later processed to see the learning curve of the Neural Network by plotting it
+     */
     public static Double[] getAndWriteTotalErrors() {
         Double[] arrTotalError = new Double[totalError.size()];
         int i = 0;

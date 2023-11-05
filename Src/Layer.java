@@ -6,7 +6,7 @@ import java.util.*;
 
 
 public class Layer {
-    public Neuron neurons[];
+    public Neuron neurons[]; // array to keep all the Neurons of a Layer in place
 
     /** for hidden layer and output layer (automated) */
     public Layer(int numberOfWeights, int numberOfNeurons) {
@@ -42,24 +42,5 @@ public class Layer {
         }
     }
 
-    /** read csv to get Neuron Weight and Bias Config */
-    public void readCsvWeights(String path) {
-        //String sPath = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_weights_trafficlights_classification_simplified.csv";
-        String sPath = "/Users/samuraireise/Documents/HBRS/neural network/HBRS-neural-network/Src/KW43_weights_trafficlights_classification_simplified.csv";
-        String line;
-        String layerConfig;
-        try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(path)); // for testing: might use sPath
-            layerConfig = bufferedReader.readLine();
-            System.out.println(layerConfig);
-            while((line = bufferedReader.readLine()) != null) {
-                //line = bufferedReader.readLine();
-                System.out.println(line);
-            }
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 }

@@ -10,7 +10,9 @@ import java.util.List;
 public class NeuralUtil {
     static int counter;
 
-    /** create a random float number between float min and float max */
+    /** create a random float number between float min and float max
+     *  --> used to randomly generate weights and biases
+     */
     public static float RandomFloatNum(float min, float max) {
         float temp = (float)Math.random();
         float num = min + (float)Math.random() * (max - min);
@@ -21,19 +23,7 @@ public class NeuralUtil {
         }
     }
 
-    /**
-     * have to see if this really makes sense
-     * probably better in class "NeuralNetwork" because I need to use the Layers created there
-     */
-    public static float gradientSum(float gradient, int indexCurrentLayer, int indexCurrentNeuron) {
-        float sum = 0.0f;
-
-        Layer curentLayer;
-
-        return sum;
-    }
-
-
+    /** read weight and Bias form a csv and return it as a Float[][] */
     public static Float[][] readWeightsAndBias(String path) {
         int[] arrLayer = NeuralUtil.getlayerConfig(path);
         int sum = 0;
@@ -102,7 +92,7 @@ public class NeuralUtil {
         return iLayerConfig;
     }
 
-    /** shitty implementation of whole kNN lead to this */
+    /** get the specific Weights and Bias for each Neuron by parsing the index of the Neuron and Layer */
     public static float[] getSpecificWeights(Float[][] weightsAndBias, int[] layerConfig,
                                              int neuronNumber, int layerNumber) {
         float[] arr = new float[layerConfig[layerNumber - 1] + 1];
@@ -120,7 +110,9 @@ public class NeuralUtil {
         return arr;
     }
 
-    /** get Input Data count */
+    /** get Input Data count
+     *      find out how many Inputs each dataset has
+      */
     public static int getTrainingInputCount(String path) {
 //        int counter = 0;
         String line;
@@ -137,31 +129,6 @@ public class NeuralUtil {
             e.printStackTrace();
         }
         return counter;
-    }
-
-    public static void getTrainingDataFromCsv(String path) {
-        String line;
-        String[] data;
-        String[][] training = new String[counter][];
-        Float[][] fTraining = new Float[counter][];
-
-        try{
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(path));
-            // System.out.println(layerConfig);
-            int i = 0;
-            while((line = bufferedReader.readLine()) != null) {
-                //line = bufferedReader.readLine();
-                data = line.split(";");
-                // System.out.println(Arrays.toString(data));
-                training[i] = data;
-                fTraining[i] = Arrays.stream(data).map(Float::valueOf).toArray(Float[]::new);
-                i++;
-            }
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        } catch(IOException e) {
-            e.printStackTrace();
-        }
     }
 
     /** get the Training Input Data only */
@@ -265,43 +232,13 @@ public class NeuralUtil {
 //            inputData_t = Arrays.copyOfRange(fTraining[i], 0, inputLength);
 //            System.out.println(Arrays.toString(inputData_t));
 //        }
-        float[] fInpuData = new float[inputData_t.length];
+        float[] fInputData = new float[inputData_t.length];
         int i = 0;
         for(float __num__ : inputData_t) {
-            fInpuData[i] = __num__;
+            fInputData[i] = __num__;
             i++;
         }
 
-        return fInpuData;
+        return fInputData;
     }
-
-    public static void writeWeights(float[][] weights) {
-        PrintWriter printWriter;
-//        float[][] weights = {{0.2f, 0.5f, 0.7f},
-//                {0.8f, 0.9f, 0.0f}};
-
-        try {
-            File csvFile = new File("weights.csv");
-            printWriter = new PrintWriter(csvFile);
-
-            for(float weight[] : weights) {
-                printWriter.println(Arrays.toString(weight));
-            }
-
-            printWriter.close();
-        } catch(FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-
-    public static void main(String[] args) {
-        Path path = Paths.get("KW43_weights_trafficlights_classification_simplified.csv");
-        String sPath = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_weights_trafficlights_classification_simplified.csv"; // Desktop
-        String sPathForTData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_traindata_trafficlights_classification.csv"; // Desktop
-
-
-
-    }
-
 }

@@ -10,7 +10,7 @@ public class TrainingData {
         this.expectedResult = expectedResult;
     }
 
-    /** constructor for not trainable kNN */
+    /** constructor for just forward pass */
     public TrainingData(float inputData[]) {
         this.inputData = inputData;
     }

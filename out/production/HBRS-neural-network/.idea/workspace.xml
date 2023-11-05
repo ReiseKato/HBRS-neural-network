@@ -9,12 +9,10 @@
       <change beforePath="$PROJECT_DIR$/Src/Layer.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Layer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/NeuralNetwork.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NeuralNetwork.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/NeuralUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NeuralUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Neuron.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Neuron.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/TrainingData.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/TrainingData.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Layer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Layer.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralNetwork.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralNetwork.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralUtil.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralUtil.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/weights.csv" beforeDir="false" afterPath="$PROJECT_DIR$/weights.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
