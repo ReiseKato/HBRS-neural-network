@@ -13,16 +13,16 @@ public class Neuron {
     public Neuron(float[] weights, float bias) {
         this.weights = weights;
         this.bias = bias;
-        this.newWeights = this.weights; // this.weights is just temp. doing this, so I can store values in arr newWeights (can't store anything if it's null)
+        this.newWeights = this.weights; // this.weights is just temp. doing this, so I can store values in array newWeights (can't store anything if it's null)
         this.gradient = 0;
     }
 
     /** for input Neuron */
     public Neuron(float value) {
         this.weights = null;
-        this.bias = 0; // set this to 0 as this is the input. DO NOT CHANGE!!!
+        this.bias = 0; // set this to 0 as this is the input
         this.value = value;
-        // this.newWeights = this.weights; // doesn't have weights hahaha
+        // this.newWeights = this.weights;
         this.gradient = 0;
     }
 

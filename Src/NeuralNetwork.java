@@ -19,6 +19,8 @@ public class NeuralNetwork {
         int numberOfLayers;
         int[] numberOfNeurons;
         int[] numberOfWeights;
+        // paths to needed files
+        // USER has to edit these paths to his/her own file path
         String sPath = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_weights_trafficlights_classification_simplified.csv"; // Layer, Weight and Bias
         String sPathForTData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_traindata_trafficlights_classification.csv"; // Training Data
 
@@ -46,7 +48,7 @@ public class NeuralNetwork {
 //        weightAndBiasConfig(sPathBestWeights);
 
 
-        train(10000, 0.05f);
+        train(10000, 0.05f); // 10000 iterations for each dataset
 
         for(int i = 0; i < trainingData_t.length; i++) {
             run(trainingData_t[i].inputData);
@@ -155,8 +157,6 @@ public class NeuralNetwork {
      */
     public static void createLayers(int numberOfLayers, int[] numberOfWeights, int[] numberOfNeurons) { // parse input data, how many layers, how many weights, how many neurons in each layer
         layers_t = new Layer[numberOfLayers];
-
-        // layers_t[0] = new Layer(input); // very first Layer aka input Layer (commented because makes no sense to parse data here. just create Layers in function)
         for(int i = 1; i < numberOfLayers; i++) { //create all hidden Layers and output Layer
             layers_t[i] = new Layer(numberOfWeights[i - 1], numberOfNeurons[i - 1]);
         }
@@ -236,7 +236,7 @@ public class NeuralNetwork {
 
     /** basically parse the weights, calculate the values. forward-pass */
     public static void run(float[] input) {
-        layers_t[0] = new Layer(input);
+        layers_t[0] = new Layer(input); // create input Layer
         float sum;
 
         for(int i = 1; i < layers_t.length; i++) { // i: index for layer (i = current layer, i - 1 = layer to get values from)
