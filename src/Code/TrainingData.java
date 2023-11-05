@@ -16,9 +16,6 @@ public class TrainingData {
     String[][] traindata;// Trainingssätze: input   (expected)output
     static List<double[]> inputs;
     static List<double[]> outputs;
-    public TrainingData() {
-
-    }
 
     /**
      * Erzeuge ein Objekt der Klasse TrainingData

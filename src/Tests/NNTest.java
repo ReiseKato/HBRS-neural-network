@@ -14,7 +14,7 @@ public class NNTest {
     String[][] weighttxt, weight2, weight3;
     String[][] traintxt, train2, train3;
 
-    TrainingData t, t2;
+    TrainingData t, t2, t3;
 
     @BeforeEach
     void init() throws IOException {
@@ -25,11 +25,10 @@ public class NNTest {
         weight2 = NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/examplecfg1.csv");
         weight3 = NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/example2_w.csv");
         train3 = NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/example2_t.csv");
-        t2 = new TrainingData(weight3, train3);
-       t = new TrainingData(weighttxt, traintxt);
 
-        //t = new TrainingData(weight2, train2);
-
+        t = new TrainingData(weighttxt, traintxt);
+        t2 = new TrainingData(weight2, train2);
+        t3 = new TrainingData(weight3, train3);
     }
 
     @Test
@@ -52,8 +51,8 @@ public class NNTest {
 
 
         network.init(test);
-        network.initWeights();
-        //network.compute(randomArray);
+        network.initWeightsBiases();
+        network.compute(randomArray);
     }
 
     @Test
@@ -80,25 +79,13 @@ public class NNTest {
 
         network.init(weighttxt);
         network.initWeightsBiases(weighttxt);
-        network.setFunc(new String[]{"", "sigmoid", "sigmoid"});
+        network.setFunc(new String[]{"sigmoid", "sigmoid", "sigmoid"});
         t.initInputsOutputs();
-        network.train(10000);
-       // network.compute(new double[] {0.23, 0.30, 0.78});
-        //ArrayList<Double> er = network.train();
-        //     System.out.println(er.size());
-        //   System.out.println(er.get(0));
-        // System.out.println(er.get(er.size()-1));
-
-        //      network.compute(new double[]{1,0,0});
-
-     /*   Neuron[] n = network.output;
-        for (int i = 0; i < n.length; i++) {
-            System.out.println(n[i].getValue());
-        }
-
-      */
-
-
+        network.train(50000);
+        network.compute(new double[] {0.23, 0.30, 0.78});
+        network.printOutput();
+        network.compute(new double[]{1,0,0});
+        network.printOutput();
     }
 
     @Test
@@ -124,24 +111,6 @@ public class NNTest {
     }
 
     @Test
-    void testPropa() {
-        Neuron[] temp = new Neuron[3];
-        temp[0] = new Neuron(-0.33);
-        temp[1] = new Neuron(0.53);
-        temp[2] = new Neuron(0.52);
-
-        double[][] ma = new double[1][4];
-        ma[0][0] = 0.10;
-        ma[0][1] = 0.62;
-        ma[0][2] = 0.21;
-        ma[0][3] = 0.62;
-        double[][] test = NeuralNetworkUtil.vectorMatrixMultiplication(temp, ma);
-        //     int i = test.length;
-        double[][] res = NeuralNetworkUtil.transposeMatrix(test);
-
-    }
-
-    @Test
     void testMatrixaddition() {
         double[][] m1 = {{1.0, 1.0}, {1.0, 1.0}};
         double[][] m2 = {{2.0, 1.0}, {4.0, 5.0}};
@@ -150,28 +119,72 @@ public class NNTest {
 
 
     @Test
-    void tesMattMazur() {
+    void testEasy() {
         String[] func = {"sigmoid", "sigmoid", "sigmoid"};
         network.init(weight2);
         network.setFunc(func);
-        t.initInputsOutputs();
+        t2.initInputsOutputs();
         network.initWeightsBiases(weight2);
+        network.train(1000);
+        network.compute(new double[]{0.05, 0.10});
+        network.printOutput();
+
+    }
+
+
+    @Test
+    void testNewTry() {
+        String[] func = {"", "sigmoid", "sigmoid"};
+        network.init(weight3);
+        network.setFunc(func);
+        t2.initInputsOutputs();
+        network.initWeightsBiases(weight3);
         network.train(10000);
-     //  network.compute(new double[]{0.05, 0.10});
+        network.compute(new double[] {0, 0.2, 0.62, 1, 0.62});
+        network.printOutput();
 
-     }
+    }
+
+    @Test
+    void test3() {
+        String[] func = {"sigmoid", "sigmoid", "sigmoid", "sigmoid"};
+        network.init(new int[]{3, 3, 3, 4});
+        network.setFunc(func);
+        t.initInputsOutputs();
+        network.initWeightsBiases();
+        network.train(100000);
 
 
-     @Test
-    void testNewTRy() {
-         String[] func = {"", "sigmoid", "sigmoid"};
-         network.init(weight3);
-         network.setFunc(func);
-         t2.initInputsOutputs();
-         network.initWeightsBiases(weight3);
-         network.train(10000);
-   //      network.compute(new double[] {0, 0.2, 0.62, 1, 0.62});
-     //    network.printOutput();
+    }
+    @Test
+    void testKorrektheit() throws IOException {
+        String[][] part1 = NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/Korrektheitstrain.csv");
+        TrainingData correct = new TrainingData(weighttxt, part1);
+        network.init(weighttxt);
+        network.initWeightsBiases(weighttxt);
+        network.setFunc(new String[]{"", "sigmoid", "sigmoid"});
+        correct.initInputsOutputs();
+        network.train(50000);
 
-     }
+        network.compute(new double[] {0.99,0.1,0});//1;0;0;0
+        network.printOutput();
+        network.compute(new double[] {1.1,0,0.01});//1;0;0;0
+        network.printOutput();
+
+        network.compute(new double[] {1.1,0.9,0});//0;1;0;0
+        network.printOutput();
+        network.compute(new double[] {1,1,0.1});//0;1;0;0
+        network.printOutput();
+
+        network.compute(new double[] {0,0.1,1.1});//0;0;1;0
+        network.printOutput();
+        network.compute(new double[] {0.1,0,1});//0;0;1;0
+        network.printOutput();
+        
+        network.compute(new double[] {0.01,1.1,0.1});//0;0;0;1
+        network.printOutput();
+        network.compute(new double[] {0,0.99,-0.01});//0;0;0;1
+        network.printOutput();
+
+    }
 }

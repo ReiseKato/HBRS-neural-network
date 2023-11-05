@@ -43,30 +43,13 @@ public class Neuron {
      */
     public void compute(String function) {
         this.valbeforecomp = value;
-        if(function.equals("binary")) {
-            binaryThresholdFunc();
-        } else if (function.equals("sigmoid")) {
-            sigmoidFunc();
-        } else if (function.equals("ReLu")) {
-            reLuFunc();
-        } else if (function.equals("tanh")) {
-            tanHyperbolicusFunc();
+        switch (function) {
+            case "binary" -> binaryThresholdFunc();
+            case "sigmoid" -> sigmoidFunc();
+            case "ReLu" -> reLuFunc();
+            case "tanh" -> tanHyperbolicusFunc();
         }
     }
-
-    public void computeDerivative(String function) {
-        if (function.equals("sigmoid")) {
-            derivativeSigmoid();
-        } else if (function.equals("ReLu")) {
-            derivitiveReLu();
-        } else if (function.equals("tanh")) {
-            derivativeTangensHyperbolicus();
-        } else if (function.equals("")) {
-            this.value = 1;
-
-        }
-    }
-
     //binäre SchwellenwertFunktion: Keyword: binary
     public void binaryThresholdFunc() {
         if (value >= 1.5) {

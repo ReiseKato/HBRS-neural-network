@@ -34,44 +34,6 @@ public class NeuralNetworkUtil {
         }
         return res;
     }
-
-    public static double[][] vectorMatrixMultiplication(Neuron[] v, double[][] matrix) {
-        double[][] result = null;
-        if (1 == matrix.length) {
-            result = new double[v.length][matrix[0].length];
-
-            for (int i = 0; i < result.length; i++) {
-                for (int j = 0; j < result[0].length; j++) {
-
-                    for (double[] doubles : matrix) {
-                        result[i][j] = v[i].value * doubles[j];
-                    }
-                }
-            }
-        }
-
-        return result;
-    }
-
-    /**
-     * Addiere zwei Neuron[] Vektoren Komponentenweise
-     * @param v1 erster Vektor
-     * @param v2 zweiter Vektor
-     * @return v1 + v2
-     */
-    public static Neuron[] addVectors(Neuron[] v1, Neuron[] v2) {
-        Neuron[] res = null;
-        //schaue, ob die Anzahl an Komponenten gleich ist
-        if(v1.length == v2.length) {
-            res = new Neuron[v1.length];//erzeuge ergebnis Vektor
-            for (int i = 0; i < v1.length; i++) {
-                //addiere Komponentenweise
-                res[i] = new Neuron(v1[i].value + v2[i].value);
-            }
-        }
-        return res;
-    }
-
     /**
      * Methode zum Einlesen von einer CSV-Datei in ein String[][]
      * @param csvpath Pfad zur CSV-Datei
@@ -164,26 +126,6 @@ public class NeuralNetworkUtil {
         }
         return ar;
     }
-
-    /**
-     * Methode zum Zusammenfügen zweier String[]
-     * @param ar1 1. String[]
-     * @param ar2 2. String[]
-     * @return 1. + 2. String[]
-     */
-    /*
-    public static String[] concatArrays(String[] ar1, String[] ar2) {
-        String[] temp = new String[ar1.length + ar2.length];
-        // erzeuge ein neues Feld mit der Länge des Ersten + Zweiten
-        System.arraycopy(ar1,0, temp,0, ar1.length);
-        //Kopiere das erste Array von pos 0 in Temp zu Position 0, und zwar so viele Strings entsprechend der Länge von ar1
-        System.arraycopy(ar2,0, temp, ar1.length, ar2.length);
-        //für ar2 das gleiche nur andere Einfüg position
-        return temp;
-    }
-
-     */
-
     /**
      * Methode um eine Double[][] Matrix in eine String[][] Matrix zu konvertieren
      * @param matrix Matrix, welche in String[][] umgewandelt werden soll
@@ -237,47 +179,6 @@ public class NeuralNetworkUtil {
     }
 
     /**
-     * wandelt ein Neuron in ein double[] um
-     * @param temp ein Neuronen Vektor
-     * @return umgewandelten Vektor
-     */
-
-    public static double[] neuronToDouble(Neuron[] temp) {
-        double[] temp2 = new double[temp.length];
-        for (int i = 0; i < temp2.length; i++) {
-            temp2[i] = temp[i].value;
-        }
-        return temp2;
-    }
-
-    /**
-     * wandelt ein double Feld in ein bias Neuron[]
-     * @param temp double Feld, welches umgewandelt werden soll
-     * @return umgewandelte Feld
-     */
-    public static Neuron[] doubleToNeuronBias(double[] temp) {
-        Neuron[] res = new Neuron[temp.length];
-        for (int i = 0; i < res.length; i++) {
-            res[i] = new Neuron(1, temp[i]);
-        }
-        return res;
-    }
-
-    /**
-     * wandelt ein double Feld in ein Neuron[]
-     * @param temp double Feld, welches umgewandelt werden soll
-     * @return umgewandelte Feld
-     */
-    public static Neuron[] doubleToNeuron(double[] temp) {
-        Neuron[] res = new Neuron[temp.length];
-        for (int i = 0; i < res.length; i++) {
-            res[i] = new Neuron(temp[i]);
-        }
-        return res;
-    }
-
-
-    /**
      * Multipliziere eine Matrix mit einem Skalar
      * @param skalar Skalar
      * @param matrix Matrix
@@ -289,23 +190,6 @@ public class NeuralNetworkUtil {
             }
 
         }
-    }
-
-    /**
-     * multiplizieren von Zwei Vektoren komponentenweise
-     * @param v1 Vektor 1
-     * @param v2 Vektor 2
-     * @return
-     */
-    public static Neuron[] vektorMultiplikation(Neuron[] v1, Neuron[] v2) {
-        Neuron[] res = null;
-        if(v1.length == v2.length) {
-            res = new Neuron[v1.length];
-            for (int i = 0; i < v1.length; i++) {
-                res[i] = new Neuron(v1[i].value * v2[i].value);
-            }
-        }
-        return res;
     }
 
     /**
