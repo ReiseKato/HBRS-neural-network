@@ -6,16 +6,16 @@ import java.io.PrintWriter;
 import java.util.*;
 
 public class NeuralNetwork {
-    static Layer[] layers_t; // array to keep the Neural Network in place
-    static TrainingData[] trainingData_t; // array of all the training data given by the user
-    static int[] layerConfig; // array for the layer configuration (example: [3,3,4]
-    static double totalErrorPrior; // made for optimizing the neural Network, but still not working
-    static double totalErrorCurrent; // made for optimizing the neural Network, but still not working
-    static List<Double> totalError = new ArrayList<Double>(); // list for keeping all the total Error --> easier to handle as a list than an array, if over 100000 elements
+    Layer[] layers_t; // array to keep the Neural Network in place
+    TrainingData[] trainingData_t; // array of all the training data given by the user
+    int[] layerConfig; // array for the layer configuration (example: [3,3,4]
+    double totalErrorPrior; // made for optimizing the neural Network, but still not working
+    double totalErrorCurrent; // made for optimizing the neural Network, but still not working
+    List<Double> totalError = new ArrayList<Double>(); // list for keeping all the total Error --> easier to handle as a list than an array, if over 100000 elements
 
 
 
-    public static void main(String[] args) {
+    public void main(String[] args) {
         int numberOfLayers;
         int[] numberOfNeurons;
         int[] numberOfWeights;
@@ -58,9 +58,21 @@ public class NeuralNetwork {
             }
         }
 
-        writeWeightAndBias();
-        getAndWriteTotalErrors();
+        writeWeightAndBias("weights");
+        writeTotalErrors("totalError");
     }
+
+
+    /**
+     * Constructor
+     */
+
+    public NeuralNetwork(String layerPath, int weightRangeMin, int weightRangeMax) {
+        Neuron.setWeightRange(weightRangeMin, weightRangeMax);
+        createLayersAuto(layerPath);
+    }
+
+
 
 
 
@@ -70,7 +82,7 @@ public class NeuralNetwork {
 
 
 
-    public static void getTrainingData(String path) {
+    public void getTrainingData(String path) {
         int numberOfTrainingData = NeuralUtil.getTrainingInputCount(path);
         trainingData_t = new TrainingData[numberOfTrainingData];
 
@@ -79,7 +91,7 @@ public class NeuralNetwork {
         }
     }
 
-    public static void getTrainingDataLearnable(String path) {
+    public void getTrainingDataLearnable(String path) {
         int numberOfTrainingData = NeuralUtil.getTrainingInputCount(path);
         trainingData_t = new TrainingData[numberOfTrainingData];
 
@@ -91,7 +103,7 @@ public class NeuralNetwork {
 
 
     /** method for manually creating Training Data */
-    public static void getTrainingData() {
+    public void getTrainingData() {
 //        float[] input0 = new float[] {1, 0, 0}; // expect {1, 0, 0, 0}
 //        float[] input1 = new float[] {0.8f, 0.0f, 0.1f}; // expect {1, 0, 0, 0}
 //
@@ -155,7 +167,7 @@ public class NeuralNetwork {
      *          especially for manually created Training Data
      *          useful, when not having Weight or Bias Data
      */
-    public static void createLayers(int numberOfLayers, int[] numberOfWeights, int[] numberOfNeurons) { // parse input data, how many layers, how many weights, how many neurons in each layer
+    public void createLayers(int numberOfLayers, int[] numberOfWeights, int[] numberOfNeurons) { // parse input data, how many layers, how many weights, how many neurons in each layer
         layers_t = new Layer[numberOfLayers];
         for(int i = 1; i < numberOfLayers; i++) { //create all hidden Layers and output Layer
             layers_t[i] = new Layer(numberOfWeights[i - 1], numberOfNeurons[i - 1]);
@@ -163,7 +175,7 @@ public class NeuralNetwork {
     }
 
     /** manual NN creation */
-    public static void createLayers(String path) {
+    public void createLayers(String path) {
         layerConfig = NeuralUtil.getlayerConfig(path);
         int[] numberOfWeights = Arrays.copyOfRange(layerConfig, 0, layerConfig.length - 1);
         int[] numberOfNeurons = Arrays.copyOfRange(layerConfig, 1, layerConfig.length);
@@ -175,13 +187,29 @@ public class NeuralNetwork {
         }
     }
 
+    /** automatic NN creation */
+    public void createLayersAuto(String path) {
+        layerConfig = NeuralUtil.getlayerConfig(path);
+        int numberOfWeights;
+        int numberOfNeurons;
+        int numberOfLayers = layerConfig.length;
+        layers_t = new Layer[layerConfig.length];
+
+        for(int i = 1; i < numberOfLayers; i++) {
+            numberOfWeights = layerConfig[i - 1];
+            numberOfNeurons = layerConfig[i];
+            layers_t[i] = new Layer(numberOfWeights, numberOfNeurons);
+        }
+    }
+
     /** get weights and bias form csv and initialize Neurons */
-    public static void weightAndBiasConfig(String path) {
+    public void weightAndBiasConfig(String path) {
+        Float[][] weightsAndBiasFloat = NeuralUtil.readWeightsAndBias(path);
         for(int i = 1; i < layers_t.length; i++) {
             for(int j = 0; j < layers_t[i].neurons.length; j++) {
                 float[] weights;
                 float bias;
-                float[] weightsAndBias = NeuralUtil.getSpecificWeights(NeuralUtil.readWeightsAndBias(path),
+                float[] weightsAndBias = NeuralUtil.getSpecificWeights(weightsAndBiasFloat,
                         layerConfig, j, i);
                 weights = Arrays.copyOfRange(weightsAndBias, 0, weightsAndBias.length - 1);
                 bias = weightsAndBias[weightsAndBias.length - 1];
@@ -192,11 +220,14 @@ public class NeuralNetwork {
     }
 
     /** method for creating a csv file with the optimal weights and bias for each Neuron */
-    public static void writeWeightAndBias() {
+    public void writeWeightAndBias(String fileName) {
         PrintWriter printWriter;
+        if(fileName.charAt(fileName.length() - 1) != 'v') {
+            fileName += ".csv";
+        }
 
         try {
-            File csvFile = new File("weights.csv");
+            File csvFile = new File(fileName);
             printWriter = new PrintWriter(csvFile);
             String sLayers = "layers;";
             for(int i = 0; i < layerConfig.length; i++) {
@@ -235,7 +266,7 @@ public class NeuralNetwork {
     }
 
     /** basically parse the weights, calculate the values. forward-pass */
-    public static void run(float[] input) {
+    public void run(float[] input) {
         layers_t[0] = new Layer(input); // create input Layer
         float sum;
 
@@ -260,7 +291,7 @@ public class NeuralNetwork {
     /** training rate:  optional. can be used to determine how fast the model should train.
      *                  too low -> can get stuck | too high ->  can cause the model to converge too quickly to a suboptimal solution
      */
-    public static void backpropagation(TrainingData __trainingData_t, float trainingRate) {
+    public void backpropagation(TrainingData __trainingData_t, float trainingRate) {
         double totalErrorDouble = 0.0f;
         float out = 0.0f;
         float target = 0.0f;
@@ -314,7 +345,7 @@ public class NeuralNetwork {
     }
 
     /** calculating the sum over the gradients of the Neurons in a Layer multiplied by the weight */
-    public static float gradientSum(int indexCurrentLayer, int indexCurrentNeuron) {
+    public float gradientSum(int indexCurrentLayer, int indexCurrentNeuron) {
         float sum = 0.0f;
         Layer currentLayer = layers_t[indexCurrentLayer];
         for(int i = 0; i < currentLayer.neurons.length; i++) {
@@ -325,7 +356,7 @@ public class NeuralNetwork {
     }
 
     /** updating all the weights of each Neuron --> used in backpropagation */
-    public static void updateAllWeights() {
+    public void updateAllWeights() {
         for(int i = 0; i < layers_t.length; i++) { // i: indexing for Layers
             for(int j = 0; j < layers_t[i].neurons.length; j++) {
                 layers_t[i].neurons[j].updateWeights();
@@ -334,7 +365,7 @@ public class NeuralNetwork {
     }
 
     /** calculate the appropriate output for each input */
-    public static void train(int countOfTraining, float trainingRate) {
+    public void train(int countOfTraining, float trainingRate) {
         for(int i = 0; i < countOfTraining; i++) {
             for(int j = 0; j < trainingData_t.length; j++) {
                 run(trainingData_t[j].inputData);
@@ -348,10 +379,33 @@ public class NeuralNetwork {
         }
     }
 
+    /**
+     * print all
+     */
+    public void print() {
+        for(int i = 0; i < trainingData_t.length; i++) {
+            run(trainingData_t[i].inputData);
+            System.out.println("\nInput: " + i);
+            for(int j = 0; j < layers_t[layers_t.length - 1].neurons.length; j++) {
+                System.out.println(layers_t[layers_t.length - 1].neurons[j].value);
+            }
+        }
+    }
+
     /** create a csv file named "totalError.csv" to write down the total Error to the expected Output.
      * can be later processed to see the learning curve of the Neural Network by plotting it
      */
-    public static Double[] getAndWriteTotalErrors() {
+    public Double[] getTotalErrors() {
+        Double[] arrTotalError = new Double[totalError.size()];
+        int i = 0;
+        for(Double x : totalError) {
+            arrTotalError[i] = x;
+            i++;
+        }
+        return arrTotalError;
+    }
+
+    public Double[] writeTotalErrors(String fileName) {
         Double[] arrTotalError = new Double[totalError.size()];
         int i = 0;
         for(Double x : totalError) {
@@ -360,6 +414,9 @@ public class NeuralNetwork {
         }
         PrintWriter printWriter;
 
+        if(fileName.charAt(fileName.length() - 1) != 'v') {
+            fileName += ".csv";
+        }
         try {
             File csvFile = new File("totalError.csv");
             printWriter = new PrintWriter(csvFile);

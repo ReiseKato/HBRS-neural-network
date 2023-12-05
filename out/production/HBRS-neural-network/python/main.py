@@ -4,7 +4,7 @@ import pandas as pd
 
 path = 'S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\totalError.csv'
 
-
+# list for all total Error data
 arr = []
 
 # with open(path, newline='') as inputfile:
