@@ -46,6 +46,7 @@ public class NeuralNetworkUtil {
         String ln;// eine Linie
         String[] text;
         ArrayList<String[]> doc = new ArrayList<>(); // dyn Array
+        if(csvpath == null) return null;
 
         try {
             read = new BufferedReader(new FileReader(csvpath));// erzeuge einen BufferedReader

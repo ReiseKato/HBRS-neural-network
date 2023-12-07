@@ -2,9 +2,6 @@ package Code;
 
 import java.util.*;
 
-import static Code.TrainingData.inputs;
-import static Code.TrainingData.outputs;
-
 /**
  * Klasse NeuralNetwork
  *
@@ -22,7 +19,20 @@ public class NeuralNetwork {
     static int[] layers;
     String[] func;//Funktionen für den jeweiligen Layer
 
-    double LR = 0.01;
+    TrainingData train;
+
+    double LR = 0.05;
+
+    public NeuralNetwork() {
+
+    }
+
+    public NeuralNetwork(TrainingData obj) {
+        this.train = obj;
+        this.init(train.getFile());
+        this.initWeightsBiases(train.getFile());
+        this.setFunc(train.functions);
+    }
 
     /**
      * initialisiere die Neuronen, anhand des Arrays layers
@@ -187,6 +197,16 @@ public class NeuralNetwork {
         // this.saves= save.toArray(new Neuron[0][]);
     }
 
+    public void computeUnknwonData(TrainingData unknown) {
+        List<double[]> uninputs = unknown.getInputs();
+        System.out.println("Unknown data: ");
+        for (int i = 0; i < uninputs.size(); i++) {
+            System.out.println("Input: " + i);
+            compute(uninputs.get(i));
+            printOutput();
+        }
+    }
+
     /**
      * bestimme den Gesamt-Fehler für einen Datensatz
      *
@@ -209,13 +229,14 @@ public class NeuralNetwork {
      * @param iterations Anzahl der Durchläufe des Datensatzes
      */
     public void train(int iterations) {
+
         //solange i < Anzahl festgelegter Iterationen
         for (int i = 0; i < iterations; i++) {
             double totalerror = 0;
             //gehe nacheinander alle Datensätze durch
-            for (int j = 0; j < inputs.size(); j++) {
-                double[] input = inputs.get(j);
-                double[] output = outputs.get(j);
+            for (int j = 0; j < train.getListInputSize(); j++) {
+                double[] input = train.getInput(j);
+                double[] output = train.getOutput(j);
                 //forward propagation
                 compute(input);
                 //calculate the loss
@@ -238,8 +259,9 @@ public class NeuralNetwork {
             }
         }
         // nach dem training werte ausgeben
-        for (int i = 0; i < inputs.size(); i++) {
-            compute(inputs.get(i));
+        System.out.println("Trainingdata: ");
+        for (int i = 0; i < train.getListInputSize(); i++) {
+            compute(train.getInput(i));
             System.out.println("Input: " + i);
             printOutput();
         }

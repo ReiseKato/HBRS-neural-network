@@ -2,11 +2,10 @@ package Tests;
 
 import Code.*;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.ArrayList;
+
 
 public class NNTest {
     NeuralNetwork network;
@@ -34,8 +33,8 @@ public class NNTest {
     @Test
     void testCSV() throws IOException {
 
-        String[][] s = NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/weight_trafficlights.csv");
-        TrainingData t = new TrainingData(weighttxt, traintxt);
+        NeuralNetworkUtil.readCSV("/Users/victor/IdeaProjects/Projektseminar/src/weight_trafficlights.csv");
+        new TrainingData(weighttxt, traintxt);
 
 
     }
@@ -79,7 +78,7 @@ public class NNTest {
 
         network.init(weighttxt);
         network.initWeightsBiases(weighttxt);
-        network.setFunc(new String[]{"sigmoid", "sigmoid", "sigmoid"});
+        network.setFunc(new String[]{"", "sigmoid", ""});
         t.initInputsOutputs();
         network.train(50000);
         network.compute(new double[] {0.23, 0.30, 0.78});
@@ -164,7 +163,7 @@ public class NNTest {
         network.initWeightsBiases(weighttxt);
         network.setFunc(new String[]{"", "sigmoid", "sigmoid"});
         correct.initInputsOutputs();
-        network.train(50000);
+        network.train(1000000);
 
         network.compute(new double[] {0.99,0.1,0});//1;0;0;0
         network.printOutput();
@@ -186,5 +185,21 @@ public class NNTest {
         network.compute(new double[] {0,0.99,-0.01});//0;0;0;1
         network.printOutput();
 
+        network.compute(new double[] {0.0,0.48,0.45});
+        network.printOutput();
+
+    }
+
+    @Test
+    void quickTrain() throws IOException {
+        String[] func = new String[]{"", "sigmoid", "sigmoid"};
+        TrainingData known = new TrainingData("/Users/victor/IdeaProjects/Projektseminar/src/weight_trafficlights.csv",
+                "/Users/victor/IdeaProjects/Projektseminar/src/Korrektheitstrain.csv",
+                    3, 4, func);
+        TrainingData unknown = new TrainingData(null, "/Users/victor/IdeaProjects/Projektseminar/src/Korrektheitstrain2.csv", 3, 4);
+        
+        NeuralNetwork mNN = new NeuralNetwork(known);
+        mNN.train(10000);
+        mNN.computeUnknwonData(unknown);
     }
 }

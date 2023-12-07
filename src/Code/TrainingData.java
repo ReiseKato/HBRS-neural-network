@@ -1,5 +1,6 @@
 package Code;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
@@ -14,8 +15,28 @@ public class TrainingData {
 
     String[][] file; // layer+weight Konfiguration
     String[][] traindata;// Trainingssätze: input   (expected)output
-    static List<double[]> inputs;
-    static List<double[]> outputs;
+
+    String[] functions;
+
+    int inputlength;
+    int outputlength;
+    List<double[]> inputs;
+    List<double[]> outputs;
+
+
+    public TrainingData(String pathconfig, String pathdatapack, int inlen, int outlen, String[] funcs) throws IOException {
+        this(pathconfig, pathdatapack, inlen, outlen);
+        this.functions = funcs;
+    }
+
+    /**
+     * Erzeuge ein TrainingData Object nur mit den Pfaden zur Datei
+     * @param pathconfig Pfad zur Konfigurations-CSV-Datei für das NN
+     * @param pathdatapack Pfad zu Trainings Datenpaket
+     */
+    public TrainingData(String pathconfig, String pathdatapack, int inlen, int outlen) throws IOException {
+        this(NeuralNetworkUtil.readCSV(pathconfig), NeuralNetworkUtil.readCSV(pathdatapack), inlen, outlen);
+    }
 
     /**
      * Erzeuge ein Objekt der Klasse TrainingData
@@ -30,10 +51,17 @@ public class TrainingData {
      * @param doc Weight Konfiguration
      * @param traindata Input/Output sets
      */
+    public TrainingData(String[][] doc, String[][] traindata, int inlen, int outlen) {
+        this(doc, traindata);
+        this.inputlength = inlen;
+        this.outputlength = outlen;
+        initInputsOutputs();
+
+    }
+
     public TrainingData(String[][] doc, String[][] traindata) {
         this.file = doc;
         this.traindata = traindata;
-
     }
 
     /**
@@ -44,17 +72,17 @@ public class TrainingData {
         inputs = new ArrayList<>();// Zwei Listen jew. für input und output
         outputs = new ArrayList<>();
 
-        int numofinputs = NeuralNetwork.layers[0];
-        int numofoutputs = NeuralNetwork.layers[NeuralNetwork.layers.length-1];
+    //    int numofinputs = NeuralNetwork.layers[0];
+      //  int numofoutputs = NeuralNetwork.layers[NeuralNetwork.layers.length-1];
 
         for (String[] traindatum : traindata) {
             // gehe jede Zeile durch
             // zwei temp String variablen um pro zeile in und output einzulesen
-            String[] a = new String[numofinputs];
-            String[] b = new String[numofoutputs];
+            String[] a = new String[inputlength];
+            String[] b = new String[outputlength];
             //Kopiere input und output jew. in String[] entsprechend der Länge der in - und outputs
-            System.arraycopy(traindatum, 0, a, 0, numofinputs);
-            System.arraycopy(traindatum, numofinputs, b, 0, numofoutputs);
+            System.arraycopy(traindatum, 0, a, 0, inputlength);
+            System.arraycopy(traindatum, inputlength, b, 0, outputlength);
             // füge die eingelesen Werte in die entsprechende Liste hinzu
             inputs.add(NeuralNetworkUtil.stringArrayToDouble(a));
             outputs.add(NeuralNetworkUtil.stringArrayToDouble(b));
@@ -185,5 +213,34 @@ public class TrainingData {
      */
     public void setTraindata(String[][] traindata) {
         this.traindata = traindata;
+    }
+
+    public List<double[]> getInputs() {
+        return inputs;
+    }
+
+    public double[] getInput(int index) {
+        if(index < 0 || index >= inputs.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        return inputs.get(index);
+    }
+    public double[] getOutput(int index) {
+        if(index < 0 || index >= inputs.size()) {
+            throw new IndexOutOfBoundsException();
+        }
+        return outputs.get(index);
+    }
+
+    public int getListInputSize() {
+        return inputs.size();
+    }
+
+    public String[] getFunctions() {
+        return functions;
+    }
+
+    public List<double[]> getOutputs() {
+        return outputs;
     }
 }
