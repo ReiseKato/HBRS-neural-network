@@ -15,7 +15,6 @@ public class TrainingData {
 
     String[][] file; // layer+weight Konfiguration
     String[][] traindata;// Trainingssätze: input   (expected)output
-
     String[] functions;
 
     int inputlength;
@@ -131,7 +130,7 @@ public class TrainingData {
      * @param weights akt weight Konfiguration
      * @param biases akt bias Konfiguration
      */
-    public void updateFile(double[][][] weights, Neuron[][] biases) {
+    public void updateFile(double[][][] weights, Neuron[][] biases, String[] functions) {
         ArrayList<String[]> text = new ArrayList<>();
         // erzeug temporäres dyn Array
         String[] line = new String[NeuralNetwork.layers.length + 1];
@@ -151,7 +150,7 @@ public class TrainingData {
         // erstelle alle bias Vektoren und füge sie zur Liste hinzu
         for (Neuron[] biase : biases) {
             //convert to string
-            String[] temp = NeuralNetworkUtil.neuronToString(biase);
+            String[] temp = NeuralNetworkUtil.biasNeuronToString(biase);
             bls.add(temp);
         }
 
@@ -161,9 +160,11 @@ public class TrainingData {
             line[i] = Integer.toString(NeuralNetwork.layers[i-1]);
         }
         text.add(line);
+        // Funktion der ersten Ebene hinzufügen
+        text.add(funcToCSV(functions[0]));
 
         //Solange eine der beiden liste El besitzt
-        while (!wls.isEmpty() || !bls.isEmpty()) {
+        for (int i = 1; !wls.isEmpty() || !bls.isEmpty(); i++) {
             // entferne Weight Ebene
             String[][] temp = wls.remove();
             Collections.addAll(text, temp);
@@ -172,8 +173,8 @@ public class TrainingData {
             String[] temp2 = bls.remove();
             text.add(temp2);
             // schreibe sie in die nächste Zeile
-            text.add(new String[]{});
-            //LeereZeile
+            text.add(funcToCSV(functions[i]));
+            //Funktionszeile
         }
         //entferne die letzte Zeile des Textes
         if(text.get(text.size()-1).length == 0) {
@@ -181,6 +182,14 @@ public class TrainingData {
         }
         // wandle das dyn. Array in ein statisches Array um
         this.file = text.toArray(new String[0][]);
+    }
+
+    private String[] funcToCSV(String func) {
+        if(func.isEmpty()) {
+            return new String[]{"","","",""};
+        } else {
+            return new String[]{func + ";"};
+        }
     }
 
     /**
@@ -236,11 +245,12 @@ public class TrainingData {
         return inputs.size();
     }
 
-    public String[] getFunctions() {
-        return functions;
-    }
 
     public List<double[]> getOutputs() {
         return outputs;
+    }
+
+    public String[] getFunctions() {
+        return functions;
     }
 }

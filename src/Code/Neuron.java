@@ -99,4 +99,7 @@ public class Neuron {
         return value;
     }
 
+    public double getBias() {
+        return bias;
+    }
 }

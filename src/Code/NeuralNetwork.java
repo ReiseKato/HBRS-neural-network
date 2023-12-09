@@ -1,5 +1,6 @@
 package Code;
 
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -21,7 +22,7 @@ public class NeuralNetwork {
 
     TrainingData train;
 
-    double LR = 0.05;
+    double LR = 0.5;
 
     public NeuralNetwork() {
 
@@ -29,9 +30,15 @@ public class NeuralNetwork {
 
     public NeuralNetwork(TrainingData obj) {
         this.train = obj;
-        this.init(train.getFile());
-        this.initWeightsBiases(train.getFile());
-        this.setFunc(train.functions);
+        String[][] file = train.getFile();
+        this.init(file);
+        if(file.length == 1) {
+            this.initWeightsBiases();
+            this.setFunc(train.functions);
+
+        } else {
+            this.initWeightsBiases(file);
+        }
     }
 
     /**
@@ -122,6 +129,11 @@ public class NeuralNetwork {
         }
     }
 
+    public void updateMyTrainingData(String filename) throws IOException {
+        train.updateFile(this.weights, this.biases, this.func);
+        NeuralNetworkUtil.writeCSV(train.getFile(), filename);
+    }
+
     /**
      * initialisierung der Weights and Biases, anhand der Werte, die in der CSV-Datei stehen
      * CSV-Datei muss vorher mit NeuralNetworkUtil.readCSV() eingelesen werden und als Parameter übergeben werden
@@ -129,12 +141,17 @@ public class NeuralNetwork {
      * @param file eingelesene CSV-Datei mit weight Konfiguration
      */
     public void initWeightsBiases(String[][] file) {
+        String[] temp;
         //erste Dimension ist jeweils die Netztiefe-1
         weights = new double[network.length - 1][][];
         biases = new Neuron[network.length - 1][];
+        func = new String[network.length];
         //lese die weight-Konfiguration in eine verkettete Liste ein, schneide die erste Zeile raus
         //wegen der Layer Konfiguration
         LinkedList<String[]> document = new LinkedList<>(Arrays.asList(file).subList(1, file.length));
+
+        //Funktion für die erste Ebene einlesen
+        initaFunc(document.remove(), 0);
 
         //1. Dim: weight-Ebene
         //2. Dim: von Neuron x
@@ -149,14 +166,24 @@ public class NeuralNetwork {
                 //wandel die akt. Zeile in ein Double[] um und weise sie zur i-ten Ebene mit dem j-ten Element der Domain
                 weights[i][j] = NeuralNetworkUtil.stringArrayToDouble(document.remove());
             }
-            String[] temp = document.remove();//speichere die Zeile mit den biases
+            temp = document.remove();//speichere die Zeile mit den biases
             biases[i] = new Neuron[temp.length];//erzeuge im Array für die biases an der i-ten stelle ein neuess Neuron[] mit der länge der biases
             biases[i] = NeuralNetworkUtil.stringToBiasNeuron(temp);//wandle den String in ein Neuron[] und weise zu
+
+
             if (!document.isEmpty()) {// falls noch nicht die letzte Zeile
-                document.remove();//leerzeile entfernen
+                initaFunc(document.remove(), i+1);//function einlesen
             }
         }
 
+    }
+
+    public void initaFunc(String[] line, int index) {
+        if(line.length == 0) {
+            func[index] = "";
+        } else {
+            func[index] = line[0];
+        }
     }
 
 
@@ -354,7 +381,7 @@ public class NeuralNetwork {
             delta = new double[network[nexth].length];
             for (int j = 0; j < network[nexth].length; j++) {
                 delta[j] = 0;
-                for (int k = 0; k < network[h].length; k++) {
+                for (int k = 0; k < network[nexth].length; k++) {
                     delta[j] += h_delta_weights[k][j];
                 }
                 delta[j] *= (network[nexth][j].value * (1.0 - network[nexth][j].value));

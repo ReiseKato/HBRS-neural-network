@@ -159,6 +159,15 @@ public class NeuralNetworkUtil {
         return temp;
     }
 
+    public static String[] biasNeuronToString(Neuron[] n) {
+
+        String[] temp = new String[n.length];
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = Double.toString(n[i].getBias());
+        }
+        return temp;
+    }
+
     /**
      * ein string für ein bias in ein bias Neuron umwandeln
      * @param st bias

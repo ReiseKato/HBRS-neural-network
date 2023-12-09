@@ -92,7 +92,7 @@ public class NNTest {
 
         network.init(weighttxt);
         network.initWeightsBiases(weighttxt);
-        t.updateFile(network.getWeights(), network.getBiases());
+      //  t.updateFile(network.getWeights(), network.getBiases());
         String[][] strings = t.getFile();
         NeuralNetworkUtil.writeCSV(strings, "/Users/victor/IdeaProjects/Projektseminar/test.csv");
     }
@@ -201,5 +201,72 @@ public class NNTest {
         NeuralNetwork mNN = new NeuralNetwork(known);
         mNN.train(10000);
         mNN.computeUnknwonData(unknown);
+    }
+
+    @Test
+    void testTraining1() throws IOException {
+        String[] func = new String[]{"", "sigmoid", "sigmoid"};
+        TrainingData train1 = new TrainingData("/Users/victor/IdeaProjects/Projektseminar/src/Training/Training1config.csv",
+                "/Users/victor/IdeaProjects/Projektseminar/src/Training/Training1.csv",
+                3, 4, func);
+        TrainingData train1UnKnown = new TrainingData( null,
+                "/Users/victor/IdeaProjects/Projektseminar/src/Training/unknTraining1.csv",
+                3, 4);
+
+        NeuralNetwork NN = new NeuralNetwork(train1);
+        // NN.updateMyTrainingData("Training2config.csv");
+        NN.train(1000000);
+        NN.computeUnknwonData(train1UnKnown);
+
+    }
+    @Test
+    void testTraining2() throws IOException {
+        String[] func = new String[]{"", "sigmoid", "sigmoid", "sigmoid"};
+        TrainingData train2 = new TrainingData("/Users/victor/IdeaProjects/Projektseminar/src/Training/Training2config.csv",
+                "/Users/victor/IdeaProjects/Projektseminar/src/Training/Training2.csv",
+                3, 6, func);
+        TrainingData train2UnKnown = new TrainingData( null,
+                "/Users/victor/IdeaProjects/Projektseminar/src/Training/unknTraining2.csv",
+                3, 6);
+
+        NeuralNetwork NN = new NeuralNetwork(train2);
+       // NN.updateMyTrainingData("Training2config.csv");
+        NN.train(1000000);
+        NN.computeUnknwonData(train2UnKnown);
+
+    }
+
+    @Test
+    void testTraining3() throws IOException {
+        String[] func = new String[]{"", "sigmoid", "sigmoid"};
+        TrainingData train3 = new TrainingData("/Users/victor/IdeaProjects/Projektseminar/src/Training/Training3config.csv",
+                "/Users/victor/IdeaProjects/Projektseminar/src/Training/Training3.csv",
+                3, 7, func);
+        TrainingData train3UnKnown = new TrainingData( null,
+                "/Users/victor/IdeaProjects/Projektseminar/src/Training/unknTraining3.csv",
+                3, 7);
+
+        NeuralNetwork NN = new NeuralNetwork(train3);
+        //NN.updateMyTrainingData("Training3config.csv");
+        NN.train(1000000);
+        NN.computeUnknwonData(train3UnKnown);
+
+    }
+
+    @Test
+    void testTraining4() throws IOException {
+        String[] func = new String[]{"", "sigmoid", "sigmoid"};
+        TrainingData train4 = new TrainingData("/Users/victor/IdeaProjects/Projektseminar/src/Training/Training4config.csv",
+                "/Users/victor/IdeaProjects/Projektseminar/src/Training/Training4.csv",
+                3, 8, func);
+        TrainingData train4UnKnown = new TrainingData( null,
+                "/Users/victor/IdeaProjects/Projektseminar/src/Training/unknTraining4.csv",
+                3, 8);
+
+        NeuralNetwork NN = new NeuralNetwork(train4);
+        // NN.updateMyTrainingData("Training4config.csv");
+        NN.train(1200000);
+        NN.computeUnknwonData(train4UnKnown);
+
     }
 }
