@@ -1,0 +1,22 @@
+tdata1.csv:
+p,q,r,s,t,w
+(p or q) and r and (s or t and w)
+--> 	(p or q) = P 		(expected column 1)
+	r = Q 			(expected column 2)
+	(s or t and w) = R 	(expected column 3)
+
+tdata2.csv:
+p,q,r,a,s,t,v,b,c
+(p or q and r) or ((q or a and s) and (t or v)) or b or (c and a)
+-->	(p or q and r) = P			(expected column 1)
+	((q or a and s) and (t or v)) = Q	(expected column 2)
+	b = R					(expected column 3)
+	(c and a) = S				(expected column 4)
+
+tdata3.csv:
+p,q,r,s,t,v,a,b,c,d,e
+(p and q and s) or (r and (p or q)) and (t or ((v and b or a) and a)) or ((c or d and e) and (d or q) or s)
+-->	(p and q and s)				(expected column 1)
+	(r and (p or q))			(expected column 2)
+	(t or ((v and b or a) and a))		(expected column 3)
+	((c or d and e) and (d or q) or s)	(expected column 4)

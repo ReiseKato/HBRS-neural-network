@@ -5,8 +5,11 @@ public class Main {
         String sPath = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_weights_trafficlights_classification_simplified.csv"; // Layer, Weight and Bias
         String sPathForTData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_traindata_trafficlights_classification.csv"; // Training Data
 
+        sPathForTData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\training_data_and_layer_config\\tdata1.csv";
+        sPath = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\training_data_and_layer_config\\layerConfig1.csv";
+
         // Neural Network creation
-        NeuralNetwork nn = new NeuralNetwork(sPath, -1, 1);
+        NeuralNetworkReise nn = new NeuralNetworkReise(sPath, -1, 1);
 
         nn.getTrainingDataLearnable(sPathForTData);
 //        nn.weightAndBiasConfig(sPath); // manual weights and bias configuration
