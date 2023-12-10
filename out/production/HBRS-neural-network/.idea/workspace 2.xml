@@ -10,18 +10,19 @@
       <change afterPath="$PROJECT_DIR$/Src/NetzVic/NeuronVic.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Src/NetzVic/TrainingDataVic.java" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Src/Tests/NNVic_Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V1_layerConfig.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V1_tData.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V1_tData_unkn.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V2_layerConfig.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V2_tData.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V2_tData_unkn.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V3_layerConfig.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V3_tData.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V3_tData_unkn.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V4_layerConfig.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V4_tData.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V4_tData_unkn.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig4.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig5.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig6.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig7.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/tdata4.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/tdata5.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/tdata6.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/tdata7.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/unkn_tdata4.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/unkn_tdata5.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/unkn_tdata6.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/unkn_tdata7.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/HBRS-neural-network.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HBRS-neural-network.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
@@ -38,7 +39,7 @@
       <change beforePath="$PROJECT_DIR$/Src/TrainingDataReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/TrainingDataReise.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/HBRS-neural-network.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/HBRS-neural-network.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Layer.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/LayerReise.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main.class" beforeDir="false" />
@@ -52,25 +53,7 @@
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/TrainingDataReise.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/layerConfig.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/layerConfig.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/totalError.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/layerConfig1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/layerConfig3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/layerConfig3.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/tdata1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/tdata1.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/tdata2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/tdata2.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/tdata3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/tdata3.xlsx" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/~$ojektplan.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R1_layerConfig.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R3_layerConfig.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig3.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R3_layerConfig.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/tdata1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R1_tData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/tdata1.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R1_tData.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/tdata2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R2_tData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/tdata2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R2_tData.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/tdata3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R3_tData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/tdata3.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R3_tData.xlsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +113,7 @@
       <recent name="Src.NetzVic" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.NNVic_Test.testTraining1">
+  <component name="RunManager" selected="JUnit.NNVic_Test.testTraining2">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Src.NetzReise.Main" />
       <module name="HBRS-neural-network" />
@@ -151,22 +134,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NNVic_Test.testTraining1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="HBRS-neural-network" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Src.Tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Src.Tests" />
-      <option name="MAIN_CLASS_NAME" value="Src.Tests.NNVic_Test" />
-      <option name="METHOD_NAME" value="testTraining1" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="NNVic_Test.testTraining2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="HBRS-neural-network" />
       <extension name="coverage">
@@ -183,33 +150,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NNVic_Test.testTraining4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="HBRS-neural-network" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="Src.Tests.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="Src.Tests" />
-      <option name="MAIN_CLASS_NAME" value="Src.Tests.NNVic_Test" />
-      <option name="METHOD_NAME" value="testTraining4" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.Main" />
       <item itemvalue="Application.NeuralUtilReise" />
-      <item itemvalue="JUnit.NNVic_Test.testTraining1" />
-      <item itemvalue="JUnit.NNVic_Test.testTraining4" />
       <item itemvalue="JUnit.NNVic_Test.testTraining2" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.NNVic_Test.testTraining1" />
-        <item itemvalue="JUnit.NNVic_Test.testTraining4" />
         <item itemvalue="JUnit.NNVic_Test.testTraining2" />
         <item itemvalue="Application.NeuralUtilReise" />
       </list>
@@ -224,7 +171,7 @@
       <option name="presentableId" value="Default" />
       <updated>1696523799911</updated>
       <workItem from="1702215250939" duration="2217000" />
-      <workItem from="1702217483745" duration="3572000" />
+      <workItem from="1702217483745" duration="705000" />
     </task>
     <servers />
   </component>
@@ -238,15 +185,6 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Src/Tests/NNVic_Test.java</url>
-          <line>210</line>
-          <properties class="Src.Tests.NNVic_Test" method="testTraining1">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
