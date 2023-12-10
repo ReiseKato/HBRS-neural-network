@@ -128,24 +128,6 @@ public class NeuralUtilReise {
 
     /** get the Training Input Data only */
     public static float[] getTrainingInputData(String path, int[] layerConfig, int index) {
-//        int[] layerConfig = NeuralUtil.getlayerConfig(sPath);
-//        int inputLength = layerConfig[0];
-//        int outputLength = layerConfig[layerConfig.length - 1];
-//        int counter = 0;
-//        String line;
-//
-//        try{
-//            BufferedReader br = new BufferedReader(new FileReader(path));
-//            counter = 0;
-//            while((line = br.readLine()) != null) {
-//                counter++;
-//            }
-//        } catch(FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch(IOException e) {
-//            e.printStackTrace();
-//        }
-
         String line;
         String[] data;
         String[][] training = new String[counter][];
@@ -180,9 +162,22 @@ public class NeuralUtilReise {
 //            inputData_t = Arrays.copyOfRange(fTraining[i], 0, inputLength);
 //            System.out.println(Arrays.toString(inputData_t));
 //        }
+        Random r = new Random();
+        float fMIN = 0.0000000001f;
+        float fMAX = 0.1f;
         float[] fInpuData = new float[inputData_t.length];
         int i = 0;
         for(float __num__ : inputData_t) {
+            float randNum = fMIN + r.nextFloat() * (fMAX - fMIN);
+            if(__num__ == 0) {
+                __num__ += randNum;
+            } else {
+                if(Math.random() < 0.5) {
+                    __num__ += randNum;
+                } else {
+                    __num__ += randNum;
+                }
+            }
             fInpuData[i] = __num__;
             i++;
         }

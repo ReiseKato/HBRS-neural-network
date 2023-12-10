@@ -5,72 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkUtilVic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/NetzVic/NeuronVic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/NetzVic/TrainingDataVic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Tests/NNVic_Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V1_layerConfig.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V1_tData.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V1_tData_unkn.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V2_layerConfig.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V2_tData.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V2_tData_unkn.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V3_layerConfig.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V3_tData.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V3_tData_unkn.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V4_layerConfig.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V4_tData.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/V4_tData_unkn.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/HBRS-neural-network.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HBRS-neural-network.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Layer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/LayerReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/LayerReise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NeuralNetwork.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NeuralNetworkReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NeuralUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NeuralUtilReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuralUtilReise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Neuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NeuronReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuronReise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/TrainingData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/TrainingDataReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/TrainingDataReise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/HBRS-neural-network.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/HBRS-neural-network.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Layer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/LayerReise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralNetwork.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralNetworkReise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralUtilReise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Neuron.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuronReise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/TrainingData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/TrainingDataReise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/layerConfig.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/layerConfig.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/totalError.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/layerConfig1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/layerConfig3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/layerConfig3.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/tdata1.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/tdata1.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/tdata2.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/tdata2.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/tdata3.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data_and_layer_config/tdata3.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/~$ojektplan.docx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R1_layerConfig.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R3_layerConfig.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig3.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R3_layerConfig.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/tdata1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R1_tData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/tdata1.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R1_tData.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/tdata2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R2_tData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/tdata2.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R2_tData.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/tdata3.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R3_tData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/tdata3.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/R3_tData.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/NetzReise/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/NetzReise/NeuralUtilReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuralUtilReise.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,28 +36,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/victor/Documents/Coding/Java-Workspace/NeuralNetworkSeminar/HBRS-neural-network/training_data_and_layer_config",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/victor/Documents/Coding/Java-Workspace/NeuralNetworkSeminar/HBRS-neural-network/training_data_and_layer_config&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/training_data_and_layer_config" />
@@ -130,7 +67,7 @@
       <recent name="Src.NetzVic" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.NNVic_Test.testTraining1">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Src.NetzReise.Main" />
       <module name="HBRS-neural-network" />
