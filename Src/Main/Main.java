@@ -1,7 +1,10 @@
-package Src.NetzReise;
+package Src.Main;
+
+import Src.NetzReise.NeuralNetworkReise;
 
 public class Main {
     public static void main(String args[]) {
+        // Reises Netz
         String sPath;
         String sPathForTData;
 
@@ -19,5 +22,14 @@ public class Main {
 
         nn.print();
 //        nn.writeTotalErrors("totalError");
+
+
+        // Victors Netz
+        
+
+
+
+
+
     }
 }

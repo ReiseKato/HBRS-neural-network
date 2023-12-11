@@ -386,7 +386,7 @@ public class NeuralNetworkReise {
             fileName += ".csv";
         }
         try {
-            File csvFile = new File("totalError.csv");
+            File csvFile = new File(fileName);
             printWriter = new PrintWriter(csvFile);
             for(double error : arrTotalError) {
                 printWriter.print(error + ",");
