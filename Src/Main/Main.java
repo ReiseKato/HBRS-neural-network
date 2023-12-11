@@ -25,10 +25,23 @@ public class Main {
 
 
         // Victors Netz
+
+
+
+
+
+        // Reises Platz Begin
+        // Reises Platz End
+
+
+
+        // Vicotrs Platz Begin
+        //Victors Platz End
+
+
         
-
-
-
+        // Philips Platz Begin
+        // Philips Platz End
 
 
     }
