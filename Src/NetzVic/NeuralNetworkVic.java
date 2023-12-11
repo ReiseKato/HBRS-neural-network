@@ -229,6 +229,7 @@ public class NeuralNetworkVic {
 
     public void computeUnknwonData(TrainingDataVic unknown) {
         List<double[]> uninputs = unknown.getInputs();
+        System.out.println("Victor's Netz: ");
         System.out.println("Unknown data: ");
         for (int i = 0; i < uninputs.size(); i++) {
             System.out.println("Input: " + i);
@@ -258,8 +259,8 @@ public class NeuralNetworkVic {
      *
      * @param iterations Anzahl der Durchläufe des Datensatzes
      */
-    public void train(int iterations) {
-
+    public void train(int iterations, double learnrate) {
+        this.LR = learnrate;
         //solange i < Anzahl festgelegter Iterationen
         for (int i = 0; i < iterations; i++) {
             double totalerror = 0;
@@ -289,6 +290,7 @@ public class NeuralNetworkVic {
             }
         }
         // nach dem training werte ausgeben
+        System.out.println("Victor's Netz: ");
         System.out.println("Trainingdata: ");
         for (int i = 0; i < train.getListInputSize(); i++) {
             compute(train.getInput(i));

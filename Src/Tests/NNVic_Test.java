@@ -84,7 +84,7 @@ public class NNVic_Test {
         network.initWeightsBiases(weighttxt);
         network.setFunc(new String[]{"", "sigmoid", ""});
         t.initInputsOutputs();
-        network.train(50000);
+        network.train(10000, 0.5);
         network.compute(new double[] {0.23, 0.30, 0.78});
         network.printOutput();
         network.compute(new double[]{1,0,0});
@@ -95,7 +95,7 @@ public class NNVic_Test {
     void test() throws IOException {
 
         network.init(weighttxt);
-        network.initWeightsBiases(weighttxt);
+        //network.initWeightsBiases(weighttxt);
       //  t.updateFile(network.getWeights(), network.getBiases());
         String[][] strings = t.getFile();
         NeuralNetworkUtilVic.writeCSV(strings, "/Users/victor/IdeaProjects/Projektseminar/test.csv");
@@ -108,7 +108,7 @@ public class NNVic_Test {
         network.init(weighttxt);
         t.initInputsOutputs();
         t.addInputOutput(i, o);
-        t.updateTrainData();
+       // t.updateTrainData();
         NeuralNetworkUtilVic.writeCSV(t.getTraindata(), "/Users/victor/IdeaProjects/Projektseminar/test2.csv");
 
     }
@@ -128,7 +128,7 @@ public class NNVic_Test {
         network.setFunc(func);
         t2.initInputsOutputs();
         network.initWeightsBiases(weight2);
-        network.train(1000);
+        network.train(1000, 0.5);
         network.compute(new double[]{0.05, 0.10});
         network.printOutput();
 
@@ -142,7 +142,7 @@ public class NNVic_Test {
         network.setFunc(func);
         t2.initInputsOutputs();
         network.initWeightsBiases(weight3);
-        network.train(10000);
+        network.train(10000, 0.5);
         network.compute(new double[] {0, 0.2, 0.62, 1, 0.62});
         network.printOutput();
 
@@ -155,7 +155,7 @@ public class NNVic_Test {
         network.setFunc(func);
         t.initInputsOutputs();
         network.initWeightsBiases();
-        network.train(100000);
+        network.train(100000, 0.5);
 
 
     }
@@ -167,7 +167,7 @@ public class NNVic_Test {
         network.initWeightsBiases(weighttxt);
         network.setFunc(new String[]{"", "sigmoid", "sigmoid"});
         correct.initInputsOutputs();
-        network.train(1000000);
+        network.train(10000, 0.5);
 
         network.compute(new double[] {0.99,0.1,0});//1;0;0;0
         network.printOutput();
@@ -203,7 +203,7 @@ public class NNVic_Test {
         TrainingDataVic unknown = new TrainingDataVic(null, "/Users/victor/IdeaProjects/Projektseminar/src/Korrektheitstrain2.csv", 3, 4);
         
         NeuralNetworkVic mNN = new NeuralNetworkVic(known);
-        mNN.train(10000);
+        mNN.train(10000, 0.5);
         mNN.computeUnknwonData(unknown);
     }
 
@@ -219,7 +219,7 @@ public class NNVic_Test {
 
         NeuralNetworkVic NN = new NeuralNetworkVic(train1);
         // NN.updateMyTrainingData("V2_layerConfig.csv");
-        NN.train(1000000);
+        NN.train(10000, 0.5);
         NN.computeUnknwonData(train1UnKnown);
 
     }
@@ -235,7 +235,7 @@ public class NNVic_Test {
 
         NeuralNetworkVic NN = new NeuralNetworkVic(train2);
        // NN.updateMyTrainingData("V2_layerConfig.csv");
-        NN.train(1000000);
+        NN.train(10000, 0.5);
         NN.computeUnknwonData(train2UnKnown);
 
     }
@@ -252,7 +252,7 @@ public class NNVic_Test {
 
         NeuralNetworkVic NN = new NeuralNetworkVic(train3);
         //NN.updateMyTrainingData("V3_layerConfig.csv");
-        NN.train(1000000);
+        NN.train(10000, 0.5);
         NN.computeUnknwonData(train3UnKnown);
 
     }
@@ -269,7 +269,7 @@ public class NNVic_Test {
 
         NeuralNetworkVic NN = new NeuralNetworkVic(train4);
         // NN.updateMyTrainingData("V4_layerConfig.csv");
-        NN.train(1200000);
+        NN.train(10000, 0.5);
         NN.computeUnknwonData(train4UnKnown);
 
     }

@@ -351,6 +351,7 @@ public class NeuralNetworkReise {
      * print all
      */
     public void print() {
+        System.out.println("Reise's Netz: ");
         for(int i = 0; i < trainingData_t.length; i++) {
             run(trainingData_t[i].inputData);
             System.out.println("\nInput: " + i);
