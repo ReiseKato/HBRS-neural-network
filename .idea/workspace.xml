@@ -5,13 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Tests/NNVic_Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Tests/NNVic_Test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/data explanation.txt" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_and_layer_config/data explanation.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +177,8 @@
       <workItem from="1702215250939" duration="2217000" />
       <workItem from="1702217483745" duration="3572000" />
       <workItem from="1702300045286" duration="91000" />
-      <workItem from="1702300144309" duration="1777000" />
+      <workItem from="1702300144309" duration="2097000" />
+      <workItem from="1702391313607" duration="1787000" />
     </task>
     <servers />
   </component>

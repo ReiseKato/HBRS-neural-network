@@ -23,8 +23,8 @@ public class Main {
 
         // Neural Network creation
         //NeuralNetworkReise nnr = new NeuralNetworkReise(sPath, -1, 1);
-        NeuralNetworkReise nnr = new NeuralNetworkReise(Path + "R5_layerConfig.csv", -1, 1);
-        NeuralNetworkVic nnv = new NeuralNetworkVic(trainingV1);
+
+        NeuralNetworkVic nnv = new NeuralNetworkVic(trainingV1);NeuralNetworkReise nnr = new NeuralNetworkReise(Path + "R5_layerConfig.csv", -1, 1);
 
         //nnr.getTrainingDataLearnable(sPathForTData);
         nnr.getTrainingDataLearnable(Path + "R5_tData.csv");
@@ -56,6 +56,22 @@ public class Main {
         
         // Philips Platz Begin
         // Philips Platz End
+
+
+    }
+
+    public void compareTrainingTime() throws IOException {
+        String Path = "training_data_and_layer_config/";
+        String[] f = new String[]{"", "sigmoid", "sigmoid"};
+
+        NeuralNetworkReise nreise = new NeuralNetworkReise(Path + "R1_layerConfig.csv", -1 , 1);
+        NeuralNetworkVic nvic = new NeuralNetworkVic();
+
+
+        TrainingDataVic v10 = new TrainingDataVic(Path + "V10_layerConfig.csv", Path + "V10_tData.csv", 5,6, f);
+        //V10, R1,R5,R2,R3,
+        //
+        //initialisiere die trainingssätze
 
 
     }
