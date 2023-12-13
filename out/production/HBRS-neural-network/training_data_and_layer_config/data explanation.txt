@@ -33,3 +33,22 @@ p,q,r,s,t,v,a,b
 (((p and q) or (r and s)) and ((t and v) or (a and b))) or (((p and b) or (q and a)) and ((r and v) or (s and t)))
 --> 	(((p and q) or (r and s)) and ((t and v) or (a and b)))		(expected column 1)
 	(((p and b) or (q and a)) and ((r and v) or (s and t)))		(expected column 2)
+
+
+V5_tData.csv
+∼(((A&∼(B v C)) v (D->(E&∼(F v ∼G))))&(H v I)) v J
+
+V6_tData.csv
+∼((A&∼(B∨∼C))∨(D→(E&∼F)))&(G∨(H&∼I))
+
+V7_tData.csv
+∼((A&∼B)∨(C→∼(D&∼E)))&(F→G)
+
+V8_tData.csv
+((A∨B)&(∼C→(D&∼E))&(F∨(G&H))&(∼I→(J∨K))&(∼L→(∼A∨∼B)))
+
+V9_tData.csv
+(A∨∼B)&(∼C→(D&E))&(∼F∨(G&H))
+
+V10_tData.csv
+(A ∨ B)∧( C→(D∧ E))∧(D↔ B)

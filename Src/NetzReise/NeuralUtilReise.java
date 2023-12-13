@@ -187,6 +187,7 @@ public class NeuralUtilReise {
 
     /** get the Training Output Data only */
     public static float[] getTrainingOutputData(String path, int[] layerConfig, int index) {
+//        getTrainingInputCount(path);
         String line;
         String[] data;
         String[][] training = new String[counter][];

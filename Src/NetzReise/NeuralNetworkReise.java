@@ -347,6 +347,28 @@ public class NeuralNetworkReise {
         }
     }
 
+    public float[][] getOutputs() {
+        float[][] outputs = new float[trainingData_t[0].expectedResult.length][trainingData_t.length];
+        for(int i = 0; i < trainingData_t.length; i++) {
+            run(trainingData_t[i].inputData);
+            for(int j = 0; j < layers_t[layers_t.length - 1].neurons.length; j++) {
+                outputs[j][i] = layers_t[layers_t.length - 1].neurons[j].fValue;
+            }
+        }
+        return outputs;
+    }
+
+    public float[][] getOutputs2() {
+        float[][] outputs = new float[trainingData_t.length][trainingData_t[0].expectedResult.length];
+        for(int i = 0; i < trainingData_t.length; i++) {
+            run(trainingData_t[i].inputData);
+            for(int j = 0; j < layers_t[layers_t.length - 1].neurons.length; j++) {
+                outputs[i][j] = layers_t[layers_t.length - 1].neurons[j].fValue;
+            }
+        }
+        return outputs;
+    }
+
     /**
      * print all
      */
