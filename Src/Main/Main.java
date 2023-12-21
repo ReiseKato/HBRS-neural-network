@@ -91,6 +91,7 @@ public class Main {
                 sPathTrainingData = dirTrainingListing[i].getPath();
                 sPathLayerConfig = dirLayerListing[i].getPath();
                 long[][] runtime = runtimeReise(sPathLayerConfig, sPathTrainingData, 1000, 0.05f, 10);
+                //long[] runtime2 = runtimeVictor(sPathLayerConfig, sPathTrainingData, 1000, 0.05f, 3,8, new String[]{"", "sigmoid", "sigmoid"}); // indem Fall stimmt die
                 pathToResults = "results\\";
 //                pathToResults += sPathTrainingData;
                 Path p = Paths.get(dirTrainingListing[i].getName());
@@ -100,6 +101,9 @@ public class Main {
                 writeRuntime(file, runtime, sPathLayerConfig);
             }
         }
+
+
+
 
         // CODE 1 End
 

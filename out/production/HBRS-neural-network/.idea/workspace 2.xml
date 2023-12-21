@@ -5,55 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkUtilVic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/NetzVic/NeuronVic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/NetzVic/TrainingDataVic.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Src/Tests/NNVic_Test.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/python/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig4.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig5.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/layerConfig7.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/tdata4.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/tdata5.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/tdata6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/tdata7.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/unkn_tdata4.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/unkn_tdata5.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/unkn_tdata6.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/training_data_and_layer_config/unkn_tdata7.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/HBRS-neural-network.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HBRS-neural-network.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Layer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/LayerReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/LayerReise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NeuralNetwork.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NeuralNetworkReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NeuralUtil.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NeuralUtilReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuralUtilReise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/Neuron.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NeuronReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuronReise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/TrainingData.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/TrainingDataReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/TrainingDataReise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/HBRS-neural-network.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/HBRS-neural-network.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Layer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/LayerReise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralNetwork.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralNetworkReise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuralUtilReise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Neuron.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NeuronReise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/TrainingData.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/TrainingDataReise.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/layerConfig.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/layerConfig.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/totalError.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/~$ojektplan.docx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,8 +15,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Python Script" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -82,38 +34,42 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Downloaded.Files.Path.Enabled": "false",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "/Users/victor/Documents/Coding/Java-Workspace/NeuralNetworkSeminar/HBRS-neural-network/training_data_and_layer_config",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;last_opened_file_path&quot;: &quot;S:/HBRS/neural network/git repo/HBRS-neural-network&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/training_data_and_layer_config" />
       <recent name="$PROJECT_DIR$/Src/NetzVic" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="S:\HBRS\neural network\git repo\main\HBRS-neural-network\layer_config" />
+      <recent name="S:\HBRS\neural network\git repo\main\HBRS-neural-network\training_data" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Src.NetzVic" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.NNVic_Test.testTraining2">
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Src.NetzReise.Main" />
       <module name="HBRS-neural-network" />
@@ -134,6 +90,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Src.Main.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Src.Main.Main" />
+      <module name="HBRS-neural-network" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Src.Main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NNVic_Test.testTraining1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="HBRS-neural-network" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Src.Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Src.Tests" />
+      <option name="MAIN_CLASS_NAME" value="Src.Tests.NNVic_Test" />
+      <option name="METHOD_NAME" value="testTraining1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="NNVic_Test.testTraining2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="HBRS-neural-network" />
       <extension name="coverage">
@@ -150,13 +135,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="NNVic_Test.testTraining4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="HBRS-neural-network" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Src.Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Src.Tests" />
+      <option name="MAIN_CLASS_NAME" value="Src.Tests.NNVic_Test" />
+      <option name="METHOD_NAME" value="testTraining4" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Src.Main.Main" />
       <item itemvalue="Application.NeuralUtilReise" />
+      <item itemvalue="JUnit.NNVic_Test.testTraining1" />
+      <item itemvalue="JUnit.NNVic_Test.testTraining4" />
       <item itemvalue="JUnit.NNVic_Test.testTraining2" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Src.Main.Main" />
+        <item itemvalue="JUnit.NNVic_Test.testTraining1" />
+        <item itemvalue="JUnit.NNVic_Test.testTraining4" />
         <item itemvalue="JUnit.NNVic_Test.testTraining2" />
         <item itemvalue="Application.NeuralUtilReise" />
       </list>
@@ -171,7 +178,10 @@
       <option name="presentableId" value="Default" />
       <updated>1696523799911</updated>
       <workItem from="1702215250939" duration="2217000" />
-      <workItem from="1702217483745" duration="705000" />
+      <workItem from="1702217483745" duration="3572000" />
+      <workItem from="1702300045286" duration="91000" />
+      <workItem from="1702300144309" duration="2097000" />
+      <workItem from="1702391313607" duration="1787000" />
     </task>
     <servers />
   </component>
@@ -185,6 +195,19 @@
           <properties class="java.lang.NullPointerException" package="java.lang" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.io.FileNotFoundException" package="java.io" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/Src/Tests/NNVic_Test.java</url>
+          <line>210</line>
+          <properties class="Src.Tests.NNVic_Test" method="testTraining1">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
