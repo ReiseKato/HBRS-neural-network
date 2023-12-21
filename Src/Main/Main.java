@@ -105,6 +105,8 @@ public class Main {
 
 
 
+
+
         // CODE 1 End
 
         // CODE 2 Begin
@@ -128,8 +130,10 @@ public class Main {
 
 
         // Vicotrs Platz Begin
-        // Victors Platz End
 
+
+        // Victors Platz End
+        //compareTotalError();
 
         
         // Philips Platz Begin
@@ -309,19 +313,25 @@ public class Main {
         return timesV;
     }
 
-    public void compareTrainingTime() throws IOException {
-        String Path = "training_data_and_layer_config/";
+    public static void compareTotalError() throws IOException {
+        String PathLay = "layer_config/";
+        String PathTra = "training_data/";
         String[] f = new String[]{"", "sigmoid", "sigmoid"};
 
-        NeuralNetworkReise nreise = new NeuralNetworkReise(Path + "R1_layerConfig.csv", -1 , 1);
+        NeuralNetworkReise nreise = new NeuralNetworkReise(PathLay + "V1_layerConfig.csv", -1 , 1);
         NeuralNetworkVic nvic = new NeuralNetworkVic();
 
 
-        TrainingDataVic v10 = new TrainingDataVic(Path + "V10_layerConfig.csv", Path + "V10_tData.csv", 5,6, f);
+        TrainingDataVic v10 = new TrainingDataVic(PathLay + "V10_layerConfig.csv", PathTra + "V10_tData.csv", 5,6, f);
         //V10, R1,R5,R2,R3,
         //
         //initialisiere die trainingssätze
+        nvic = new NeuralNetworkVic(v10);
+        nreise.getTrainingDataLearnable(PathTra +"V1_tData.csv");
 
-
+      //  nreise.train(1, 0.05f);
+     //   nreise.writeTotalErrors("totalError.csv");
+        nvic.train(1, 0.05);
+        nvic.writeTotalErrors("totalError.csv");
     }
 }

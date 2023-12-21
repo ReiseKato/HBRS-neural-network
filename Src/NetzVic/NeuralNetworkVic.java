@@ -1,5 +1,7 @@
 package Src.NetzVic;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -24,6 +26,8 @@ public class NeuralNetworkVic {
     String[] func;//Funktionen für den jeweiligen Layer
 
     TrainingDataVic train;
+
+    List<Double> totalErrors = new LinkedList<>();
 
     double LR = 0.5;
 
@@ -254,6 +258,28 @@ public class NeuralNetworkVic {
         return sum;
     }
 
+    public void writeTotalErrors(String filename) throws IOException {
+        BufferedWriter writer = null;//Klasse zum Schreiben in eine CSV
+        try {
+            //initialisiere den Writer und fange, wenn nötig exception
+            writer = new BufferedWriter(new FileWriter(filename));
+            //für jede Zeile aus Text
+            for (Double temp : totalErrors) {
+                //für jedes Wort in einer Zeile
+                writer.write(temp.toString());
+                writer.write(";");
+            }
+        } catch (IOException e) { // werfe Exception, falls der Reader nicht Korrekt instanziierbar ist
+            e.printStackTrace();
+        } finally {
+            //falls writer noch nicht geschlossen
+            if(writer != null) {
+                writer.close();
+            }
+        }
+
+    }
+
     /**
      * trainiere das Netz mit Backpropagation
      *
@@ -272,6 +298,7 @@ public class NeuralNetworkVic {
                 compute(input);
                 //calculate the loss
                 double loss = determineTotalError(output);
+                totalErrors.add(loss);
 
                 // wenn nötig passe LR an
                /* if(i == 0) {

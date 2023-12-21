@@ -5,24 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace 2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace 2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/LayerReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/LayerReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralNetworkReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralNetworkReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralUtilReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralUtilReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuronReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuronReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/TrainingDataReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/TrainingDataReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkUtilVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkUtilVic.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkVic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuronVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuronVic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/TrainingDataVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/TrainingDataVic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Tests/NNVic_Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Tests/NNVic_Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results\V7_Runtime.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results\V7_Runtime.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -51,28 +41,29 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;S:/HBRS/neural network/git repo/HBRS-neural-network&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "S:/HBRS/neural network/git repo/HBRS-neural-network",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "configurable.group.build",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/training_data_and_layer_config" />
@@ -200,7 +191,7 @@
       <workItem from="1702300144309" duration="2097000" />
       <workItem from="1702391313607" duration="1787000" />
       <workItem from="1702891473963" duration="5000" />
-      <workItem from="1703152855382" duration="1673000" />
+      <workItem from="1703152855382" duration="3814000" />
     </task>
     <servers />
   </component>
@@ -226,15 +217,6 @@
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="2" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Src/Main/Main.java</url>
-          <line>12</line>
-          <properties class="Src.Main.Main" method="main">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

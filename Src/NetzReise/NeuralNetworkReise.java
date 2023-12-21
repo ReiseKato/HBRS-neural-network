@@ -1,5 +1,7 @@
 package Src.NetzReise;
 
+import Src.NetzVic.TrainingDataVic;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
