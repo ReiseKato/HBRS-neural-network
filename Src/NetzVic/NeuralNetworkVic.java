@@ -267,7 +267,7 @@ public class NeuralNetworkVic {
             for (Double temp : totalErrors) {
                 //für jedes Wort in einer Zeile
                 writer.write(temp.toString());
-                writer.write(";");
+                writer.write(",");
             }
         } catch (IOException e) { // werfe Exception, falls der Reader nicht Korrekt instanziierbar ist
             e.printStackTrace();

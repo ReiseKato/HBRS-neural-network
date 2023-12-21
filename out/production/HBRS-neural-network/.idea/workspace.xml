@@ -5,24 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/python/TotalError.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/HBRS-neural-network.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/HBRS-neural-network.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/HBRS-neural-network.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/HBRS-neural-network.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace 2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace 2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/LayerReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/LayerReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralNetworkReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralNetworkReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralUtilReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralUtilReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuronReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuronReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/TrainingDataReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/TrainingDataReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkUtilVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkUtilVic.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkVic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuronVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuronVic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/TrainingDataVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/TrainingDataVic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Tests/NNVic_Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Tests/NNVic_Test.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/python/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/python/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results\V7_Runtime.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results\V7_Runtime.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/python/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/python/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results\V7_Runtime.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results\V7_Runtime.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +64,8 @@
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.build&quot;,
@@ -79,6 +78,7 @@
       <recent name="$PROJECT_DIR$/Src/NetzVic" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/python" />
       <recent name="S:\HBRS\neural network\git repo\main\HBRS-neural-network\layer_config" />
       <recent name="S:\HBRS\neural network\git repo\main\HBRS-neural-network\training_data" />
     </key>
@@ -200,6 +200,9 @@
       <workItem from="1702300144309" duration="2097000" />
       <workItem from="1702391313607" duration="1787000" />
       <workItem from="1702891473963" duration="5000" />
+      <workItem from="1703152855382" duration="3913000" />
+      <workItem from="1703172390472" duration="5595000" />
+      <workItem from="1703178396458" duration="14000" />
     </task>
     <servers />
   </component>
@@ -226,16 +229,10 @@
           </properties>
           <option name="timeStamp" value="2" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/Src/Main/Main.java</url>
-          <line>12</line>
-          <properties class="Src.Main.Main" method="main">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/NeuralNetwork_java$TotalError.coverage" NAME="TotalError Coverage Results" MODIFIED="1703177968971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
   </component>
 </project>

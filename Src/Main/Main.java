@@ -5,7 +5,6 @@ import Src.NetzVic.NeuralNetworkVic;
 import Src.NetzVic.TrainingDataVic;
 
 import java.io.*;
-import java.util.Arrays;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -107,6 +106,8 @@ public class Main {
 
 
 
+
+
         // CODE 1 End
 
         // CODE 2 Begin
@@ -133,7 +134,7 @@ public class Main {
 
 
         // Victors Platz End
-        //compareTotalError();
+       // compareTotalError();
 
         
         // Philips Platz Begin
@@ -318,20 +319,21 @@ public class Main {
         String PathTra = "training_data/";
         String[] f = new String[]{"", "sigmoid", "sigmoid"};
 
-        NeuralNetworkReise nreise = new NeuralNetworkReise(PathLay + "V1_layerConfig.csv", -1 , 1);
-        NeuralNetworkVic nvic = new NeuralNetworkVic();
-
+        NeuralNetworkReise nreise;
+        NeuralNetworkVic nvic;
 
         TrainingDataVic v10 = new TrainingDataVic(PathLay + "V10_layerConfig.csv", PathTra + "V10_tData.csv", 5,6, f);
         //V10, R1,R5,R2,R3,
         //
         //initialisiere die trainingssätze
+        nreise = new NeuralNetworkReise(PathLay + "V10_layerConfig.csv", -1 , 1);
         nvic = new NeuralNetworkVic(v10);
-        nreise.getTrainingDataLearnable(PathTra +"V1_tData.csv");
+        nreise.getTrainingDataLearnable(PathTra +"V10_tData.csv");
 
-      //  nreise.train(1, 0.05f);
-     //   nreise.writeTotalErrors("totalError.csv");
-        nvic.train(1, 0.05);
-        nvic.writeTotalErrors("totalError.csv");
+        nreise.train(10000, 0.05f);
+        nreise.writeTotalErrors("python/totalErrorReise.csv");
+
+        nvic.train(10000, 0.05);
+        nvic.writeTotalErrors("python/totalErrorVic.csv");
     }
 }
