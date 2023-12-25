@@ -371,6 +371,10 @@ public class NeuralNetworkReise {
         return outputs;
     }
 
+    public double getdTotalErrorCurrent() {
+        return dTotalErrorCurrent;
+    }
+
     /**
      * print all
      */

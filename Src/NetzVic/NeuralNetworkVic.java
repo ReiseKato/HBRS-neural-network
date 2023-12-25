@@ -28,6 +28,7 @@ public class NeuralNetworkVic {
     TrainingDataVic train;
 
     List<Double> totalErrors = new LinkedList<>();
+    double currentTotalError;
 
     double LR = 0.5;
 
@@ -298,6 +299,7 @@ public class NeuralNetworkVic {
                 compute(input);
                 //calculate the loss
                 double loss = determineTotalError(output);
+                currentTotalError = loss;
                 totalErrors.add(loss);
 
                 // wenn nötig passe LR an
@@ -462,5 +464,12 @@ public class NeuralNetworkVic {
      */
     public double[][][] getWeights() {
         return weights;
+    }
+
+    /**
+     * @return currentTotalError zurück
+     */
+    public double getCurrentTotalError() {
+        return currentTotalError;
     }
 }

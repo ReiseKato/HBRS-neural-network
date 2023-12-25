@@ -8,6 +8,7 @@ import Src.NetzVic.TrainingDataVic;
 import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Arrays;
 
 public class  Main {
     public static void main(String args[]) throws IOException {
@@ -80,35 +81,31 @@ public class  Main {
 
         // CODE 1 Begin
         // Bunch Runtime Reise
-        File dirTraining = new File("training_data");
-        File dirLayer = new File("layer_config");
-        File[] dirTrainingListing = dirTraining.listFiles();
-        File[] dirLayerListing = dirLayer.listFiles();
-        if(dirLayerListing.length != dirTrainingListing.length) {
-            System.out.println("Count of Layer Configs and Training Data do NOT match");
-        } else {
-            for (int i = 0; i < dirTrainingListing.length; i++) {
-                sPathTrainingData = dirTrainingListing[i].getPath();
-                sPathLayerConfig = dirLayerListing[i].getPath();
-                long[][] runtimeR = runtimeReise(sPathLayerConfig, sPathTrainingData, 1000, 0.05f, 10);
-//                long[][] runtimeV = runtimeVictor(sPathLayerConfig, sPathTrainingData, 1000, 0.05f, 10); // in dem Fall stimmt die
-                pathToResults = "results\\";
-//                pathToResults += sPathTrainingData;
-                Path p = Paths.get(dirTrainingListing[i].getName());
-                String file = pathToResults + p.getFileName().toString();
-                file = file.substring(0, file.indexOf("_") + 1);
-                String fileReise = file + "Runtime_NNR";
-                writeRuntime(fileReise, runtimeR, sPathLayerConfig);
-                String fileVictor = file + "Runtime_NNV";
-//                writeRuntime(fileVictor, runtimeV, sPathLayerConfig);
-            }
-        }
 
 
-
-
-
-
+//        File dirTraining = new File("training_data");
+//        File dirLayer = new File("layer_config");
+//        File[] dirTrainingListing = dirTraining.listFiles();
+//        File[] dirLayerListing = dirLayer.listFiles();
+//        if(dirLayerListing.length != dirTrainingListing.length) {
+//            System.out.println("Count of Layer Configs and Training Data do NOT match");
+//        } else {
+//            for (int i = 0; i < dirTrainingListing.length; i++) {
+//                sPathTrainingData = dirTrainingListing[i].getPath();
+//                sPathLayerConfig = dirLayerListing[i].getPath();
+//                long[][] runtimeR = runtimeReise(sPathLayerConfig, sPathTrainingData, 1000, 0.05f, 10);
+////                long[][] runtimeV = runtimeVictor(sPathLayerConfig, sPathTrainingData, 1000, 0.05f, 10); // in dem Fall stimmt die
+//                pathToResults = "results\\";
+////                pathToResults += sPathTrainingData;
+//                Path p = Paths.get(dirTrainingListing[i].getName());
+//                String file = pathToResults + p.getFileName().toString();
+//                file = file.substring(0, file.indexOf("_") + 1);
+//                String fileReise = file + "Runtime_NNR";
+//                writeRuntime(fileReise, runtimeR, sPathLayerConfig);
+//                String fileVictor = file + "Runtime_NNV";
+////                writeRuntime(fileVictor, runtimeV, sPathLayerConfig);
+//            }
+//        }
 
 
         // CODE 1 End
@@ -126,7 +123,37 @@ public class  Main {
 //        }
         // CODE 2 End
 
+        // CODE 3 Begin
+        // train while totalError > target totalError
+        double targetTotalError = 0.2; // define target total Error
+        float trainingRate = 0.05f;
+        File dirTraining = new File("training_data");
+        File dirLayer = new File("layer_config");
+        File[] dirTrainingListing = dirTraining.listFiles();
+        File[] dirLayerListing = dirLayer.listFiles();
+        if(dirLayerListing.length != dirTrainingListing.length) {
+            System.out.println("Count of Layer Configs and Training Data do NOT match");
+        } else {
+            for (int i = 0; i < dirTrainingListing.length; i++) {
+                sPathTrainingData = dirTrainingListing[i].getPath();
+                sPathLayerConfig = dirLayerListing[i].getPath();
+                double[] iterationReise =
+                        getIterationForDeltaGoal("reise", targetTotalError,
+                                sPathLayerConfig, sPathTrainingData, trainingRate);
+                double[] iterationVictor = getIterationForDeltaGoal("vic", targetTotalError,
+                        sPathLayerConfig, sPathTrainingData, trainingRate);
 
+                System.out.println("Training Data: " + dirTrainingListing[i].getName() + "\n"
+                        + "LayerConfig: " + Arrays.toString(NeuralUtilReise.getlayerConfig(sPathLayerConfig)) + "\n"
+                        + "Target Total Error: " + targetTotalError + "\n"
+                        + "Reise total Error and Iteration needed: " + iterationReise[1] + "  -  " + iterationReise[0]
+                        + "Victor total Error and Iteration needed: " + iterationVictor[1] + "  -  " + iterationVictor[0]
+                        + "\n"
+                );
+            }
+        }
+
+        // CODE 3 End
 
 
         // Reises Platz End
@@ -173,6 +200,59 @@ public class  Main {
         }
 
         return timesR;
+    }
+
+    public static long[][] runtimeVictor(String pathLayerConfig, String pathTrainingData,
+                                         int trainingIteration, float learningRate,
+                                         int runtimeIteration) throws IOException {
+        String[] func = getSigmoidFuncOnly(pathLayerConfig);
+        int[] layerConfig = NeuralUtilReise.getlayerConfig(pathLayerConfig);
+        int inlen = layerConfig[0];
+        int outlen = layerConfig[layerConfig.length - 1];
+        long timesV[][] = new long[runtimeIteration][4];
+        for(int i = 0; i < runtimeIteration; i++) {
+            long start = System.nanoTime(); // time start
+            TrainingDataVic tdV = new TrainingDataVic(pathLayerConfig, pathTrainingData,inlen, outlen, func);
+            timesV[i][1] = System.nanoTime(); // time getting Training Data
+            NeuralNetworkVic nnV = new NeuralNetworkVic(tdV);
+            timesV[i][0] = System.nanoTime(); // time layer config
+            nnV.train(trainingIteration, learningRate);
+            timesV[i][2] = System.nanoTime(); // time training the model
+            timesV[i][3] = timesV[i][2]; // time stop
+
+
+            timesV[i][3] = timesV[i][3] - start; // final whole runtime of model
+            timesV[i][2] = timesV[i][2] - timesV[i][1]; // final training time
+            timesV[i][0] = timesV[i][0] - timesV[i][1]; // final layer config time
+            timesV[i][1] = timesV[i][1] - start; // final getting training data time
+
+            if(timesV[i][2] + timesV[i][1] + timesV[i][0] != timesV[i][3]) {
+                long error[] = {Long.MAX_VALUE, Long.MAX_VALUE, Long.MAX_VALUE, Long.MAX_VALUE};
+                timesV[i] = error;
+            }
+        }
+
+        return timesV;
+    }
+
+    public static long[][] getComparisonReiseMinusVictor(long[][] resultNNR, long[][] resultNNV)
+            throws IndexOutOfBoundsException {
+        if(resultNNR.length != resultNNV.length) {
+            throw new IndexOutOfBoundsException("result data are not same length");
+        }
+        long[][] compared2D = new long[resultNNR.length][resultNNR[0].length];
+        for(int i = 0; i < resultNNR.length; i++) {
+            long[] arrNNR = resultNNR[i];
+            long[] arrNNV = resultNNV[i];
+            if(arrNNR.length != arrNNV.length) {
+                throw new IndexOutOfBoundsException("column length do not match");
+            }
+//            long[] compared1D = new long[arrNNR.length];
+            for(int j = 0; j < arrNNR.length; j++) {
+                compared2D[i][j] = arrNNR[j] - arrNNV[j];
+            }
+        }
+        return compared2D;
     }
 
     public static void writeRuntime(String filename, long[][] arrTimes, String pathLayerConfig) {
@@ -296,39 +376,6 @@ public class  Main {
         return mean;
     }
 
-    public static long[][] runtimeVictor(String pathLayerConfig, String pathTrainingData,
-                                       int trainingIteration, float learningRate,
-                                       int runtimeIteration) throws IOException {
-        String[] func = getSigmoidFuncOnly(pathLayerConfig);
-        int[] layerConfig = NeuralUtilReise.getlayerConfig(pathLayerConfig);
-        int inlen = layerConfig[0];
-        int outlen = layerConfig[layerConfig.length - 1];
-        long timesV[][] = new long[runtimeIteration][4];
-        for(int i = 0; i < runtimeIteration; i++) {
-            long start = System.nanoTime(); // time start
-            TrainingDataVic tdV = new TrainingDataVic(pathLayerConfig, pathTrainingData,inlen, outlen, func);
-            timesV[i][1] = System.nanoTime(); // time getting Training Data
-            NeuralNetworkVic nnV = new NeuralNetworkVic(tdV);
-            timesV[i][0] = System.nanoTime(); // time layer config
-            nnV.train(trainingIteration, learningRate);
-            timesV[i][2] = System.nanoTime(); // time training the model
-            timesV[i][3] = timesV[i][2]; // time stop
-
-
-            timesV[i][3] = timesV[i][3] - start; // final whole runtime of model
-            timesV[i][2] = timesV[i][2] - timesV[i][1]; // final training time
-            timesV[i][0] = timesV[i][0] - timesV[i][1]; // final layer config time
-            timesV[i][1] = timesV[i][1] - start; // final getting training data time
-
-            if(timesV[i][2] + timesV[i][1] + timesV[i][0] != timesV[i][3]) {
-                long error[] = {Long.MAX_VALUE, Long.MAX_VALUE, Long.MAX_VALUE, Long.MAX_VALUE};
-                timesV[i] = error;
-            }
-        }
-
-        return timesV;
-    }
-
     public static String[] getSigmoidFuncOnly(String path) {
         int[] layerConfig = NeuralUtilReise.getlayerConfig(path);
         String[] func = new String[layerConfig.length];
@@ -339,6 +386,45 @@ public class  Main {
             i++;
         }
         return func;
+    }
+
+    public static double[] getIterationForDeltaGoal(String networkType, double deltaGoal, String pathLayerConfig,
+                                               String pathTrainingData, float trainingRate) {
+        int trainIterations = 0;
+        double[] resultData = new double[2];
+        if(networkType.toLowerCase().contains("reise")) {
+            NeuralNetworkReise nnR = new NeuralNetworkReise(pathLayerConfig, -1, 1);
+            nnR.getTrainingDataLearnable(pathTrainingData);
+            trainIterations = 0;
+            do {
+                nnR.train(1, trainingRate);
+                ++trainIterations;
+            }
+            while(nnR.getdTotalErrorCurrent() > deltaGoal);
+            resultData[1] = nnR.getdTotalErrorCurrent();
+            resultData[0] = trainIterations;
+        }
+        else {
+            String[] func = getSigmoidFuncOnly(pathLayerConfig);
+            int[] layerConfig = NeuralUtilReise.getlayerConfig(pathLayerConfig);
+            int inlen = layerConfig[0];
+            int outlen = layerConfig[layerConfig.length - 1];
+            try {
+                TrainingDataVic tdV = new TrainingDataVic(pathLayerConfig, pathTrainingData, inlen, outlen, func);
+                NeuralNetworkVic nnV = new NeuralNetworkVic(tdV);
+                do {
+                    nnV.train(1, trainingRate);
+                    ++trainIterations;
+                }
+                while(nnV.getCurrentTotalError() > deltaGoal);
+                resultData[1] = nnV.getCurrentTotalError();
+                resultData[0] = trainIterations;
+            } catch(IOException e) {
+                System.out.println(e);
+            }
+        }
+
+        return resultData;
     }
 
     public static void compareTotalError() throws IOException {
