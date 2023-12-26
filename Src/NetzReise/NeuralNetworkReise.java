@@ -86,7 +86,7 @@ public class NeuralNetworkReise {
     /**
      * not learnable NN
      * */
-    public void getTrainingData(String path) {
+    public void getInputData(String path) {
         int numberOfTrainingData = NeuralUtilReise.getTrainingInputCount(path);
         trainingData_t = new TrainingDataReise[numberOfTrainingData];
 
@@ -387,6 +387,46 @@ public class NeuralNetworkReise {
                 System.out.println(layers_t[layers_t.length - 1].neurons[j].fValue);
             }
         }
+    }
+
+    public void pass(String inputData) {
+        int numberOfTrainingData = NeuralUtilReise.getTrainingInputCount(inputData);
+        TrainingDataReise[] tr = new TrainingDataReise[numberOfTrainingData];
+
+        for(int i = 0; i < numberOfTrainingData; i++) {
+            tr[i] = new TrainingDataReise(NeuralUtilReise.getTrainingInputData(inputData, iLayerConfig, i));
+        }
+        for(int i = 0; i < tr.length; i++) {
+            run(tr[i].inputData);
+            for(int j = 0; j < layers_t[layers_t.length - 1].neurons.length; j++) {
+                System.out.println(layers_t[layers_t.length - 1].neurons[j].fValue);
+            }
+        }
+    }
+
+    public double[] passWithExpectedOutput(String tData)  {
+        int numberOfTrainingData = NeuralUtilReise.getTrainingInputCount(tData);
+        double[] totalErrors = new double[numberOfTrainingData];
+        TrainingDataReise[] tr = new TrainingDataReise[numberOfTrainingData];
+
+        for(int i = 0; i < numberOfTrainingData; i++) {
+            tr[i] = new TrainingDataReise(NeuralUtilReise.getTrainingInputData(tData, iLayerConfig, i),
+                    NeuralUtilReise.getTrainingOutputData(tData, iLayerConfig, i));
+        }
+        for(int i = 0; i < tr.length; i++) {
+            run(tr[i].inputData);
+            double totalErrorDouble = 0;
+            for(int j = 0; j < layers_t[layers_t.length - 1].neurons.length; j++) {
+                System.out.println("\ngot: " + layers_t[layers_t.length - 1].neurons[j].fValue
+                        + " -- expected: " + tr[i].expectedResult[j]);
+                double out = layers_t[layers_t.length - 1].neurons[j].fValue;
+                double target = tr[i].expectedResult[j];
+                totalErrorDouble += 0.5*(out -  target)*(out* - target);
+            }
+            System.out.println("total Error: " + totalErrorDouble + "\n");
+            totalErrors[i] = totalErrorDouble;
+        }
+        return totalErrors;
     }
 
     /** create a csv file named "totalError.csv" to write down the total Error to the expected Output.

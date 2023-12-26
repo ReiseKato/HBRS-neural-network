@@ -162,24 +162,14 @@ public class NeuralUtilReise {
 //            inputData_t = Arrays.copyOfRange(fTraining[i], 0, inputLength);
 //            System.out.println(Arrays.toString(inputData_t));
 //        }
-        Random r = new Random();
-        float fMIN = 0.0000000001f;
-        float fMAX = 0.1f;
+//        Random r = new Random();
+//        float fMIN = 0.0000000001f;
+//        float fMAX = 0.1f;
         float[] fInpuData = new float[inputData_t.length];
-        int i = 0;
+        int z = 0;
         for(float __num__ : inputData_t) {
-            float randNum = fMIN + r.nextFloat() * (fMAX - fMIN);
-            if(__num__ == 0) {
-                __num__ += randNum;
-            } else {
-                if(Math.random() < 0.5) {
-                    __num__ += randNum;
-                } else {
-                    __num__ += randNum;
-                }
-            }
-            fInpuData[i] = __num__;
-            i++;
+            fInpuData[z] = __num__;
+            ++z;
         }
 
         return fInpuData;
@@ -231,5 +221,159 @@ public class NeuralUtilReise {
         }
 
         return fInputData;
+    }
+
+    public static Float[][] makeTrainingData(String trainData, String layerConfig) {
+        int count = getTrainingInputCount(trainData);
+        String line;
+        String[] data;
+//        String[][] training = new String[count*2][];
+        Float[][] fTraining = new Float[count][];
+        Float[][] fTrainingNew = new Float[count][];
+        int[] iLayerConfig = getlayerConfig(layerConfig);
+        int inputLength = iLayerConfig[0];
+        int outputLength = iLayerConfig[iLayerConfig.length - 1];
+
+        try{
+            BufferedReader bufferedReader = new BufferedReader(new FileReader(trainData));
+            // System.out.println(layerConfig);
+            int i = 0;
+            while((line = bufferedReader.readLine()) != null) {
+                //line = bufferedReader.readLine();
+                data = line.split(";");
+                // System.out.println(Arrays.toString(data));
+//                training[i] = data;
+                fTraining[i] = Arrays.stream(data).map(Float::valueOf).toArray(Float[]::new);
+                i++;
+            }
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+
+        int indexForOriginalData = 0;
+
+        for(int i = 0; i < count; i++) {
+            Float[] inputData_t;
+            Float[] outputData_t;
+//            int indexForOriginalData = 0;
+//            if(i%2 == 1) {
+//                indexForOriginalData++;
+//            }
+            inputData_t = Arrays.copyOfRange(fTraining[indexForOriginalData], 0, inputLength);
+            outputData_t = Arrays.copyOfRange(fTraining[indexForOriginalData], inputLength, inputLength + outputLength);
+            indexForOriginalData++;
+            Random r = new Random();
+            float fMIN = 0.0000000001f;
+            float fMAX = 0.1f;
+            Float[] fInputDataRand = new Float[inputData_t.length];
+            int j = 0;
+            for(int z = 0; z < inputData_t.length; z++) {
+                float __num__ = inputData_t[z];
+                float randNum = fMIN + r.nextFloat() * (fMAX - fMIN);
+                if(__num__ == 0) {
+                    __num__ += randNum;
+                } else {
+                    if(Math.random() < 0.5) {
+                        __num__ -= randNum;
+                    } else {
+                        __num__ += randNum;
+                    }
+                }
+                fInputDataRand[j] = __num__;
+                j++;
+            }
+            Float[] fData = new Float[inputData_t.length + outputData_t.length];
+            int k = 0;
+            for(Float __randInput__ : fInputDataRand) {
+                fData[k] = __randInput__;
+                ++k;
+            }
+            for(Float __output__ : outputData_t) {
+                fData[k] = __output__;
+                ++k;
+            }
+            fTrainingNew[i] = fData;
+        }
+
+        return fTrainingNew;
+    }
+
+    public static Float[][] mergeTrainData(String dataOne, String dataTwo, String layerConfig, int mergeNum) {
+        int count = getTrainingInputCount(dataOne) + getTrainingInputCount(dataTwo);
+        String lineClean;
+        String lineNoise;
+        String[] dataClean;
+        String[] dataNoise;
+        Float[][] newTraining_t = new Float[count][];
+        int[] iLayerConfig = getlayerConfig(layerConfig);
+        int inputLength = iLayerConfig[0];
+        int outputLength = iLayerConfig[iLayerConfig.length - 1];
+
+        try{
+            BufferedReader bufferedReaderOne = new BufferedReader(new FileReader(dataOne));
+            BufferedReader bufferedReaderTwo = new BufferedReader(new FileReader(dataTwo));
+            // System.out.println(layerConfig);
+            int i = 0;
+            if(mergeNum == 0) {
+                while ((lineClean = bufferedReaderOne.readLine()) != null) {
+                    dataClean = lineClean.split(";");
+                    newTraining_t[i] = Arrays.stream(dataClean).map(Float::valueOf).toArray(Float[]::new);
+//                    System.out.println(lineClean);
+                    i++;
+                    lineNoise = bufferedReaderTwo.readLine();
+                    dataNoise = lineNoise.split(";");
+                    newTraining_t[i] = Arrays.stream(dataNoise).map(Float::valueOf).toArray(Float[]::new);
+//                    System.out.println(lineNoise);
+                    i++;
+                }
+            } else {
+                while ((lineClean = bufferedReaderOne.readLine()) != null) {
+                    dataClean = lineClean.split(";");
+                    newTraining_t[i] = Arrays.stream(dataClean).map(Float::valueOf).toArray(Float[]::new);
+                    i++;
+                }
+                while ((lineNoise = bufferedReaderTwo.readLine()) != null) {
+                    dataNoise = lineNoise.split(";");
+                    newTraining_t[i] = Arrays.stream(dataNoise).map(Float::valueOf).toArray(Float[]::new);
+                    i++;
+                }
+            }
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        } catch(IOException e) {
+            e.printStackTrace();
+        }
+        return newTraining_t;
+    }
+
+    public static void writeTrainData(Float[][] trainingData, String filename) {
+        if(filename.charAt(filename.length() - 1) != 'v') {
+            filename += ".csv";
+        }
+        PrintWriter printWriter;
+        try {
+            File csvFile = new File(filename);
+            printWriter = new PrintWriter(csvFile);
+            for(Float[] columnData : trainingData) {
+                printWriter.println(arrToStringForCSV(columnData));
+            }
+
+            printWriter.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String arrToStringForCSV(Float[] arr) {
+        String res = "";
+        for(int i = 0; i < arr.length; i++) {
+            res += arr[i];
+            if(i != arr.length - 1) {
+                res += ";";
+            }
+        }
+        return res;
     }
 }
