@@ -50,11 +50,11 @@ public class  Main {
 
 
         // Reises Platz Begin
-        // Declaration Begin
-        String sPathLayerConfig;
-        String sPathTrainingData;
-        String pathToResults = "results\\";
-        // Declaration End
+        // Init Begin
+//        String sPathLayerConfig;
+//        String sPathTrainingData;
+//        String pathToResults = "results\\";
+        // Init End
 
         // CODE 0 Begin
         /** Single Runtime Reise */
@@ -192,35 +192,279 @@ public class  Main {
 
         // CODE 5 Begin
         /** Auswertung auf unbekannten Daten */
-        String sPathLayer = "";
-        String knownData = "";
-        String unknownData = "";
-
-        File dirTrainingKnown = new File("training_data_known");
-        File dirTrainingUnknown = new File("training_data_unknown");
-        File dirLayer = new File("layer_config");
-        File[] dirTrainingKnownListing = dirTrainingKnown.listFiles();
-        File[] dirTrainingUnknownListing = dirTrainingUnknown.listFiles();
-        File[] dirLayerListing = dirLayer.listFiles();
-        if(dirLayerListing.length != dirTrainingKnownListing.length
-                && dirTrainingKnownListing.length != dirTrainingUnknownListing.length) {
-            System.out.println("Count of Layer Configs and Training Data do NOT match");
-        } else {
-            for (int i = 0; i < dirTrainingKnownListing.length; i++) {
-                knownData = dirTrainingKnownListing[i].getPath();
-                unknownData = dirTrainingUnknownListing[i].getPath();
-                String unknownDataFilename = dirTrainingUnknownListing[i].getName();
-                sPathLayerConfig = dirLayerListing[i].getPath();
-                NeuralNetworkReise nnR = new NeuralNetworkReise(sPathLayerConfig, -1, 1);
-                nnR.getTrainingDataLearnable(knownData);
-                nnR.train(1000, 0.05f);
-                double[] totalErrorsUnknownDataReise = nnR.passWithExpectedOutput(unknownData);
-                System.out.println(unknownDataFilename);
-                System.out.println(Arrays.toString(totalErrorsUnknownDataReise));
-            }
-        }
+//        String sPathLayer = "";
+//        String knownData = "";
+//        String unknownData = "";
+//
+//        File dirTrainingKnown = new File("training_data_known");
+//        File dirTrainingUnknown = new File("training_data_unknown");
+//        File dirLayer = new File("layer_config");
+//        File[] dirTrainingKnownListing = dirTrainingKnown.listFiles();
+//        File[] dirTrainingUnknownListing = dirTrainingUnknown.listFiles();
+//        File[] dirLayerListing = dirLayer.listFiles();
+//        if(dirLayerListing.length != dirTrainingKnownListing.length
+//                && dirTrainingKnownListing.length != dirTrainingUnknownListing.length) {
+//            System.out.println("Count of Layer Configs and Training Data do NOT match");
+//        } else {
+//            for (int i = 0; i < dirTrainingKnownListing.length; i++) {
+//                knownData = dirTrainingKnownListing[i].getPath();
+//                unknownData = dirTrainingUnknownListing[i].getPath();
+//                String unknownDataFilename = dirTrainingUnknownListing[i].getName();
+//                sPathLayerConfig = dirLayerListing[i].getPath();
+//                NeuralNetworkReise nnR = new NeuralNetworkReise(sPathLayerConfig, -1, 1);
+//                nnR.getTrainingDataLearnable(knownData);
+//                nnR.train(1000, 0.05f);
+//                double[] totalErrorsUnknownDataReise = nnR.passWithExpectedOutput(unknownData);
+//                System.out.println(unknownDataFilename);
+//                System.out.println(Arrays.toString(totalErrorsUnknownDataReise));
+//            }
+//        }
 
         // CODE 5 End
+
+        // CODE Final Begin
+        /**
+         * evaluation of runtime
+         *      --> all results in dir "results_runtime"
+         * */
+        // CONSTANT Begin
+        int ITERATION_NETWORK_TRAINING = 10;
+        float LEARNING_RATE = 0.05f;
+        // CONSTANT End
+
+        // Init Begin
+        String sPathResultsDir = "results\\";
+        String sPathLayerConfig;
+        String sPathTrainingDataClean;
+        String sPathTrainingDataNoise;
+        String sPathTrainingDataMerged;
+        String sPathTrainingDataKnown;
+        String sPathTrainingDataUnknown;
+        String filename;
+        String sDataType;
+        File dirTrainingClean;
+        File dirTrainingNoise;
+        File dirTrainingMerge;
+        File dirTrainingKnown;
+        File dirTrainingUnknown;
+        File dirLayer;
+        File[] dirTrainingCleanListing;
+        File[] dirTrainingNoiseListing;
+        File[] dirTrainingMergedListing;
+        File[] dirTrainingKnownListing;
+        File[] dirTrainingUnknownListing;
+        File[] dirLayerListing;
+        // Init End
+
+        // evaluation of runtime on all usable data
+//        int runtimeIteration = 3;
+//        dirTrainingClean = new File("training_data");
+//        dirTrainingNoise = new File("training_data_noise");
+//        dirTrainingMerge = new File("training_data_merge_clean_noise");
+//        dirLayer = new File("layer_config");
+//        dirTrainingCleanListing = dirTrainingClean.listFiles();
+//        dirTrainingNoiseListing = dirTrainingNoise.listFiles();
+//        dirTrainingMergedListing = dirTrainingMerge.listFiles();
+//        dirLayerListing = dirLayer.listFiles();
+//        if(dirLayerListing.length != dirTrainingCleanListing.length
+//                || dirLayerListing.length != dirTrainingNoiseListing.length
+//                || dirLayerListing.length != dirTrainingMergedListing.length) {
+//            System.out.println("Count of Layer Configs and Training Data do NOT match");
+//        } else {
+//            for (int i = 0; i < dirTrainingCleanListing.length; i++) {
+//                sPathTrainingDataClean = dirTrainingCleanListing[i].getPath();
+//                sPathTrainingDataNoise = dirTrainingNoiseListing[i].getPath();
+//                sPathTrainingDataMerged = dirTrainingMergedListing[i].getPath();
+//                sPathLayerConfig = dirLayerListing[i].getPath();
+//                long[][] runtimeCleanR = runtimeReise(sPathLayerConfig, sPathTrainingDataClean,
+//                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration);
+////                long[][] runtimeCleanV = runtimeVictor(sPathLayerConfig, sPathTrainingDataClean,
+////                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration);
+////                sPathResultsDir = "results\\";
+//                // write clean data results
+//                sDataType = "clean_data";
+////                String sPathResult = sPathResultsDir + sPathTrainingDataClean;
+//                String sTrainData = dirTrainingCleanListing[i].getName();
+////                String file = sPathResult + p.getFileName().toString();
+//                String file = sTrainData.substring(0, sTrainData.indexOf("_") + 1);
+////                file = file.substring(0, file.indexOf("_") + 1);
+//                String filenameReise = sPathResultsDir + file + "Runtime_NNR_" + sDataType;
+//                writeRuntime(filenameReise, runtimeCleanR, sPathLayerConfig, sDataType);
+////                String filenameVictor = file + "Runtime_NNV_" + sDataType;
+////                writeRuntime(filenameVictor, runtimeCleanV, sPathLayerConfig, sDataType);
+//                filenameReise = "";
+////                filenameVictor = "";
+//                // write noise data results
+//                sDataType = "noise_data";
+//                long[][] runtimeNoiseR = runtimeReise(sPathLayerConfig, sPathTrainingDataNoise,
+//                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration);
+////                long[][] runtimeNoiseV = runtimeVictor(sPathLayerConfig, sPathTrainingDataNoise,
+////                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration);
+////                sPathResult = sPathResultsDir + sPathTrainingDataClean;
+////                p = Paths.get(dirTrainingCleanListing[i].getName());
+////                file = sPathResult + p.getFileName().toString();
+//                sTrainData = dirTrainingCleanListing[i].getName();
+//                file = sTrainData.substring(0, sTrainData.indexOf("_") + 1);
+////                file = file.substring(0, file.indexOf("_") + 1);
+//                filenameReise = sPathResultsDir + file + "Runtime_NNR_" + sDataType;
+//                writeRuntime(filenameReise, runtimeNoiseR, sPathLayerConfig, sDataType);
+////                filenameVictor = file + "Runtime_NNV_" + sDataType;
+////                writeRuntime(filenameVictor, runtimeNoiseV, sPathLayerConfig, sDataType);
+//                filenameReise = "";
+////                filenameVictor = "";
+//                // write merged data results
+//                sDataType = "merge_data";
+//                long[][] runtimeMergeR = runtimeReise(sPathLayerConfig, sPathTrainingDataMerged,
+//                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration);
+////                long[][] runtimeMergeV = runtimeVictor(sPathLayerConfig, sPathTrainingDataMerged,
+////                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration);
+////                sPathResult = sPathResultsDir + sPathTrainingDataClean;
+////                p = Paths.get(dirTrainingCleanListing[i].getName());
+////                file = sPathResult + p.getFileName().toString();
+////                file = file.substring(0, file.indexOf("_") + 1);
+//                sTrainData = dirTrainingCleanListing[i].getName();
+//                file = sTrainData.substring(0, sTrainData.indexOf("_") + 1);
+//                filenameReise = sPathResultsDir + file + "Runtime_NNR_" + sDataType;
+//                writeRuntime(filenameReise, runtimeMergeR, sPathLayerConfig, sDataType);
+////                filenameVictor = file + "Runtime_NNV_" + sDataType;
+////                writeRuntime(filenameVictor, runtimeMergeV, sPathLayerConfig, sDataType);
+//            }
+//        }
+
+        // evaluation of Comparison on known and unknown data
+//        dirTrainingMerge = new File("training_data_merge_clean_noise");
+//        dirTrainingKnown = new File("training_data_known");
+//        dirTrainingUnknown = new File("training_data_unknown");
+//        dirLayer = new File("layer_config");
+//        dirTrainingMergedListing = dirTrainingMerge.listFiles();
+//        dirTrainingKnownListing = dirTrainingKnown.listFiles();
+//        dirTrainingUnknownListing = dirTrainingUnknown.listFiles();
+//        dirLayerListing = dirLayer.listFiles();
+//
+//        if(dirLayerListing.length != dirTrainingKnownListing.length
+//                && dirTrainingKnownListing.length != dirTrainingUnknownListing.length) {
+//            System.out.println("Count of Layer Configs and Training Data do NOT match");
+//        } else {
+//            for (int i = 0; i < dirTrainingKnownListing.length; i++) {
+//                sPathTrainingDataMerged = dirTrainingMergedListing[i].getPath();
+//                sPathTrainingDataKnown = dirTrainingKnownListing[i].getPath();
+//                sPathTrainingDataUnknown = dirTrainingUnknownListing[i].getPath();
+//                sPathLayerConfig = dirLayerListing[i].getPath();
+//                String unknownDataFilename = dirTrainingUnknownListing[i].getName();
+//                NeuralNetworkReise nnR_MergeData = new NeuralNetworkReise(sPathLayerConfig, -1, 1);
+//                NeuralNetworkReise nnR_knownData = new NeuralNetworkReise(sPathLayerConfig, -1, 1);
+//                nnR_MergeData.getTrainingDataLearnable(sPathTrainingDataMerged);
+//                nnR_knownData.getTrainingDataLearnable(sPathTrainingDataKnown);
+//                nnR_knownData.train(ITERATION_NETWORK_TRAINING, LEARNING_RATE);
+//                double[] totalErrorsUnknownDataReise_wholeTrained =
+//                        nnR_MergeData.passWithExpectedOutput(sPathTrainingDataUnknown);
+//                double[] totalErrorsUnknownDataReise_partialTrained =
+//                        nnR_knownData.passWithExpectedOutput(sPathTrainingDataUnknown);
+////                System.out.println(unknownDataFilename);
+////                System.out.println("clean data train\n" + Arrays.toString(totalErrorsUnknownDataReise_cleanTrained));
+////                System.out.println("partial data train\n" + Arrays.toString(totalErrorsUnknownDataReise_knownTrained));
+//                sDataType = "whole_training_data";
+//                String sResultFilename = unknownDataFilename.substring(0, unknownDataFilename.indexOf("_") + 1);
+////                file = file.substring(0, file.indexOf("_") + 1);
+//                filename = sPathResultsDir + sResultFilename + "Unknown_NNR_" + sDataType;
+//                int[] iLayerConfig = NeuralUtilReise.getlayerConfig(sPathLayerConfig);
+//                String slayerConfig = "layers: " + Arrays.toString(iLayerConfig);
+//                writeTotalErrorToCSV(filename, totalErrorsUnknownDataReise_wholeTrained,
+//                        slayerConfig + " " + sDataType);
+//                sDataType = "partial_training_data";
+//                sResultFilename = unknownDataFilename.substring(0, unknownDataFilename.indexOf("_") + 1);
+//                filename = sPathResultsDir + sResultFilename + "Unknown_NNR_" + sDataType;
+//                writeTotalErrorToCSV(filename, totalErrorsUnknownDataReise_partialTrained,
+//                        slayerConfig + " " + sDataType);
+//            }
+//        }
+
+        // evaluation on needed iteration until min. desired total error is reached
+//        double targetTotalError = 0.2; // define target total Error
+//        String[] trainAndLayer = new String[2];
+//        dirTrainingClean = new File("training_data");
+//        dirTrainingNoise = new File("training_data_noise");
+//        dirTrainingMerge = new File("training_data_merge_clean_noise");
+//        dirLayer = new File("layer_config");
+//        dirTrainingCleanListing = dirTrainingClean.listFiles();
+//        dirTrainingNoiseListing = dirTrainingNoise.listFiles();
+//        dirTrainingMergedListing = dirTrainingMerge.listFiles();
+//        dirLayerListing = dirLayer.listFiles();
+//        if(dirLayerListing.length != dirTrainingCleanListing.length
+//                || dirLayerListing.length != dirTrainingNoiseListing.length
+//                || dirLayerListing.length != dirTrainingMergedListing.length) {
+//            System.out.println("Count of Layer Configs and Training Data do NOT match");
+//        } else {
+//            for (int i = 0; i < dirTrainingCleanListing.length; i++) {
+//                sPathTrainingDataClean = dirTrainingCleanListing[i].getPath();
+//                sPathTrainingDataNoise = dirTrainingNoiseListing[i].getPath();
+//                sPathTrainingDataMerged = dirTrainingMergedListing[i].getPath();
+//                sPathLayerConfig = dirLayerListing[i].getPath();
+//                String name = dirTrainingCleanListing[i].getName();
+//                double[] iterationReise =
+//                        getIterationForDeltaGoal("reise", targetTotalError,
+//                                sPathLayerConfig, sPathTrainingDataClean, LEARNING_RATE);
+//                double[] iterationVictor = getIterationForDeltaGoal("vic", targetTotalError,
+//                        sPathLayerConfig, sPathTrainingDataClean, LEARNING_RATE);
+//                PrintWriter printWriter;
+//                double[] allIterationData = {targetTotalError,
+//                        iterationReise[0], iterationReise[1], iterationVictor[0], iterationVictor[1]};
+//                trainAndLayer[0] = dirTrainingCleanListing[i].getName();
+//                trainAndLayer[1] = Arrays.toString(NeuralUtilReise.getlayerConfig(sPathLayerConfig));
+//                sDataType = "clean_data";
+//                filename = name.substring(0, name.indexOf("_") + 1);
+//                filename = sPathResultsDir + filename + "Goal_total_error_" + sDataType;
+//                writeIterationDataToCSV(filename, allIterationData, trainAndLayer);
+////                System.out.println("Training Data: " + dirTrainingCleanListing[i].getName() + "\n"
+////                        + "LayerConfig: " + Arrays.toString(NeuralUtilReise.getlayerConfig(sPathLayerConfig)) + "\n"
+////                        + "Target Total Error: " + targetTotalError + "\n"
+////                        + "Reise total Error and Iteration needed: " + iterationReise[1] + "  -  " + iterationReise[0]
+////                        + "\nVictor total Error and Iteration needed: " + iterationVictor[1] + "  -  " + iterationVictor[0]
+////                        + "\n"
+////                );
+//                iterationReise =
+//                        getIterationForDeltaGoal("reise", targetTotalError,
+//                                sPathLayerConfig, sPathTrainingDataNoise, LEARNING_RATE);
+//                iterationVictor = getIterationForDeltaGoal("vic", targetTotalError,
+//                        sPathLayerConfig, sPathTrainingDataNoise, LEARNING_RATE);
+//                allIterationData[1] = iterationReise[0];
+//                allIterationData[2] = iterationReise[1];
+//                allIterationData[3] = iterationVictor[0];
+//                allIterationData[4] = iterationVictor[1];
+//                sDataType = "noise_data";
+//                trainAndLayer[0] = dirTrainingNoiseListing[i].getName();
+//                filename = name.substring(0, name.indexOf("_") + 1);
+//                filename = sPathResultsDir + filename + "Goal_total_error_" + sDataType;
+//                writeIterationDataToCSV(filename, allIterationData, trainAndLayer);
+//                iterationReise =
+//                        getIterationForDeltaGoal("reise", targetTotalError,
+//                                sPathLayerConfig, sPathTrainingDataMerged, LEARNING_RATE);
+//                iterationVictor = getIterationForDeltaGoal("vic", targetTotalError,
+//                        sPathLayerConfig, sPathTrainingDataMerged, LEARNING_RATE);
+//                allIterationData[1] = iterationReise[0];
+//                allIterationData[2] = iterationReise[1];
+//                allIterationData[3] = iterationVictor[0];
+//                allIterationData[4] = iterationVictor[1];
+//                sDataType = "merged_data";
+//                trainAndLayer[0] = dirTrainingMergedListing[i].getName();
+//                filename = name.substring(0, name.indexOf("_") + 1);
+//                filename = sPathResultsDir + filename + "Goal_total_error_" + sDataType;
+//                writeIterationDataToCSV(filename, allIterationData, trainAndLayer);
+//
+////                System.out.println("Training Data: " + dirTrainingCleanListing[i].getName() + "\n"
+////                        + "LayerConfig: " + Arrays.toString(NeuralUtilReise.getlayerConfig(sPathLayerConfig)) + "\n"
+////                        + "Target Total Error: " + targetTotalError + "\n"
+////                        + "Reise total Error and Iteration needed: " + iterationReise[1] + "  -  " + iterationReise[0]
+////                        + "Victor total Error and Iteration needed: " + iterationVictor[1] + "  -  " + iterationVictor[0]
+////                        + "\n"
+////                );
+//            }
+//        }
+
+        // evaluation on different topologies
+
+
+        // CODE Final End
 
 
         // Reises Platz End
@@ -456,10 +700,35 @@ public class  Main {
         return func;
     }
 
+    public static void writeTotalErrorToCSV(String filename, double[] arr, String note) {
+        PrintWriter printWriter;
+        try {
+            if (filename.charAt(filename.length() - 1) != 'v') {
+                filename += ".csv";
+            }
+            File csvFile = new File(filename);
+            printWriter = new PrintWriter(csvFile);
+            printWriter.println(note);
+            printWriter.println("Total Error for each data:");
+            for(int i = 0; i < arr.length - 1; i++) {
+                if(i != arr.length - 2) {
+                    printWriter.print(arr[i] + ";");
+                } else {
+                    printWriter.println(arr[i]);
+                }
+            }
+            printWriter.println("\nMean of total Error: " + arr[arr.length - 1]);
+            printWriter.close();
+        } catch(FileNotFoundException e) {
+            System.out.println(e);
+        }
+    }
+
     public static double[] getIterationForDeltaGoal(String networkType, double deltaGoal, String pathLayerConfig,
                                                String pathTrainingData, float trainingRate) {
         int trainIterations = 0;
         double[] resultData = new double[2];
+        double totalError;
         if(networkType.toLowerCase().contains("reise")) {
             NeuralNetworkReise nnR = new NeuralNetworkReise(pathLayerConfig, -1, 1);
             nnR.getTrainingDataLearnable(pathTrainingData);
@@ -467,32 +736,51 @@ public class  Main {
             do {
                 nnR.train(1, trainingRate);
                 ++trainIterations;
+                double[] totalErrors = nnR.passWithExpectedOutput(pathTrainingData);
+                totalError = totalErrors[totalErrors.length - 1];
             }
-            while(nnR.getdTotalErrorCurrent() > deltaGoal);
-            resultData[1] = nnR.getdTotalErrorCurrent();
+            while(totalError > deltaGoal);
+            resultData[1] = totalError;
             resultData[0] = trainIterations;
         }
-        else {
-            String[] func = getSigmoidFuncOnly(pathLayerConfig);
-            int[] layerConfig = NeuralUtilReise.getlayerConfig(pathLayerConfig);
-            int inlen = layerConfig[0];
-            int outlen = layerConfig[layerConfig.length - 1];
-            try {
-                TrainingDataVic tdV = new TrainingDataVic(pathLayerConfig, pathTrainingData, inlen, outlen, func);
-                NeuralNetworkVic nnV = new NeuralNetworkVic(tdV);
-                do {
-                    nnV.train(1, trainingRate);
-                    ++trainIterations;
-                }
-                while(nnV.getCurrentTotalError() > deltaGoal);
-                resultData[1] = nnV.getCurrentTotalError();
-                resultData[0] = trainIterations;
-            } catch(IOException e) {
-                System.out.println(e);
-            }
-        }
+//        else {
+//            String[] func = getSigmoidFuncOnly(pathLayerConfig);
+//            int[] layerConfig = NeuralUtilReise.getlayerConfig(pathLayerConfig);
+//            int inlen = layerConfig[0];
+//            int outlen = layerConfig[layerConfig.length - 1];
+//            try {
+//                TrainingDataVic tdV = new TrainingDataVic(pathLayerConfig, pathTrainingData, inlen, outlen, func);
+//                NeuralNetworkVic nnV = new NeuralNetworkVic(tdV);
+//                do {
+//                    nnV.train(1, trainingRate);
+//                    ++trainIterations;
+//                }
+//                while(nnV.getCurrentTotalError() > deltaGoal);
+//                resultData[1] = nnV.getCurrentTotalError();
+//                resultData[0] = trainIterations;
+//            } catch(IOException e) {
+//                System.out.println(e);
+//            }
+//        }
 
         return resultData;
+    }
+
+    public static void writeIterationDataToCSV(String filename, double[] iterationData, String[]  trainAndlayerData) {
+        PrintWriter printWriter;
+        try {
+            File csvFile = new File(filename);
+            printWriter = new PrintWriter(csvFile);
+            printWriter.println("Goal total Error evaluation");
+            printWriter.println("Training Data: " + trainAndlayerData[0]);
+            printWriter.println("LayerConfig: " + trainAndlayerData[1]);
+            printWriter.println("Target Total Error: " + iterationData[0]);
+            printWriter.println("Reise total Error and Iteration needed: " + iterationData[2] + "  -  " + iterationData[1]);
+            printWriter.println("Victor total Error and Iteration needed: " + iterationData[4] + "  -  " + iterationData[3]);
+            printWriter.close();
+        } catch(FileNotFoundException e) {
+            System.out.println(e);
+        }
     }
 
     public static void compareTotalError() throws IOException {

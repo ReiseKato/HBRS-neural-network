@@ -13,6 +13,8 @@ public class NeuralNetworkReise {
     int[] iLayerConfig; // array for the layer configuration (example: [3,3,4]
     double dTotalErrorPrior; // made for optimizing the neural Network, but still not working
     double dTotalErrorCurrent; // made for optimizing the neural Network, but still not working
+    double dCurrentMeanTotalError;
+    double dSumTotalError;
     List<Double> totalErrorReise = new ArrayList<Double>(); // list for keeping all the total Error --> easier to handle as a list than an array, if over 100000 elements
 
 
@@ -263,7 +265,7 @@ public class NeuralNetworkReise {
         for(int i = 0; i < layers_t[layers_t.length - 1].neurons.length; i++) { // i: indexing for Neurons in output Layer. loop while i < number of neurons in output Layer
             out = layers_t[layers_t.length - 1].neurons[i].fValue;
             target = __trainingData_t.expectedResult[i];
-            totalErrorDouble += 0.5*(out -  target)*(out* - target);
+            totalErrorDouble += 0.5*(out -  target)*(out - target);
             deltaOfValue = out - target; // get delta of value
             deriviate = out*(1 - out);
             delta = deriviate*deltaOfValue;
@@ -297,7 +299,9 @@ public class NeuralNetworkReise {
             }
         }
         dTotalErrorCurrent = totalErrorDouble;
+        dSumTotalError += totalErrorDouble;
         totalErrorReise.add(dTotalErrorCurrent);
+        dCurrentMeanTotalError = dSumTotalError/totalErrorReise.size();
 
         updateAllWeights();
     }
@@ -375,6 +379,10 @@ public class NeuralNetworkReise {
         return dTotalErrorCurrent;
     }
 
+    public double getTotalErrorMean() {
+        return dCurrentMeanTotalError;
+    }
+
     /**
      * print all
      */
@@ -406,8 +414,12 @@ public class NeuralNetworkReise {
 
     public double[] passWithExpectedOutput(String tData)  {
         int numberOfTrainingData = NeuralUtilReise.getTrainingInputCount(tData);
-        double[] totalErrors = new double[numberOfTrainingData];
+//        double[][][] result = new double[numberOfTrainingData][][];
+        double[] totalErrors = new double[numberOfTrainingData + 1];
         TrainingDataReise[] tr = new TrainingDataReise[numberOfTrainingData];
+        double totalErrorDouble = 0;
+        double totalErrorSum = 0;
+        double meanTotalError = 999.99;
 
         for(int i = 0; i < numberOfTrainingData; i++) {
             tr[i] = new TrainingDataReise(NeuralUtilReise.getTrainingInputData(tData, iLayerConfig, i),
@@ -415,17 +427,22 @@ public class NeuralNetworkReise {
         }
         for(int i = 0; i < tr.length; i++) {
             run(tr[i].inputData);
-            double totalErrorDouble = 0;
+            totalErrorDouble = 0;
             for(int j = 0; j < layers_t[layers_t.length - 1].neurons.length; j++) {
-                System.out.println("\ngot: " + layers_t[layers_t.length - 1].neurons[j].fValue
-                        + " -- expected: " + tr[i].expectedResult[j]);
+//                System.out.println("\ngot: " + layers_t[layers_t.length - 1].neurons[j].fValue
+//                        + " -- expected: " + tr[i].expectedResult[j]);
                 double out = layers_t[layers_t.length - 1].neurons[j].fValue;
                 double target = tr[i].expectedResult[j];
-                totalErrorDouble += 0.5*(out -  target)*(out* - target);
+                totalErrorDouble += 0.5*(out -  target)*(out - target);
             }
-            System.out.println("total Error: " + totalErrorDouble + "\n");
+//            System.out.println("total Error: " + totalErrorDouble + "\n");
             totalErrors[i] = totalErrorDouble;
+            totalErrorSum +=  totalErrorDouble;
         }
+        if(totalErrorDouble != 0) {
+            meanTotalError = totalErrorSum/numberOfTrainingData;
+        }
+        totalErrors[numberOfTrainingData] = meanTotalError;
         return totalErrors;
     }
 
