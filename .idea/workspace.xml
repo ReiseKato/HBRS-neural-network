@@ -7,22 +7,10 @@
     <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/R1_tData.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/R2_layerConfig.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/R2_tData.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/R3_layerConfig.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/R3_tData.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/R4_layerConfig.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/R4_tData.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/R5_layerConfig.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/R5_tData.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/V1_tData_unkn.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/V2_tData_unkn.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/V3_tData_unkn.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/V4_tData_unkn.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/V6_layerConfig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/training_data_and_layer_config/data explanation.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/R1_Runtime_NNR_clean_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/R1_Runtime_NNR_clean_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/R1_Runtime_NNR_noise_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/R1_Runtime_NNR_noise_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/R2_Runtime_NNR_clean_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/R2_Runtime_NNR_clean_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/R2_Runtime_NNR_noise_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/results/R2_Runtime_NNR_noise_data.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

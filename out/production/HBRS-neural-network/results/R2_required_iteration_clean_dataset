@@ -1,0 +1,6 @@
+Goal total Error evaluation
+Training Data: R2_tData.csv
+LayerConfig: [9, 12, 15, 10, 5, 4]
+Target Total Error: 0.2
+Reise total Error and Iteration needed: 0.19998228208272598  -  81.0
+Victor total Error and Iteration needed: 0.0  -  0.0
