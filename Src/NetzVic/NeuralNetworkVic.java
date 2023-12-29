@@ -32,6 +32,8 @@ public class NeuralNetworkVic {
 
     double LR = 0.5;
 
+    Boolean ONLYSIGMOID = true;
+
     public NeuralNetworkVic() {
 
     }
@@ -47,6 +49,19 @@ public class NeuralNetworkVic {
         } else {
             this.initWeightsBiases(file);
         }
+
+        if(ONLYSIGMOID) {
+            initFuncForLayers();
+        }
+    }
+
+    public void initFuncForLayers() {
+        LinkedList<String> temp = new LinkedList<>();
+        temp.add("");
+        for(int i = 0; i < layers.length-1; i++) {
+            temp.add("sigmoid");
+        }
+        func = temp.toArray(new String[0]);
     }
 
     /**
@@ -159,7 +174,7 @@ public class NeuralNetworkVic {
         LinkedList<String[]> document = new LinkedList<>(Arrays.asList(file).subList(1, file.length));
 
         //Funktion für die erste Ebene einlesen
-        initaFunc(document.remove(), 0);
+       // initaFunc(document.remove(), 0);
 
         //1. Dim: weight-Ebene
         //2. Dim: von Neuron x
@@ -180,7 +195,8 @@ public class NeuralNetworkVic {
 
 
             if (!document.isEmpty()) {// falls noch nicht die letzte Zeile
-                initaFunc(document.remove(), i+1);//function einlesen
+               // initaFunc(document.remove(), i+1);//function einlesen
+                document.remove();
             }
         }
 
@@ -319,6 +335,7 @@ public class NeuralNetworkVic {
             }
         }
         // nach dem training werte ausgeben
+
         System.out.println("Victor's Netz: ");
         System.out.println("Trainingdata: ");
         for (int i = 0; i < train.getListInputSize(); i++) {
@@ -386,7 +403,7 @@ public class NeuralNetworkVic {
                 for (int j = 0; j < h_delta_weights[0].length; j++) {
                     // berechne delta
                     // berechne die Summe von k-ten delta wert mal dem alten Gewicht
-                    for (int k = 0; k < delta.length; k++) {
+                    for (int k = 0; k < delta.length && k < oldweights[h][j].length; k++) {
                         h_delta_weights[i][j] += (delta[k] * oldweights[h][j][k]);
                     }
                     // berechne die partielle Ableitung von Ausgangswert nach Aktivierungswert des j-ten Neuron in der h-ten Schicht
@@ -412,15 +429,24 @@ public class NeuralNetworkVic {
 
              */
             //berechne das neue Delta für die nächste versteckte Ebene
-            delta = new double[network[nexth].length];
-            for (int j = 0; j < network[nexth].length; j++) {
-                delta[j] = 0;
-                for (int k = 0; k < network[nexth].length; k++) {
-                    delta[j] += h_delta_weights[k][j];
-                }
-                delta[j] *= (network[nexth][j].value * (1.0 - network[nexth][j].value));
-            }
-
+//            delta = new double[network[nexth].length];
+//            for (int j = 0; j < network[nexth].length; j++) {
+//                delta[j] = 0;
+////                if(j < h_delta_weights[0].length) {
+//                    for (int k = 0; k < network[nexth].length; k++) {
+//                        delta[j] += h_delta_weights[k][j];
+//                    }
+//                //}
+//                delta[j] *= (network[nexth][j].value * (1.0 - network[nexth][j].value));
+//            }
+//            int sum = 0;
+//            for (double temp: delta) {
+//                sum += temp;
+//            }
+//            if(sum == 0) {
+//                System.out.println("NULL");
+//                z++;
+//            }
        /*     h_bias_delta = new Neuron[biases[h-1].length];
             for (int i = 0; i < h_bias_delta.length; i++) {
                 h_bias_delta[i] = new Neuron(1);

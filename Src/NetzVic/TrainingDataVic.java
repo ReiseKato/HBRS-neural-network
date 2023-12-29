@@ -36,6 +36,9 @@ public class TrainingDataVic {
     public TrainingDataVic(String pathconfig, String pathdatapack, int inlen, int outlen) throws IOException {
         this(NeuralNetworkUtilVic.readCSV(pathconfig), NeuralNetworkUtilVic.readCSV(pathdatapack), inlen, outlen);
     }
+    public TrainingDataVic(String pathconfig, String pathdatapack) throws IOException {
+        this(NeuralNetworkUtilVic.readCSV(pathconfig), NeuralNetworkUtilVic.readCSV(pathdatapack));
+    }
 
     /**
      * Erzeuge ein Objekt der Klasse TrainingData
@@ -54,13 +57,16 @@ public class TrainingDataVic {
         this(doc, traindata);
         this.inputlength = inlen;
         this.outputlength = outlen;
-        initInputsOutputs();
+
 
     }
 
     public TrainingDataVic(String[][] doc, String[][] traindata) {
         this.file = doc;
         this.traindata = traindata;
+        this.inputlength = Integer.parseInt(file[0][1]);
+        this.outputlength = Integer.parseInt(file[0][file[0].length-1]);
+        initInputsOutputs();
     }
 
     /**
@@ -161,7 +167,7 @@ public class TrainingDataVic {
         }
         text.add(line);
         // Funktion der ersten Ebene hinzufügen
-        text.add(funcToCSV(functions[0]));
+       // text.add(funcToCSV(functions[0]));
 
         //Solange eine der beiden liste El besitzt
         for (int i = 1; !wls.isEmpty() || !bls.isEmpty(); i++) {
@@ -173,7 +179,8 @@ public class TrainingDataVic {
             String[] temp2 = bls.remove();
             text.add(temp2);
             // schreibe sie in die nächste Zeile
-            text.add(funcToCSV(functions[i]));
+            text.add(new String[]{});
+           // text.add(funcToCSV(functions[i]));
             //Funktionszeile
         }
         //entferne die letzte Zeile des Textes

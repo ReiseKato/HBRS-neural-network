@@ -34,7 +34,7 @@ x = np.arange(10000)
 
 # plotte die Iterationen
 
-plt.plot(x, meanErrorR, label='Error Reise', color='blue')
+plt.plot(x, meanErrorR, label='Error Reise', color='green')
 plt.plot(x, meanErrorV, label='Error Victor', color='red')
 plt.legend()
 

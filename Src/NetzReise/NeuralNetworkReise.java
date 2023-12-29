@@ -118,7 +118,7 @@ public class NeuralNetworkReise {
      */
     public void createLayers(int numberOfLayers, int[] numberOfWeights, int[] numberOfNeurons) { // parse input data, how many layers, how many weights, how many neurons in each layer
         layers_t = new LayerReise[numberOfLayers];
-        for(int i = 1; i < numberOfLayers; i++) { //create all hidden Layers and output Layer
+        for (int i = 1; i < numberOfLayers; i++) { //create all hidden Layers and output Layer
             layers_t[i] = new LayerReise(numberOfWeights[i - 1], numberOfNeurons[i - 1]);
         }
     }

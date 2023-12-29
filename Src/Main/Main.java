@@ -1,7 +1,9 @@
 package Src.Main;
 
+import Src.NetzReise.LayerReise;
 import Src.NetzReise.NeuralNetworkReise;
 import Src.NetzReise.NeuralUtilReise;
+import Src.NetzVic.NeuralNetworkUtilVic;
 import Src.NetzVic.NeuralNetworkVic;
 import Src.NetzVic.TrainingDataVic;
 
@@ -59,124 +61,135 @@ public class  Main {
         int ITERATION_NETWORK_TRAINING = 10;
         float LEARNING_RATE = 0.05f;
         double TARGET_TOTAL_ERROR = 0.2; // define target total Error
+        int runtimeIteration = 3; // define how often the method has to calculate the runtime
         String CLEAN_DATASET = "clean_dataset";
         String NOISE_DATASET = "noise_dataset";
         String WHOLE_DATASET = "whole_dataset";
         String PARTIAL_DATASET = "partial_dataset";
         String UNKNOWN_DATASET = "unknown_dataset";
+        String LAYER_ALTERNATIVE = "_layer_alternative";
+
         // CONSTANT End
 
         // Init Begin
-        String sPathTargetDir;
-        String sPathTargetDirRuntime;
-        String sPathTargetDirUnknown;
-        String sPathTargetDirTargetTotalError;
-        String sPathLayerConfig;
-        String sPathLayerConfigAlternative;
-        String sPathTrainingDataClean;
-        String sPathTrainingDataNoise;
-        String sPathTrainingDataMerged;
-        String sPathTrainingDataKnown;
-        String sPathTrainingDataUnknown;
-        String filename;
-        String sDataType;
-        File dirTrainingClean;
-        File dirTrainingNoise;
-        File dirTrainingMerge;
-        File dirTrainingKnown;
-        File dirTrainingUnknown;
-        File dirLayer;
-        File dirLayerAlternative;
-        File[] dirTrainingCleanListing;
-        File[] dirTrainingNoiseListing;
-        File[] dirTrainingMergedListing;
-        File[] dirTrainingKnownListing;
-        File[] dirTrainingUnknownListing;
-        File[] dirLayerListing;
-        File[] dirLayerAlternativeListing;
-        // Init End
-
-        // Stats Code Begin
-
-        sPathTargetDir = "results\\";
-        sPathTargetDirRuntime = sPathTargetDir + "runtime\\";
-        sPathTargetDirTargetTotalError = sPathTargetDir + "target_total_error\\";
-        sPathTargetDirUnknown = sPathTargetDir + "behaving_on_unknown_data\\";
-        int runtimeIteration = 3; // define how often the method has to calculate the runtime
-        dirTrainingClean = new File("training_data");
-        dirTrainingNoise = new File("training_data_noise");
-        dirTrainingMerge = new File("training_data_merge_clean_noise");
-        dirTrainingKnown = new File("training_data_known");
-        dirTrainingUnknown = new File("training_data_unknown");
-        dirLayer = new File("layer_config");
-        dirLayerAlternative = new File("layer_config_2");
-        dirTrainingCleanListing = dirTrainingClean.listFiles();
-        dirTrainingNoiseListing = dirTrainingNoise.listFiles();
-        dirTrainingMergedListing = dirTrainingMerge.listFiles();
-        dirTrainingKnownListing = dirTrainingKnown.listFiles();
-        dirTrainingUnknownListing = dirTrainingUnknown.listFiles();
-        dirLayerListing = dirLayer.listFiles();
-        dirLayerAlternativeListing = dirLayerAlternative.listFiles();
-        if(dirLayerListing.length != dirTrainingCleanListing.length
-                || dirLayerListing.length != dirTrainingNoiseListing.length
-                || dirLayerListing.length != dirTrainingMergedListing.length
-                || dirLayerListing.length != dirTrainingKnownListing.length
-                || dirLayerListing.length != dirTrainingUnknownListing.length
-                || dirLayerListing.length != dirLayerAlternativeListing.length) {
-            System.out.println("Count of Layer Configs and Training Data do NOT match");
-        } else {
-            for (int i = 0; i < dirTrainingCleanListing.length; i++) {
-                sPathTrainingDataClean = dirTrainingCleanListing[i].getPath();
-                sPathTrainingDataNoise = dirTrainingNoiseListing[i].getPath();
-                sPathTrainingDataMerged = dirTrainingMergedListing[i].getPath();
-                sPathTrainingDataKnown = dirTrainingKnownListing[i].getPath();
-                sPathTrainingDataUnknown = dirTrainingUnknownListing[i].getPath();
-                sPathLayerConfig = dirLayerListing[i].getPath();
-                sPathLayerConfigAlternative = dirLayerAlternativeListing[i].getPath();
-                // runtime
-                runtimeComparison(sPathLayerConfig, sPathTrainingDataClean, sPathTargetDirRuntime,
-                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, CLEAN_DATASET);
-                runtimeComparison(sPathLayerConfig, sPathTrainingDataNoise, sPathTargetDirRuntime,
-                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, NOISE_DATASET);
-                runtimeComparison(sPathLayerConfig, sPathTrainingDataMerged, sPathTargetDirRuntime,
-                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, WHOLE_DATASET);
-                // runtime on alternative Layer configuration
-                runtimeComparison(sPathLayerConfigAlternative, sPathTrainingDataClean, sPathTargetDirRuntime,
-                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, CLEAN_DATASET);
-                runtimeComparison(sPathLayerConfigAlternative, sPathTrainingDataNoise, sPathTargetDirRuntime,
-                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, NOISE_DATASET);
-                runtimeComparison(sPathLayerConfigAlternative, sPathTrainingDataMerged, sPathTargetDirRuntime,
-                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, WHOLE_DATASET);
-                // unknown data
-                unknownDataComparison(sPathLayerConfig, sPathTrainingDataMerged, sPathTrainingDataUnknown,
-                        sPathTargetDirUnknown, ITERATION_NETWORK_TRAINING, LEARNING_RATE,
-                        runtimeIteration, WHOLE_DATASET);
-                unknownDataComparison(sPathLayerConfig, sPathTrainingDataKnown, sPathTrainingDataUnknown,
-                        sPathTargetDirUnknown, ITERATION_NETWORK_TRAINING, LEARNING_RATE,
-                        runtimeIteration, PARTIAL_DATASET);
-                // unknown data on alternative Layer configuration
-                unknownDataComparison(sPathLayerConfigAlternative, sPathTrainingDataMerged, sPathTrainingDataUnknown,
-                        sPathTargetDirUnknown, ITERATION_NETWORK_TRAINING, LEARNING_RATE,
-                        runtimeIteration, WHOLE_DATASET);
-                unknownDataComparison(sPathLayerConfigAlternative, sPathTrainingDataKnown, sPathTrainingDataUnknown,
-                        sPathTargetDirUnknown, ITERATION_NETWORK_TRAINING, LEARNING_RATE,
-                        runtimeIteration, PARTIAL_DATASET);
-                // target total Error
-                requiredIterationComparison(sPathLayerConfig, sPathTrainingDataClean, TARGET_TOTAL_ERROR,
-                        sPathTargetDirTargetTotalError, LEARNING_RATE, CLEAN_DATASET);
-                requiredIterationComparison(sPathLayerConfig, sPathTrainingDataNoise, TARGET_TOTAL_ERROR,
-                        sPathTargetDirTargetTotalError, LEARNING_RATE, NOISE_DATASET);
-                requiredIterationComparison(sPathLayerConfig, sPathTrainingDataMerged, TARGET_TOTAL_ERROR,
-                        sPathTargetDirTargetTotalError, LEARNING_RATE, WHOLE_DATASET);
-                // target total Error on alternative Layer configuration
-                requiredIterationComparison(sPathLayerConfigAlternative, sPathTrainingDataClean, TARGET_TOTAL_ERROR,
-                        sPathTargetDirTargetTotalError, LEARNING_RATE, CLEAN_DATASET);
-                requiredIterationComparison(sPathLayerConfigAlternative, sPathTrainingDataNoise, TARGET_TOTAL_ERROR,
-                        sPathTargetDirTargetTotalError, LEARNING_RATE, NOISE_DATASET);
-                requiredIterationComparison(sPathLayerConfigAlternative, sPathTrainingDataMerged, TARGET_TOTAL_ERROR,
-                        sPathTargetDirTargetTotalError, LEARNING_RATE, WHOLE_DATASET);
-            }
-        }
+//        String sPathTargetDir;
+//        String sPathTargetDirRuntime;
+//        String sPathTargetDirUnknown;
+//        String sPathTargetDirTargetTotalError;
+//        String sPathLayerConfig;
+//        String sPathLayerConfigAlternative;
+//        String sPathTrainingDataClean;
+//        String sPathTrainingDataNoise;
+//        String sPathTrainingDataMerged;
+//        String sPathTrainingDataKnown;
+//        String sPathTrainingDataUnknown;
+//        String filename;
+//        String sDataType;
+//        File dirTrainingClean;
+//        File dirTrainingNoise;
+//        File dirTrainingMerge;
+//        File dirTrainingKnown;
+//        File dirTrainingUnknown;
+//        File dirLayer;
+//        File dirLayerAlternative;
+//        File[] dirTrainingCleanListing;
+//        File[] dirTrainingNoiseListing;
+//        File[] dirTrainingMergedListing;
+//        File[] dirTrainingKnownListing;
+//        File[] dirTrainingUnknownListing;
+//        File[] dirLayerListing;
+//        File[] dirLayerAlternativeListing;
+//        // Init End
+//
+//        // Stats Code Begin
+//
+//        sPathTargetDir = "results\\";
+//        sPathTargetDirRuntime = sPathTargetDir + "runtime\\";
+//        sPathTargetDirTargetTotalError = sPathTargetDir + "target_total_error\\";
+//        sPathTargetDirUnknown = sPathTargetDir + "behaving_on_unknown_data\\";
+//        dirTrainingClean = new File("training_data");
+//        dirTrainingNoise = new File("training_data_noise");
+//        dirTrainingMerge = new File("training_data_merge_clean_noise");
+//        dirTrainingKnown = new File("training_data_known");
+//        dirTrainingUnknown = new File("training_data_unknown");
+//        dirLayer = new File("layer_config");
+//        dirLayerAlternative = new File("layer_config_2");
+//        dirTrainingCleanListing = dirTrainingClean.listFiles();
+//        dirTrainingNoiseListing = dirTrainingNoise.listFiles();
+//        dirTrainingMergedListing = dirTrainingMerge.listFiles();
+//        dirTrainingKnownListing = dirTrainingKnown.listFiles();
+//        dirTrainingUnknownListing = dirTrainingUnknown.listFiles();
+//        dirLayerListing = dirLayer.listFiles();
+//        dirLayerAlternativeListing = dirLayerAlternative.listFiles();
+//
+//        Arrays.sort(dirTrainingCleanListing);
+//        Arrays.sort(dirTrainingNoiseListing);
+//        Arrays.sort(dirTrainingMergedListing);
+//        Arrays.sort(dirTrainingKnownListing);
+//        Arrays.sort(dirTrainingUnknownListing);
+//        Arrays.sort(dirLayerListing);
+//        Arrays.sort(dirLayerAlternativeListing);
+//
+//        if(dirLayerListing.length != dirTrainingCleanListing.length
+//                || dirLayerListing.length != dirTrainingNoiseListing.length
+//                || dirLayerListing.length != dirTrainingMergedListing.length
+//                || dirLayerListing.length != dirTrainingKnownListing.length
+//                || dirLayerListing.length != dirTrainingUnknownListing.length
+//                || dirLayerListing.length != dirLayerAlternativeListing.length) {
+//            System.out.println("Count of Layer Configs and Training Data do NOT match");
+//        } else {
+//            for (int i = 0; i < dirTrainingCleanListing.length; i++) {
+//                sPathTrainingDataClean = dirTrainingCleanListing[i].getPath();
+//                sPathTrainingDataNoise = dirTrainingNoiseListing[i].getPath();
+//                sPathTrainingDataMerged = dirTrainingMergedListing[i].getPath();
+//                sPathTrainingDataKnown = dirTrainingKnownListing[i].getPath();
+//                sPathTrainingDataUnknown = dirTrainingUnknownListing[i].getPath();
+//                sPathLayerConfig = dirLayerListing[i].getPath();
+//                sPathLayerConfigAlternative = dirLayerAlternativeListing[i].getPath();
+//                // runtime
+//                runtimeComparison(sPathLayerConfig, sPathTrainingDataClean, sPathTargetDirRuntime,
+//                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, CLEAN_DATASET);
+//                runtimeComparison(sPathLayerConfig, sPathTrainingDataNoise, sPathTargetDirRuntime,
+//                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, NOISE_DATASET);
+//                runtimeComparison(sPathLayerConfig, sPathTrainingDataMerged, sPathTargetDirRuntime,
+//                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, WHOLE_DATASET);
+//                // runtime on alternative Layer configuration
+//                runtimeComparison(sPathLayerConfigAlternative, sPathTrainingDataClean, sPathTargetDirRuntime,
+//                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, CLEAN_DATASET + LAYER_ALTERNATIVE);
+//                runtimeComparison(sPathLayerConfigAlternative, sPathTrainingDataNoise, sPathTargetDirRuntime,
+//                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, NOISE_DATASET + LAYER_ALTERNATIVE);
+//                runtimeComparison(sPathLayerConfigAlternative, sPathTrainingDataMerged, sPathTargetDirRuntime,
+//                        ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, WHOLE_DATASET + LAYER_ALTERNATIVE);
+//                // unknown data
+//                unknownDataComparison(sPathLayerConfig, sPathTrainingDataMerged, sPathTrainingDataUnknown,
+//                        sPathTargetDirUnknown, ITERATION_NETWORK_TRAINING, LEARNING_RATE,
+//                        runtimeIteration, WHOLE_DATASET);
+//                unknownDataComparison(sPathLayerConfig, sPathTrainingDataKnown, sPathTrainingDataUnknown,
+//                        sPathTargetDirUnknown, ITERATION_NETWORK_TRAINING, LEARNING_RATE,
+//                        runtimeIteration, PARTIAL_DATASET);
+//                // unknown data on alternative Layer configuration
+//                unknownDataComparison(sPathLayerConfigAlternative, sPathTrainingDataMerged, sPathTrainingDataUnknown,
+//                        sPathTargetDirUnknown, ITERATION_NETWORK_TRAINING, LEARNING_RATE,
+//                        runtimeIteration, WHOLE_DATASET + LAYER_ALTERNATIVE);
+//                unknownDataComparison(sPathLayerConfigAlternative, sPathTrainingDataKnown, sPathTrainingDataUnknown,
+//                        sPathTargetDirUnknown, ITERATION_NETWORK_TRAINING, LEARNING_RATE,
+//                        runtimeIteration, PARTIAL_DATASET + LAYER_ALTERNATIVE);
+//                // target total Error
+//                requiredIterationComparison(sPathLayerConfig, sPathTrainingDataClean, TARGET_TOTAL_ERROR,
+//                        sPathTargetDirTargetTotalError, LEARNING_RATE, CLEAN_DATASET);
+//                requiredIterationComparison(sPathLayerConfig, sPathTrainingDataNoise, TARGET_TOTAL_ERROR,
+//                        sPathTargetDirTargetTotalError, LEARNING_RATE, NOISE_DATASET);
+//                requiredIterationComparison(sPathLayerConfig, sPathTrainingDataMerged, TARGET_TOTAL_ERROR,
+//                        sPathTargetDirTargetTotalError, LEARNING_RATE, WHOLE_DATASET);
+//                // target total Error on alternative Layer configuration
+//                requiredIterationComparison(sPathLayerConfigAlternative, sPathTrainingDataClean, TARGET_TOTAL_ERROR,
+//                        sPathTargetDirTargetTotalError, LEARNING_RATE, CLEAN_DATASET + LAYER_ALTERNATIVE);
+//                requiredIterationComparison(sPathLayerConfigAlternative, sPathTrainingDataNoise, TARGET_TOTAL_ERROR,
+//                        sPathTargetDirTargetTotalError, LEARNING_RATE, NOISE_DATASET + LAYER_ALTERNATIVE);
+//                requiredIterationComparison(sPathLayerConfigAlternative, sPathTrainingDataMerged, TARGET_TOTAL_ERROR,
+//                        sPathTargetDirTargetTotalError, LEARNING_RATE, WHOLE_DATASET + LAYER_ALTERNATIVE);
+//            }
+//        }
 
         // Stats Code End
 
@@ -191,7 +204,7 @@ public class  Main {
 
 
         // Victors Platz End
-        // compareTotalError();
+        compareTotalError();
 
         
         // Philips Platz Begin
@@ -203,24 +216,24 @@ public class  Main {
 
     public static void runtimeComparison(String pathLayerConfig, String pathTrainingData, String targetDir,
                                          int trainingIteration, float learningRate, int runtimeIteration,
-                                         String dataType) {
+                                         String dataType) throws IOException {
 //        try {
             long[][] runtimeR = runtimeReise(pathLayerConfig, pathTrainingData,
                     trainingIteration, learningRate, runtimeIteration);
-//            long[][] runtimeV = runtimeVictor(pathLayerConfig, pathTrainingData,
-//                    trainingIteration, learningRate, runtimeIteration);
+            long[][] runtimeV = runtimeVictor(pathLayerConfig, pathTrainingData,
+                    trainingIteration, learningRate, runtimeIteration);
 //        long[][] runtimeC = getComparisonReiseMinusVictor(runtimeR, runtimeV);
 
         File name_t = new File(pathLayerConfig);
         String sName = name_t.getName();
         String filenameR = sName.substring(0, sName.indexOf("_") + 1) + "Runtime_NNR_" + dataType;
         filenameR = targetDir + filenameR;
-//        String filenameV = pathLayerConfig.substring(0, pathLayerConfig.indexOf("_") + 1) + "Runtime_NNV_" + dataType;
-//        filenameV = targetDir + filenameV;
+        String filenameV = pathLayerConfig.substring(0, pathLayerConfig.indexOf("_") + 1) + "Runtime_NNV_" + dataType;
+        filenameV = targetDir + filenameV;
 //        String filenameC = pathLayerConfig.substring(0, pathLayerConfig.indexOf("_") + 1) + "Runtime_Compared_" + dataType;
 //        filenameC = targetDir + filenameC;
-            writeRuntime(filenameR, runtimeR, pathLayerConfig, dataType);
-//            writeRuntime(filenameV, runtimeV, pathLayerConfig, dataType);
+        writeRuntime(filenameR, runtimeR, pathLayerConfig, dataType);
+            writeRuntime(filenameV, runtimeV, pathLayerConfig, dataType);
 //            writeRuntime(filenameC, runtimeC, pathLayerConfig, dataType);
 //        }
 //        catch(IOException e) {
@@ -304,14 +317,14 @@ public class  Main {
     public static long[][] runtimeVictor(String pathLayerConfig, String pathTrainingData,
                                          int trainingIteration, float learningRate,
                                          int runtimeIteration) throws IOException {
-        String[] func = getSigmoidFuncOnly(pathLayerConfig);
+//        String[] func = getSigmoidFuncOnly(pathLayerConfig);
         int[] layerConfig = NeuralUtilReise.getlayerConfig(pathLayerConfig);
         int inlen = layerConfig[0];
         int outlen = layerConfig[layerConfig.length - 1];
         long timesV[][] = new long[runtimeIteration][4];
         for(int i = 0; i < runtimeIteration; i++) {
             long start = System.nanoTime(); // time start
-            TrainingDataVic tdV = new TrainingDataVic(pathLayerConfig, pathTrainingData,inlen, outlen, func);
+            TrainingDataVic tdV = new TrainingDataVic(pathLayerConfig, pathTrainingData,inlen, outlen);
             timesV[i][1] = System.nanoTime(); // time getting Training Data
             NeuralNetworkVic nnV = new NeuralNetworkVic(tdV);
             timesV[i][0] = System.nanoTime(); // time layer config
@@ -573,23 +586,56 @@ public class  Main {
     public static void compareTotalError() throws IOException {
         String PathLay = "layer_config/";
         String PathTra = "training_data/";
-        String[] f = new String[]{"", "sigmoid", "sigmoid"};
+        String prefix = "V";
+//        String[] f = new String[]{"", "sigmoid", "sigmoid"};
+        File training_data = new File("training_data");
+        File layer_config = new File("layer_config");
+
+        File[] dirTrainingData = training_data.listFiles(pathname -> pathname.getName().startsWith(prefix));
+        File[] dirLayerConfig = layer_config.listFiles(pathname -> pathname.getName().startsWith(prefix));
+
+        Arrays.sort(dirTrainingData);
+        Arrays.sort(dirLayerConfig);
 
         NeuralNetworkReise nreise;
         NeuralNetworkVic nvic;
-
-        TrainingDataVic v10 = new TrainingDataVic(PathLay + "V10_layerConfig.csv", PathTra + "V10_tData.csv", 5,6, f);
+        TrainingDataVic tdata;
         //V10, R1,R5,R2,R3,
         //
         //initialisiere die trainingssätze
-        nreise = new NeuralNetworkReise(PathLay + "V10_layerConfig.csv", -1 , 1);
-        nvic = new NeuralNetworkVic(v10);
-        nreise.getTrainingDataLearnable(PathTra +"V10_tData.csv");
+//        nvic = new NeuralNetworkVic(tdata);
+//        nreise = new NeuralNetworkReise(PathLay + "V10_layerConfig.csv", -1 , 1);
+//        nreise.getTrainingDataLearnable(PathTra +"V10_tData.csv");
+//        nreise.weightAndBiasConfig(PathLay + "V10_layerConfig.csv");
+//
+//        nreise.train(10000, 0.05f);
+//        nreise.writeTotalErrors("python/totalErrorReise.csv");
+//
+//        nvic.train(100000, 0.05);
+//
+//        nreise.print();
+//        nvic.writeTotalErrors("python/totalErrorVic.csv");
+        // für jedes File aus der trainingsdatei
+        System.out.println("Starting with evaluating Training data ...");
+        for (int i = 9; i < 10; i++) {
 
-        nreise.train(10000, 0.05f);
-        nreise.writeTotalErrors("python/totalErrorReise.csv");
+            String tag = dirLayerConfig[i].getName();
+            tag = tag.substring(0, 3);
 
-        nvic.train(10000, 0.05);
-        nvic.writeTotalErrors("python/totalErrorVic.csv");
+            tdata = new TrainingDataVic(PathLay + dirLayerConfig[i].getName(), PathTra + dirTrainingData[i].getName());
+            nvic = new NeuralNetworkVic(tdata);
+            nreise = new NeuralNetworkReise(PathLay + dirLayerConfig[i].getName(), -1, 1);
+            nreise.getTrainingDataLearnable(PathTra + dirTrainingData[i].getName());
+//
+            nreise.train(100000, 0.05f);
+            nreise.writeTotalErrors("python/totalErrorReise_" + tag);
+            System.out.println("Finished Training Reise for " + tag);
+
+//
+//            nvic.train(10000, 0.05f);
+//            nvic.writeTotalErrors("python/totalErrorVic_" + tag + ".csv");
+//            System.out.println("Finished Training Victor for " + tag);
+        }
+
     }
 }
