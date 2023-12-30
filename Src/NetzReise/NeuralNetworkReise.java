@@ -1,9 +1,11 @@
 package Src.NetzReise;
 
+import Src.NetzVic.NeuralNetworkUtilVic;
 import Src.NetzVic.TrainingDataVic;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.*;
 
@@ -395,6 +397,26 @@ public class NeuralNetworkReise {
                 System.out.println(layers_t[layers_t.length - 1].neurons[j].fValue);
             }
         }
+    }
+
+    public void computeUnknownData(float[][] unknown, String filename) throws IOException {
+
+        String[][] ans = new String[unknown.length][];
+        for (int i = 0; i < unknown.length; i++) {
+            getOutputVektor(unknown[i]);
+            ans[i] = NeuralUtilReise.LayerToString(layers_t[layers_t.length-1]);
+        }
+
+        NeuralNetworkUtilVic.writeCSV(ans, "python/unknownOutputs/"+ filename + ".csv");
+    }
+
+    public float[] getOutputVektor(float[] input) {
+        run(input);
+        float[] output = new float[layers_t[layers_t.length-1].neurons.length];
+        for (int i = 0; i < output.length; i++) {
+            output[i] = layers_t[layers_t.length-1].neurons[i].fValue;
+        }
+        return output;
     }
 
     public void pass(String inputData) {

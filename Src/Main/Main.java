@@ -204,7 +204,9 @@ public class  Main {
 
 
         // Victors Platz End
-        compareTotalError();
+       // compareTotalError();
+       // learnrates();
+        //learnratesUnknowndata();
 
         
         // Philips Platz Begin
@@ -617,7 +619,7 @@ public class  Main {
 //        nvic.writeTotalErrors("python/totalErrorVic.csv");
         // für jedes File aus der trainingsdatei
         System.out.println("Starting with evaluating Training data ...");
-        for (int i = 9; i < 10; i++) {
+        for (int i = 1; i < 2; i++) {
 
             String tag = dirLayerConfig[i].getName();
             tag = tag.substring(0, 3);
@@ -627,14 +629,125 @@ public class  Main {
             nreise = new NeuralNetworkReise(PathLay + dirLayerConfig[i].getName(), -1, 1);
             nreise.getTrainingDataLearnable(PathTra + dirTrainingData[i].getName());
 //
-            nreise.train(100000, 0.05f);
+            nreise.train(100000, 10e6f);
             nreise.writeTotalErrors("python/totalErrorReise_" + tag);
             System.out.println("Finished Training Reise for " + tag);
 
+
+            nvic.train(100000, 0.05f);
+            nvic.writeTotalErrors("python/totalErrorVic_" + tag + ".csv");
+            System.out.println("Finished Training Victor for " + tag);
+        }
+
+    }
+
+    public static void learnrates() throws IOException {
+
+        String PathLay = "layer_config/V9_layerConfig.csv";
+        String PathTra = "training_data_known/V9_tData_known.csv";
+
+        float[] LRs = {
+                2.5f,
+                1.5f,
+                1.0f,
+                0.5f,
+                0.333f,
+                0.25f,
+                0.1f,
+                0.01f,
+                0.001f,
+                0.00001f
+
+        };
+
+
+        NeuralNetworkReise nreise;
+        NeuralNetworkVic nvic;
+        TrainingDataVic tdata = new TrainingDataVic(PathLay, PathTra);
+
+        System.out.println("Starting training with different LRs ...");
+        System.out.println("Used Training: V9");
+
+        for (float LR: LRs) {
+            nvic = new NeuralNetworkVic(tdata);
+
+            nreise = new NeuralNetworkReise(PathLay, -1 , 1);
+            nreise.getTrainingDataLearnable(PathTra);
+
+
+            nreise.train(10000, LR);
+            nreise.writeTotalErrors("python/learn/totalErrR_" + LR);
+            System.out.println("Finished Training Reise with " + LR);
+
+            float[] out = nreise.getOutputVektor(new float[] {1, 1, 1, 1 ,1 , 1, 1});
+            nreise.print();
+
+            nvic.train(10000, LR);
+            nvic.writeTotalErrors("python/learn/totalErrV_" + LR + ".csv");
+            System.out.println("Finished Training Victor with " + LR);
+
+
+        }
+
+    }
+
+
+    public static void learnratesUnknowndata() throws IOException {
+
+        String PathLay = "layer_config/V2_layerConfig.csv";
+        String PathTra = "training_data_known/V2_tData_known.csv";
+
+        float[] LRs = {
+                2.5f,
+                1.5f,
+                1.0f,
+                0.5f,
+                0.333f,
+                0.25f,
+                0.1f,
+                0.01f,
+                0.001f,
+                0.00001f
+
+        };
+
+        float[][] unknown = {
+                {0,0,1},
+                {0,0,0},
+                {1.0732638f,0.97688174f,1.0207669f},
+                {1.0947442f,1.0906969f,0.026270742f}
+        };
+
+
+        NeuralNetworkReise nreise;
+        NeuralNetworkVic nvic;
+        TrainingDataVic tdata = new TrainingDataVic(PathLay, PathTra);
+        TrainingDataVic tdataUnknown = new TrainingDataVic(PathLay,"training_data_unknown/V2_tData_unknown.csv");
+
+        System.out.println("Starting training with different LRs ...");
+        System.out.println("Used Training: V2");
+
+        for (float LR: LRs) {
+            nvic = new NeuralNetworkVic(tdata);
+
+            nreise = new NeuralNetworkReise(PathLay, -1 , 1);
+            nreise.getTrainingDataLearnable(PathTra);
+
+
+            nreise.train(10000, LR);
+            System.out.println("Finished Training Reise with " + LR);
+
+            nreise.computeUnknownData(unknown, "outputReise" + LR);
+
+
+
+
+//            nvic.train(10000, LR);
+//            System.out.println("Finished Training Victor with " + LR);
 //
-//            nvic.train(10000, 0.05f);
-//            nvic.writeTotalErrors("python/totalErrorVic_" + tag + ".csv");
-//            System.out.println("Finished Training Victor for " + tag);
+//            nvic.computeUnknownData(tdataUnknown, "outputVic"+ LR);
+
+
         }
 
     }

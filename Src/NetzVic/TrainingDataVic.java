@@ -64,8 +64,11 @@ public class TrainingDataVic {
     public TrainingDataVic(String[][] doc, String[][] traindata) {
         this.file = doc;
         this.traindata = traindata;
-        this.inputlength = Integer.parseInt(file[0][1]);
-        this.outputlength = Integer.parseInt(file[0][file[0].length-1]);
+        if(doc != null) {
+            this.inputlength = Integer.parseInt(file[0][1]);
+            this.outputlength = Integer.parseInt(file[0][file[0].length-1]);
+        }
+
         initInputsOutputs();
     }
 

@@ -248,15 +248,14 @@ public class NeuralNetworkVic {
         // this.saves= save.toArray(new Neuron[0][]);
     }
 
-    public void computeUnknwonData(TrainingDataVic unknown) {
+    public void computeUnknownData(TrainingDataVic unknown, String filename) throws IOException {
         List<double[]> uninputs = unknown.getInputs();
-        System.out.println("Victor's Netz: ");
-        System.out.println("Unknown data: ");
+        String[][] ans = new String[uninputs.size()][];
         for (int i = 0; i < uninputs.size(); i++) {
-            System.out.println("Input: " + i);
             compute(uninputs.get(i));
-            printOutput();
+            ans[i] = NeuralNetworkUtilVic.neuronToString(output);
         }
+        NeuralNetworkUtilVic.writeCSV(ans, "results/unknownOutputs/"+ filename + ".csv");
     }
 
     /**
@@ -335,14 +334,14 @@ public class NeuralNetworkVic {
             }
         }
         // nach dem training werte ausgeben
-
-        System.out.println("Victor's Netz: ");
-        System.out.println("Trainingdata: ");
-        for (int i = 0; i < train.getListInputSize(); i++) {
-            compute(train.getInput(i));
-            System.out.println("Input: " + i);
-            printOutput();
-        }
+//
+//        System.out.println("Victor's Netz: ");
+//        System.out.println("Trainingdata: ");
+//        for (int i = 0; i < train.getListInputSize(); i++) {
+//            compute(train.getInput(i));
+//            System.out.println("Input: " + i);
+//            printOutput();
+//        }
     }
 
     public void printOutput() {

@@ -4,34 +4,35 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="">
+    <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="fixed some bugs, continued on Totalerror">
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Main/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/NetzReise/NeuralUtilReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuralUtilReise.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/NetzVic/TrainingDataVic.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzVic/TrainingDataVic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layer_config/V1_layerConfig.csv" beforeDir="false" afterPath="$PROJECT_DIR$/layer_config/V1_layerConfig.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/layer_config/V2_layerConfig.csv" beforeDir="false" afterPath="$PROJECT_DIR$/layer_config/V2_layerConfig.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/layer_config/V8_layerConfig.csv" beforeDir="false" afterPath="$PROJECT_DIR$/layer_config/V8_layerConfig.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/LayerReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/LayerReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralNetworkReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralNetworkReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralUtilReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralUtilReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuronReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuronReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/TrainingDataReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/TrainingDataReise.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkUtilVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkUtilVic.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkVic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuronVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuronVic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/TrainingDataVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/TrainingDataVic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/layer_config/V1_layerConfig.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/layer_config/V1_layerConfig.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/layer_config/V2_layerConfig.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/layer_config/V2_layerConfig.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/layer_config/V8_layerConfig.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/layer_config/V8_layerConfig.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/python/TotalError.py" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/python/TotalError.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/python/plots/vic_plot1.png" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/python/plots/vic_plot1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R1_Unknown_NNR_partial_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R1_Unknown_NNR_whole_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R2_Unknown_NNR_partial_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R2_Unknown_NNR_whole_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R1_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R1_Runtime_NNR_noise_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R1_Runtime_NNR_whole_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R2_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R2_Runtime_NNR_noise_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R2_Runtime_NNR_whole_dataset.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/python/TotalError.py" beforeDir="false" afterPath="$PROJECT_DIR$/python/TotalError.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/python/plots/vic_plot1.png" beforeDir="false" afterPath="$PROJECT_DIR$/python/plots/vic_plot1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training_data/R2_tData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data/R2_tData.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training_data/V6_tData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data/V6_tData.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training_data_known/V9_tData_known.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_known/V9_tData_known.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/training_data_unknown/V9_tData_unknown.csv" beforeDir="false" afterPath="$PROJECT_DIR$/training_data_unknown/V9_tData_unknown.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,8 +42,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="Class" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -83,7 +84,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.keymap",
+    "settings.editor.selected.configurable": "reference.settingsdialog.IDE.editor.colors.Console Colors",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -96,16 +97,17 @@
       <recent name="$PROJECT_DIR$/Src/NetzVic" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/../" />
+      <recent name="$PROJECT_DIR$/python/tets" />
+      <recent name="$PROJECT_DIR$/python/learn" />
+      <recent name="$PROJECT_DIR$/python/errors" />
       <recent name="$PROJECT_DIR$/python" />
-      <recent name="S:\HBRS\neural network\git repo\main\HBRS-neural-network\layer_config" />
-      <recent name="S:\HBRS\neural network\git repo\main\HBRS-neural-network\training_data" />
+      <recent name="$PROJECT_DIR$/../" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Src.NetzVic" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Src.Main.Main">
+  <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Src.NetzReise.Main" />
       <module name="HBRS-neural-network" />
@@ -233,7 +235,23 @@
       <workItem from="1703178396458" duration="14000" />
       <workItem from="1703178592973" duration="2186000" />
       <workItem from="1703803375447" duration="12074000" />
+      <workItem from="1703816842236" duration="316000" />
+      <workItem from="1703854687617" duration="3622000" />
+      <workItem from="1703858697994" duration="7129000" />
+      <workItem from="1703945505257" duration="1601000" />
+      <workItem from="1703947225613" duration="1942000" />
+      <workItem from="1703949452275" duration="104000" />
+      <workItem from="1703953049010" duration="17474000" />
     </task>
+    <task id="LOCAL-00001" summary="fixed some bugs, continued on Totalerror">
+      <option name="closed" value="true" />
+      <created>1703817099057</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1703817099057</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -241,6 +259,21 @@
   </component>
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixed some bugs, continued on Totalerror" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some bugs, continued on Totalerror" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -251,37 +284,85 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/Src/Main/Main.java</url>
-          <line>216</line>
+          <line>218</line>
           <properties class="Src.Main.Main" method="runtimeComparison">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="9" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java</url>
+          <line>401</line>
+          <properties class="Src.NetzReise.NeuralNetworkReise" method="computeUnknownData">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Src/Main/Main.java</url>
-          <line>474</line>
+          <line>476</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java</url>
-          <line>387</line>
+          <line>386</line>
           <option name="timeStamp" value="21" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java</url>
-          <line>416</line>
+          <line>415</line>
           <option name="timeStamp" value="22" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/Src/Main/Main.java</url>
-          <line>626</line>
-          <option name="timeStamp" value="31" />
+          <line>681</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Src/Main/Main.java</url>
+          <line>724</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Src/Main/Main.java</url>
+          <line>739</line>
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java</url>
+          <line>409</line>
+          <option name="timeStamp" value="39" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/Learnrates.py</url>
+          <line>39</line>
+          <option name="timeStamp" value="25" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/Learnrates.py</url>
+          <line>26</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/UnknownLR.py</url>
+          <line>48</line>
+          <option name="timeStamp" value="33" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/python/UnknownLR.py</url>
+          <line>54</line>
+          <option name="timeStamp" value="34" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Main_java$Learnrates.coverage" NAME="Learnrates Coverage Results" MODIFIED="1703959903831" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/Main_java$UnknownLR.coverage" NAME="UnknownLR Coverage Results" MODIFIED="1703972445628" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/Main_java$test.coverage" NAME="test Coverage Results" MODIFIED="1703960649683" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
+    <SUITE FILE_PATH="coverage/Main_java$TotalError.coverage" NAME="TotalError Coverage Results" MODIFIED="1703955234807" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
     <SUITE FILE_PATH="coverage/NeuralNetwork_java$TotalError.coverage" NAME="TotalError Coverage Results" MODIFIED="1703794463595" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/python" />
   </component>
 </project>

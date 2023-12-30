@@ -1,4 +1,6 @@
 package Src.NetzReise;
+import Src.NetzVic.NeuronVic;
+
 import java.io.*;
 import java.util.*;
 
@@ -375,5 +377,16 @@ public class NeuralUtilReise {
             }
         }
         return res;
+    }
+
+
+    public static String[] LayerToString(LayerReise l) {
+
+        String[] temp = new String[l.neurons.length];
+        for (int i = 0; i < temp.length; i++) {
+            temp[i] = Float.toString(l.neurons[i].fValue);
+
+        }
+        return temp;
     }
 }
