@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="fixed some bugs, continued on Totalerror">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/LayerReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/LayerReise.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralNetworkReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralNetworkReise.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralUtilReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuralUtilReise.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuronReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/NeuronReise.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/TrainingDataReise.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzReise/TrainingDataReise.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkUtilVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkUtilVic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkVic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuronVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuronVic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/TrainingDataVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/TrainingDataVic.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/runtime/R1_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/runtime/R1_Runtime_NNR_noise_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/runtime/R1_Runtime_NNR_whole_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/runtime/R2_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/runtime/R2_Runtime_NNR_noise_dataset.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/results/runtime/R2_Runtime_NNR_whole_dataset.csv" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 4
+}</component>
+  <component name="ProjectId" id="2WLtgZKDZEcVGBqBO5msT9Z5yW5" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;22&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/H-BRS/git/HBRS-neural-network/layer_config_2&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.fileTypes&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\H-BRS\git\HBRS-neural-network\layer_config_2" />
+      <recent name="D:\H-BRS\git\HBRS-neural-network\training_data_unknown" />
+      <recent name="D:\H-BRS\git\HBRS-neural-network\training_data_known" />
+      <recent name="D:\H-BRS\git\HBRS-neural-network\training_data_merge_clean_noise" />
+      <recent name="$PROJECT_DIR$/training_data" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/python/tets" />
+      <recent name="$PROJECT_DIR$/python/learn" />
+      <recent name="$PROJECT_DIR$/python/errors" />
+      <recent name="$PROJECT_DIR$/python" />
+      <recent name="$PROJECT_DIR$/../" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="Src.NetzVic" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.Src.Main.Main">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="Src.NetzReise.Main" />
+      <module name="HBRS-neural-network" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Src.Main.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Src.Main.Main" />
+      <module name="HBRS-neural-network" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Src.Main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Temp" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Src.Main.Temp" />
+      <module name="HBRS-neural-network" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Src.Main.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NNVic_Test.testTraining1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="HBRS-neural-network" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Src.Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Src.Tests" />
+      <option name="MAIN_CLASS_NAME" value="Src.Tests.NNVic_Test" />
+      <option name="METHOD_NAME" value="testTraining1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NNVic_Test.testTraining2" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="HBRS-neural-network" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Src.Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Src.Tests" />
+      <option name="MAIN_CLASS_NAME" value="Src.Tests.NNVic_Test" />
+      <option name="METHOD_NAME" value="testTraining2" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NNVic_Test.testTraining4" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="HBRS-neural-network" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="Src.Tests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="Src.Tests" />
+      <option name="MAIN_CLASS_NAME" value="Src.Tests.NNVic_Test" />
+      <option name="METHOD_NAME" value="testTraining4" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Main" />
+      <item itemvalue="Application.Temp" />
+      <item itemvalue="Application.Src.Main.Main" />
+      <item itemvalue="JUnit.NNVic_Test.testTraining1" />
+      <item itemvalue="JUnit.NNVic_Test.testTraining4" />
+      <item itemvalue="JUnit.NNVic_Test.testTraining2" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Src.Main.Main" />
+        <item itemvalue="Application.Temp" />
+        <item itemvalue="JUnit.NNVic_Test.testTraining1" />
+        <item itemvalue="JUnit.NNVic_Test.testTraining4" />
+        <item itemvalue="JUnit.NNVic_Test.testTraining2" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="" />
+      <created>1696523799911</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1696523799911</updated>
+      <workItem from="1702215250939" duration="2217000" />
+      <workItem from="1702217483745" duration="3572000" />
+      <workItem from="1702300045286" duration="91000" />
+      <workItem from="1702300144309" duration="2097000" />
+      <workItem from="1702391313607" duration="1787000" />
+      <workItem from="1702891473963" duration="5000" />
+      <workItem from="1703152855382" duration="3913000" />
+      <workItem from="1703172390472" duration="5595000" />
+      <workItem from="1703178396458" duration="14000" />
+      <workItem from="1703178592973" duration="2186000" />
+      <workItem from="1703803375447" duration="12074000" />
+      <workItem from="1703816842236" duration="316000" />
+      <workItem from="1703854687617" duration="3622000" />
+      <workItem from="1703858697994" duration="7129000" />
+      <workItem from="1703945505257" duration="1601000" />
+      <workItem from="1703947225613" duration="1942000" />
+      <workItem from="1703949452275" duration="104000" />
+      <workItem from="1703953049010" duration="17474000" />
+    </task>
+    <task id="LOCAL-00001" summary="fixed some bugs, continued on Totalerror">
+      <option name="closed" value="true" />
+      <created>1703817099057</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1703817099057</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.csv" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="fixed some bugs, continued on Totalerror" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed some bugs, continued on Totalerror" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.io.FileNotFoundException" package="java.io" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java</url>
+          <line>461</line>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java</url>
+          <line>490</line>
+          <option name="timeStamp" value="22" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

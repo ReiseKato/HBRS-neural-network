@@ -1,0 +1,6 @@
+Goal total Error evaluation
+Training Data: R1_tData.csv_merge.csv
+LayerConfig: [6, 7, 5, 3]
+Target Total Error: 0.2
+Reise total Error and Iteration needed: 0.199537351209454  -  82.0
+Victor total Error and Iteration needed: 0.0  -  0.0

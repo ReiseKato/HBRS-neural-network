@@ -258,6 +258,65 @@ public class NeuralNetworkVic {
         NeuralNetworkUtilVic.writeCSV(ans, "results/unknownOutputs/"+ filename + ".csv");
     }
 
+    public double computeWithTotalError(double[] dataset) {
+        NeuronVic[] v; // Vektor
+        double[][] wMatrix; // Matrix
+
+        //setze den input des networks auf den übergebenen datensatz
+        for (int i = 0; i < input.length; i++) {
+            input[i].value = dataset[i];
+            input[i].valbeforecomp = dataset[i];
+        }
+
+        // gehe das Netzwerk Vektor für Vektor durch
+        for (int i = 0; i < network.length - 1; i++) {
+            v = network[i]; // i-ter Vektor
+            wMatrix = NeuralNetworkUtilVic.transposeMatrix(weights[i]);// weight Matrix der iten Ebene
+            //vorher Matrix transponieren
+            // berechne das matrix vektorprodukt aus wMatrix * v
+            v = NeuralNetworkUtilVic.matrixVectorMultiplication(wMatrix, v);
+            //addiere das Ergebnis mit dem BiasVektor der akt. Ebene
+            for (int j = 0; j < v.length; j++) {
+                v[j].value += biases[i][j].bias;
+            }
+            network[i + 1] = v;
+            //führe für das Ergebnis aus der M*V, die Aktivierungsfunktion aus für alle Neuronen aus
+            for (int j = 0; j < network[i + 1].length; j++) {
+                network[i + 1][j].compute(func[i + 1]);
+            }
+        }
+        //output layer aktualisieren
+        output = network[network.length - 1];
+        // this.saves= save.toArray(new Neuron[0][]);
+
+        return  0;
+    }
+
+    public double[] computeUnknownData(TrainingDataVic unknown) throws IOException {
+        double totalError = 0;
+        double totalErrorSum = 0;
+        double[] dTotalErrors = new double[unknown.getListInputSize() + 1];
+        List<double[]> uninputs = unknown.getInputs();
+        String[][] ans = new String[uninputs.size()][];
+        for (int i = 0; i < uninputs.size(); i++) {
+            compute(uninputs.get(i));
+            ans[i] = NeuralNetworkUtilVic.neuronToString(output);
+            totalError = 0;
+            for(int j = 0; j < output.length; j++) {
+                totalError += 0.5*(output[j].getValue() - unknown.getOutput(i)[j])*(output[j].getValue() - unknown.getOutput(i)[j]);
+            }
+            dTotalErrors[i] = totalError;
+            totalErrorSum += totalError;
+        }
+        if(totalErrorSum != 0) {
+            totalErrorSum = totalErrorSum/unknown.getListInputSize();
+        }
+//        NeuralNetworkUtilVic.writeCSV(ans, "results/unknownOutputs/"+ filename + ".csv");
+        dTotalErrors[unknown.getListInputSize()] = totalErrorSum;
+
+        return dTotalErrors;
+    }
+
     /**
      * bestimme den Gesamt-Fehler für einen Datensatz
      *
@@ -497,4 +556,9 @@ public class NeuralNetworkVic {
     public double getCurrentTotalError() {
         return currentTotalError;
     }
+
+//    public double[] passWithExpectedOutput(String data) {
+//        double[] totalErrors;
+//        return totalErrors;
+//    }
 }
