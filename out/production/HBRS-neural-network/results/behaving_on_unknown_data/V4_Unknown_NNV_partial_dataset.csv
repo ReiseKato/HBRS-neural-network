@@ -1,0 +1,8 @@
+layers: [3, 6, 8] partial_dataset
+Training Iteration: 100000
+Learning Rate: 0.05
+
+Total Error for each data:
+4.1114655009671203E-4;2.4373962959008924E-5;4.276160277981014E-4;0.0014325474239894665
+
+Mean of total Error: 5.739209912108222E-4

@@ -1,6 +1,9 @@
 Goal total Error evaluation
 Training Data: noise_R1_tData.csv
 LayerConfig: [6, 7, 5, 3]
-Target Total Error: 0.2
-Reise total Error and Iteration needed: 0.1988763507348692  -  125.0
-Victor total Error and Iteration needed: 0.0  -  0.0
+Learning Rate: 0.05
+Target Total Error: 0.05
+
+Reise total Error, Iteration and Time needed: 0.04979805629523847  -  392.0  -  3.5497611E9 (time)
+Victor total Error, Iteration and Time needed: 0.049316806214635946  -  1682.0  -  2.136735E8 (time)
+Comparison; Reise MINUS Victor: 4.8125008060252716E-4  -  -1290.0  -  3.3360876E9 (time)

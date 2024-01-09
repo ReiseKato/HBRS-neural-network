@@ -1,0 +1,9 @@
+Goal total Error evaluation
+Training Data: R4_tData.csv
+LayerConfig: [5, 5, 3]
+Learning Rate: 0.05
+Target Total Error: 0.05
+
+Reise total Error, Iteration and Time needed: 0.04994824450029829  -  625.0  -  1.29791E9 (time)
+Victor total Error, Iteration and Time needed: 0.049918279872341494  -  884.0  -  2.48264E7 (time)
+Comparison; Reise MINUS Victor: 2.996462795679805E-5  -  -259.0  -  1.2730836E9 (time)

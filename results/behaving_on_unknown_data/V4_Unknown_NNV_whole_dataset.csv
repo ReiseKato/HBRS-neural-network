@@ -1,0 +1,8 @@
+layers: [3, 6, 8] whole_dataset
+Training Iteration: 100000
+Learning Rate: 0.05
+
+Total Error for each data:
+2.751679373349563E-4;3.15751479961637E-5;3.09030684142778E-4;4.5858897428669376E-4
+
+Mean of total Error: 2.6859068594014797E-4

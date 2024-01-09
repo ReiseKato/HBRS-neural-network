@@ -41,10 +41,10 @@ public class  Main {
         // Reise CODE Begin
         // CONSTANT Begin
 
-        int ITERATION_NETWORK_TRAINING = 10; // define how many training iterations
+        int ITERATION_NETWORK_TRAINING = 100; // define how many training iterations
         float LEARNING_RATE = 0.05f; // define learning rate
-        double TARGET_TOTAL_ERROR = 0.2; // define target total Error
-        int runtimeIteration = 3; // define how often the method has to calculate the runtime
+        double TARGET_TOTAL_ERROR = 0.05; // define target total Error
+        int runtimeIteration = 20; // define how often the method has to calculate the runtime
         String CLEAN_DATASET = "clean_dataset";
         String NOISE_DATASET = "noise_dataset";
         String WHOLE_DATASET = "whole_dataset";
@@ -129,49 +129,80 @@ public class  Main {
                 sPathTrainingDataUnknown = dirTrainingUnknownListing[i].getPath();
                 sPathLayerConfig = dirLayerListing[i].getPath();
                 sPathLayerConfigAlternative = dirLayerAlternativeListing[i].getPath();
+                System.out.println(i);
+                System.out.println(dirLayerListing[i].getName());
                 // runtime
+                ITERATION_NETWORK_TRAINING = 100;
                 runtimeComparison(sPathLayerConfig, sPathTrainingDataClean, sPathTargetDirRuntime,
                         ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, CLEAN_DATASET);
+                System.out.println("runtime clean done");
                 runtimeComparison(sPathLayerConfig, sPathTrainingDataNoise, sPathTargetDirRuntime,
                         ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, NOISE_DATASET);
+                System.out.println("runtime noise done");
                 runtimeComparison(sPathLayerConfig, sPathTrainingDataMerged, sPathTargetDirRuntime,
                         ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration, WHOLE_DATASET);
+                System.out.println("runtime whole done");
                 // runtime on alternative Layer configuration
                 runtimeComparison(sPathLayerConfigAlternative, sPathTrainingDataClean, sPathTargetDirRuntime,
                         ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration,
                         CLEAN_DATASET + LAYER_ALTERNATIVE);
+                System.out.println("runtime clean 2 done");
                 runtimeComparison(sPathLayerConfigAlternative, sPathTrainingDataNoise, sPathTargetDirRuntime,
                         ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration,
                         NOISE_DATASET + LAYER_ALTERNATIVE);
+                System.out.println("runtime noise 2 done");
                 runtimeComparison(sPathLayerConfigAlternative, sPathTrainingDataMerged, sPathTargetDirRuntime,
                         ITERATION_NETWORK_TRAINING, LEARNING_RATE, runtimeIteration,
                         WHOLE_DATASET + LAYER_ALTERNATIVE);
+                System.out.println("runtime whole 2 done");
+                System.gc();
                 // unknown data
+                ITERATION_NETWORK_TRAINING = 100000;
                 unknownDataComparison(sPathLayerConfig, sPathTrainingDataMerged, sPathTrainingDataUnknown,
                         sPathTargetDirUnknown, ITERATION_NETWORK_TRAINING, LEARNING_RATE, WHOLE_DATASET);
+                System.out.println("unknown data whole done");
+                System.gc();
                 unknownDataComparison(sPathLayerConfig, sPathTrainingDataKnown, sPathTrainingDataUnknown,
                         sPathTargetDirUnknown, ITERATION_NETWORK_TRAINING, LEARNING_RATE, PARTIAL_DATASET);
+                System.out.println("unknown data partial done");
+                System.gc();
                 // unknown data on alternative Layer configuration
                 unknownDataComparison(sPathLayerConfigAlternative, sPathTrainingDataMerged, sPathTrainingDataUnknown,
                         sPathTargetDirUnknown, ITERATION_NETWORK_TRAINING, LEARNING_RATE,
                         WHOLE_DATASET + LAYER_ALTERNATIVE);
+                System.out.println("unknown data whole 2 done");
+                System.gc();
                 unknownDataComparison(sPathLayerConfigAlternative, sPathTrainingDataKnown, sPathTrainingDataUnknown,
                         sPathTargetDirUnknown, ITERATION_NETWORK_TRAINING, LEARNING_RATE,
                         PARTIAL_DATASET + LAYER_ALTERNATIVE);
+                System.out.println("unknown data partial 2 done");
+                System.gc();
                 // target total Error
                 requiredIterationComparison(sPathLayerConfig, sPathTrainingDataClean, TARGET_TOTAL_ERROR,
                         sPathTargetDirTargetTotalError, LEARNING_RATE, CLEAN_DATASET);
+                System.out.println("required iteration clean done");
+                System.gc();
                 requiredIterationComparison(sPathLayerConfig, sPathTrainingDataNoise, TARGET_TOTAL_ERROR,
                         sPathTargetDirTargetTotalError, LEARNING_RATE, NOISE_DATASET);
+                System.out.println("required iteration noise done");
+                System.gc();
                 requiredIterationComparison(sPathLayerConfig, sPathTrainingDataMerged, TARGET_TOTAL_ERROR,
                         sPathTargetDirTargetTotalError, LEARNING_RATE, WHOLE_DATASET);
+                System.out.println("required iteration whole done");
+                System.gc();
                 // target total Error on alternative Layer configuration
                 requiredIterationComparison(sPathLayerConfigAlternative, sPathTrainingDataClean, TARGET_TOTAL_ERROR,
                         sPathTargetDirTargetTotalError, LEARNING_RATE, CLEAN_DATASET + LAYER_ALTERNATIVE);
+                System.out.println("required iteration clean 2 done");
+                System.gc();
                 requiredIterationComparison(sPathLayerConfigAlternative, sPathTrainingDataNoise, TARGET_TOTAL_ERROR,
                         sPathTargetDirTargetTotalError, LEARNING_RATE, NOISE_DATASET + LAYER_ALTERNATIVE);
+                System.out.println("required iteration noise 2 done");
+                System.gc();
                 requiredIterationComparison(sPathLayerConfigAlternative, sPathTrainingDataMerged, TARGET_TOTAL_ERROR,
                         sPathTargetDirTargetTotalError, LEARNING_RATE, WHOLE_DATASET + LAYER_ALTERNATIVE);
+                System.out.println("required iteration whole 2 done");
+                System.gc();
             }
         }
 
@@ -210,6 +241,7 @@ public class  Main {
         long[][] runtimeV = runtimeVictor(pathLayerConfig, pathTrainingData,
                 trainingIteration, learningRate, runtimeIteration);
         long[][] runtimeC = getComparisonReiseMinusVictor(runtimeR, runtimeV);
+//        double[][] runtimeD = getComparisonReiseDividedVictor(runtimeR, runtimeV);
 
         File name_t = new File(pathLayerConfig);
         String sName = name_t.getName();
@@ -219,9 +251,12 @@ public class  Main {
         filenameV = targetDir + filenameV;
         String filenameC = sName.substring(0, sName.indexOf("_") + 1) + "Runtime_Compared_" + dataType;
         filenameC = targetDir + filenameC;
+//        String filenameD = sName.substring(0, sName.indexOf("_") + 1) + "Runtime_Compared_Division_" + dataType;
+//        filenameD = targetDir + filenameD;
         writeRuntime(filenameR, runtimeR, pathLayerConfig, trainingIteration, learningRate, dataType);
         writeRuntime(filenameV, runtimeV, pathLayerConfig, trainingIteration, learningRate, dataType);
         writeRuntime(filenameC, runtimeC, pathLayerConfig, trainingIteration, learningRate, dataType);
+//        writeRuntimeDouble(filenameD, runtimeD, pathLayerConfig, trainingIteration, learningRate, dataType);
 //        }
 //        catch(IOException e) {
 //            System.out.println(e);
@@ -344,10 +379,10 @@ public class  Main {
             timesV[i][0] = timesV[i][0] - timesV[i][1]; // final layer config time
             timesV[i][1] = timesV[i][1] - start; // final getting training data time
 
-//            if(timesV[i][2] + timesV[i][1] + timesV[i][0] != timesV[i][3]) {
-//                long error[] = {Long.MAX_VALUE, Long.MAX_VALUE, Long.MAX_VALUE, Long.MAX_VALUE};
-//                timesV[i] = error;
-//            }
+            if(timesV[i][2] + timesV[i][1] + timesV[i][0] != timesV[i][3]) {
+                long error[] = {Long.MAX_VALUE, Long.MAX_VALUE, Long.MAX_VALUE, Long.MAX_VALUE};
+                timesV[i] = error;
+            }
         }
 
         return timesV;
@@ -368,6 +403,31 @@ public class  Main {
 //            long[] compared1D = new long[arrNNR.length];
             for(int j = 0; j < arrNNR.length; j++) {
                 compared2D[i][j] = arrNNR[j] - arrNNV[j];
+            }
+        }
+        return compared2D;
+    }
+
+    public static double[][] getComparisonReiseDividedVictor(long[][] resultNNR, long[][] resultNNV)
+            throws IndexOutOfBoundsException {
+        if(resultNNR.length != resultNNV.length) {
+            throw new IndexOutOfBoundsException("result data are not same length");
+        }
+        double[][] compared2D = new double[resultNNR.length][resultNNR[0].length];
+        for(int i = 0; i < resultNNR.length; i++) {
+            long[] arrNNR = resultNNR[i];
+            long[] arrNNV = resultNNV[i];
+            if(arrNNR.length != arrNNV.length) {
+                throw new IndexOutOfBoundsException("column length do not match");
+            }
+//            long[] compared1D = new long[arrNNR.length];
+            for(int j = 0; j < arrNNR.length; j++) {
+                if(arrNNR[j] != 0 || arrNNV[j] != 0) {
+                    compared2D[i][j] = (double)(arrNNR[j] / arrNNV[j]);
+                }
+                else {
+                    compared2D[i][j] = Long.MAX_VALUE;
+                }
             }
         }
         return compared2D;
@@ -401,6 +461,120 @@ public class  Main {
                 int i = 0;
                 for (long timeArr[] : arrTimes) {
                     for(long time : timeArr) {
+                        if (i != arrTimes[0].length - 1) {
+                            printWriter.print(time + ";");
+                        } else {
+                            printWriter.print(time);
+                        }
+                        ++i;
+                    }
+                    i = 0;
+                    printWriter.println();
+                }
+            }
+            printWriter.println();
+
+            // mean
+            printWriter.println("Mean");
+            long means[] = new long[4];
+
+            for(int i = 0; i < arrTimes[0].length; i++) {
+                for(int j = 0; j < arrTimes.length; j++) {
+                    switch (i) {
+                        case 0:
+                            means[0] += arrTimes[j][i];
+                            break;
+                        case 1:
+                            means[1] += arrTimes[j][i];
+                            break;
+                        case 2:
+                            means[2] += arrTimes[j][i];
+                            break;
+                        case 3:
+                            means[3] += arrTimes[j][i];
+                            break;
+                        default:
+                            printWriter.println("error with mean" + i);
+                            break;
+                    }
+                }
+            }
+            for(int i = 0; i < means.length; i++) {
+                means[i] = means[i]/arrTimes.length;
+                if(i != means.length - 1) {
+                    printWriter.print(means[i] + ";");
+                } else {
+                    printWriter.print(means[i]);
+                }
+            }
+
+//            // standard deviation
+//            printWriter.println("standard deviation");
+//            long std[] = new long[4];
+//            for(int i = 0; i < arrTimes[0].length; i++) {
+//                for(int j = 0; j < arrTimes.length; j++) {
+//                    switch (i) {
+//                        case 0:
+//                            std[0] += Math.pow(arrTimes[j][i] - means[0], 2);
+//                            break;
+//                        case 1:
+//                            std[1] += Math.pow(arrTimes[j][i] - means[1], 2);
+//                            break;
+//                        case 2:
+//                            std[2] += Math.pow(arrTimes[j][i] - means[2], 2);
+//                            break;
+//                        case 3:
+//                            std[3] += Math.pow(arrTimes[j][i] - means[3], 2);
+//                            break;
+//                        default:
+//                            printWriter.println("error with std" + i);
+//                            break;
+//                    }
+//                }
+//            }
+//            for(int i = 0; i < std.length; i++) {
+//                std[i] = std[i]/arrTimes.length;
+//                if(i != std.length - 1) {
+//                    printWriter.print(std[i] + ";");
+//                } else {
+//                    printWriter.print(std[i]);
+//                }
+//            }
+
+            printWriter.close();
+        } catch(FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeRuntimeDouble(String filename, double[][] arrTimes, String pathLayerConfig, int trainingIteration,
+                                    float learningRate, String note) {
+        PrintWriter printWriter;
+        try {
+            if(filename.charAt(filename.length() - 1) != 'v') {
+                filename += ".csv";
+            }
+            File csvFile = new File(filename);
+            printWriter = new PrintWriter(csvFile);
+            if(arrTimes[0].length != 4) {
+                printWriter.println("incorrect array");
+            } else {
+                String sLayerConfig = "";
+                try{
+                    BufferedReader bufferedReader = new BufferedReader(new FileReader(pathLayerConfig));
+                    sLayerConfig = bufferedReader.readLine();
+                } catch(FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch(IOException e) {
+                    e.printStackTrace();
+                }
+                printWriter.println(sLayerConfig);
+                printWriter.println("Training Iteration: " + trainingIteration);
+                printWriter.println("Learning Rate: " + learningRate + "\n");
+                printWriter.println("Layer;Data;Train;Runtime  -  " + note);
+                int i = 0;
+                for (double timeArr[] : arrTimes) {
+                    for(double time : timeArr) {
                         if (i != arrTimes[0].length - 1) {
                             printWriter.print(time + ";");
                         } else {
@@ -551,6 +725,10 @@ public class  Main {
                 ++trainIterations;
                 double[] totalErrors = nnR.passWithExpectedOutput(pathTrainingData);
                 totalError = totalErrors[totalErrors.length - 1];
+                if(trainIterations > 100000) {
+                    trainIterations = 999999;
+                    break;
+                }
             }
             while(totalError > deltaGoal);
             resultData[2] = System.nanoTime() - resultData[2];
@@ -569,6 +747,10 @@ public class  Main {
                 do {
                     nnV.train(1, trainingRate);
                     ++trainIterations;
+                    if(trainIterations > 100000) {
+                        trainIterations = 999999;
+                        break;
+                    }
                 }
                 while(nnV.getCurrentTotalError() > deltaGoal);
                 resultData[2] = System.nanoTime() - resultData[2];

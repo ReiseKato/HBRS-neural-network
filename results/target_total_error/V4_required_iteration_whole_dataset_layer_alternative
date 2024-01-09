@@ -1,0 +1,9 @@
+Goal total Error evaluation
+Training Data: V4_tData.csv_merge.csv
+LayerConfig: [3, 6, 10, 15, 10, 8]
+Learning Rate: 0.05
+Target Total Error: 0.05
+
+Reise total Error, Iteration and Time needed: 0.04989399754232464  -  1808.0  -  2.060312701E9 (time)
+Victor total Error, Iteration and Time needed: 0.04980029109903981  -  1225.0  -  1.14944E8 (time)
+Comparison; Reise MINUS Victor: 9.370644328483141E-5  -  583.0  -  1.945368701E9 (time)

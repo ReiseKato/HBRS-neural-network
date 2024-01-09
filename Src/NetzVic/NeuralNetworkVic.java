@@ -374,7 +374,7 @@ public class NeuralNetworkVic {
                 //calculate the loss
                 double loss = determineTotalError(output);
                 currentTotalError = loss;
-                totalErrors.add(loss);
+//                totalErrors.add(loss);
 
                 // wenn nötig passe LR an
                /* if(i == 0) {
