@@ -5,13 +5,13 @@ import csv
 import os
 
 dirpath = "learn"
-
+# fertige sortierte liste mit allen dateien im verzeichnis an
 files = sorted(os.listdir(dirpath))
 dataV = []
 dataR = []
 
-length = 221
-
+length = 221# anzahl der trainingssätze in V9
+# lese csv dateien ein
 for file in files:
     if file.endswith(".csv"):
         file_path = os.path.join(dirpath, file)
@@ -26,11 +26,14 @@ for file in files:
 
 meanErrorR = []
 meanErrorV = []
+
+# berechne durchschnittlichen Fehler
 for i in range(0, len(dataV)):
     temp1 = []
     temp2 = []
     #print(i)
     for j in range(0, len(dataV[i]) - 2, length):
+        # berechne die summe von j bis j + 221 / 221 (wandle strings in float um )
         temp1.append(sum(map(float, filter(None, dataV[i][j:j + length]))) / length)
         temp2.append(sum(map(float, filter(None, dataR[i][j:j + length]))) / length)
 
@@ -46,17 +49,13 @@ x2 = np.arange(20000)
 
 LRs = [
     0.001,
-    0.01,
     0.1,
-    0.25,
-    0.333,
-    0.5,
     1.0,
     0.00001,
     1.5,
     2.5
 ]
-
+# erstelle Graphen
 for i in range(0, len(LRs)):
     print(i)
     # if i == 1:

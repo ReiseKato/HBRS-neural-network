@@ -142,7 +142,7 @@ x = np.arange(200000)
 #         axs[i, j].set_xlabel('Iterationen')  # Achsenbeschriftung
 #         axs[i, j].set_ylabel('Durchschnittlicher Fehler pro Iteration')  # Achsenbeschriftung
 
-for i in range(1, 2):
+for i in range(0, len(length)):
     plt.plot(x, meanErrorR[i], label='Netz Reise', color=np.random.choice(colors))
     plt.plot(x, meanErrorV[i], label='Netz Victor', color=np.random.choice(colors))
     plt.legend()

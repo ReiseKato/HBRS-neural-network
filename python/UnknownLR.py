@@ -4,7 +4,7 @@ from matplotlib import pyplot as plt
 import csv
 import os
 from collections import deque
-
+# lese die tatsächlichen Werte ein
 y_actual = np.array([])
 y_actual = np.empty((0, 6))
 
@@ -16,11 +16,13 @@ with open("y_actual.csv") as csv_file:
 
 
 
-path = "tets"
+path = "unLearn"
+
 
 files = sorted(os.listdir(path))
 linked_list = deque()
-
+# lese die ausgabe Werte der Netze für die unbekannten daten ein
+# speichere 2D npArrays in verketteter Liste
 for file in files:
     file_path = os.path.join(path, file)
     cfile = np.empty((0, 6))
@@ -35,11 +37,7 @@ for file in files:
 
 LRs = [
     0.001,
-    0.01,
     0.1,
-    0.25,
-    0.333,
-    0.5,
     1.0,
     0.00001,
     1.5,
@@ -49,7 +47,7 @@ LRs = [
 print(linked_list)
 x_val = np.arange(1, 7)
 
-
+# plote die linked list indem Fall für victor
 for i in range(len(linked_list)):
     temp = linked_list[i]
     for j in range(len(temp)):

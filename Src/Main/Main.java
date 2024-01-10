@@ -791,7 +791,6 @@ public class  Main {
     }
 
     // Reise Method End
-
     public static void compareTotalError() throws IOException {
         String PathLay = "layer_config/";
         String PathTra = "training_data/";
@@ -802,7 +801,7 @@ public class  Main {
 
         File[] dirTrainingData = training_data.listFiles(pathname -> pathname.getName().startsWith(prefix));
         File[] dirLayerConfig = layer_config.listFiles(pathname -> pathname.getName().startsWith(prefix));
-
+        //sortieren damit für training die richtige layer Konfiguration benutzt wird
         Arrays.sort(dirTrainingData);
         Arrays.sort(dirLayerConfig);
 
@@ -827,15 +826,13 @@ public class  Main {
         // für jedes File aus der trainingsdatei
         System.out.println("Starting with evaluating Training data ...");
         for (int i = 1; i < 2; i++) {
-
+            // scheide das Kürzel raus damit man die Daten unterscheiden Kann
             String tag = dirLayerConfig[i].getName();
             tag = tag.substring(0, 3);
-
-            tdata = new TrainingDataVic(PathLay + dirLayerConfig[i].getName(),
-                    PathTra + dirTrainingData[i].getName());
+            // init
+            tdata = new TrainingDataVic(PathLay + dirLayerConfig[i].getName(), PathTra + dirTrainingData[i].getName());
             nvic = new NeuralNetworkVic(tdata);
-            nreise = new NeuralNetworkReise(PathLay + dirLayerConfig[i].getName(),
-                    -1, 1);
+            nreise = new NeuralNetworkReise(PathLay + dirLayerConfig[i].getName(), -1, 1);
             nreise.getTrainingDataLearnable(PathTra + dirTrainingData[i].getName());
 //
             nreise.train(100000, 10e6f);
@@ -859,11 +856,7 @@ public class  Main {
                 2.5f,
                 1.5f,
                 1.0f,
-                0.5f,
-                0.333f,
-                0.25f,
                 0.1f,
-                0.01f,
                 0.001f,
                 0.00001f
 
@@ -888,8 +881,8 @@ public class  Main {
             nreise.writeTotalErrors("python/learn/totalErrR_" + LR);
             System.out.println("Finished Training Reise with " + LR);
 
-            float[] out = nreise.getOutputVektor(new float[] {1, 1, 1, 1 ,1 , 1, 1});
-            nreise.print();
+//            float[] out = nreise.getOutputVektor(new float[] {1, 1, 1, 1, 1, 1, 1});
+//            nreise.print();
 
             nvic.train(10000, LR);
             nvic.writeTotalErrors("python/learn/totalErrV_" + LR + ".csv");
@@ -910,11 +903,7 @@ public class  Main {
                 2.5f,
                 1.5f,
                 1.0f,
-                0.5f,
-                0.333f,
-                0.25f,
                 0.1f,
-                0.01f,
                 0.001f,
                 0.00001f
 
@@ -927,12 +916,11 @@ public class  Main {
                 {1.0947442f,1.0906969f,0.026270742f}
         };
 
-
+        // initalisierung der Netze und tData und tDataUnknown
         NeuralNetworkReise nreise;
         NeuralNetworkVic nvic;
         TrainingDataVic tdata = new TrainingDataVic(PathLay, PathTra);
-        TrainingDataVic tdataUnknown = new TrainingDataVic(PathLay,
-                "training_data_unknown/V2_tData_unknown.csv");
+        TrainingDataVic tdataUnknown = new TrainingDataVic(PathLay,"training_data_unknown/V2_tData_unknown.csv");
 
         System.out.println("Starting training with different LRs ...");
         System.out.println("Used Training: V2");
@@ -943,19 +931,16 @@ public class  Main {
             nreise = new NeuralNetworkReise(PathLay, -1 , 1);
             nreise.getTrainingDataLearnable(PathTra);
 
-
+            //train
             nreise.train(10000, LR);
             System.out.println("Finished Training Reise with " + LR);
-
+            //compute unknown Data
             nreise.computeUnknownData(unknown, "outputReise" + LR);
 
+            nvic.train(10000, LR);
+            System.out.println("Finished Training Victor with " + LR);
 
-
-
-//            nvic.train(10000, LR);
-//            System.out.println("Finished Training Victor with " + LR);
-//
-//            nvic.computeUnknownData(tdataUnknown, "outputVic"+ LR);
+            nvic.computeUnknownData(tdataUnknown, "outputVic"+ LR);
 
 
         }
