@@ -19,56 +19,6 @@ public class NeuralNetworkReise {
     double dSumTotalError;
     List<Double> totalErrorReise = new ArrayList<Double>(); // list for keeping all the total Error --> easier to handle as a list than an array, if over 100000 elements
 
-
-
-//    public void main(String[] args) {
-//        int numberOfLayers;
-//        int[] numberOfNeurons;
-//        int[] numberOfWeights;
-//        // paths to needed files
-//        // USER has to edit these paths to his/her own file path
-//        String sPath = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_weights_trafficlights_classification_simplified.csv"; // Layer, Weight and Bias
-//        String sPathForTData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\Src\\KW43_traindata_trafficlights_classification.csv"; // Training Data
-//
-//        String sPathBestWeights = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\weights.csv"; // best weights
-//        String sPathKnownTData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\known_training_data.csv"; // known Training Data
-//        String sPathUnknownData = "S:\\HBRS\\neural network\\git repo\\HBRS-neural-network\\unknown_data.csv"; // unknown for checking implementation
-//
-//        boolean printMatirx = true;
-//
-//        NeuronReise.setWeightRange(-1, 1);
-//
-//        // if using whole dataset
-//        createLayers(sPath);
-//        getTrainingDataLearnable(sPathForTData);
-//        weightAndBiasConfig(sPath);
-//
-//        // if using only specifc datase --> same as whole set
-////        createLayers(sPath);
-////        getTrainingDataLearnable(sPathKnownTData);
-////        weightAndBiasConfig(sPath);
-//
-//        // if checking with unknown dataset
-////        createLayers(sPathBestWeights);
-////        getTrainingData(sPathUnknownData);
-////        weightAndBiasConfig(sPathBestWeights);
-//
-//
-//        train(10000, 0.05f); // 10000 iterations for each dataset
-//
-//        for(int i = 0; i < trainingData_t.length; i++) {
-//            run(trainingData_t[i].inputData);
-//            System.out.println("\nInput: " + i);
-//            for(int j = 0; j < layers_t[layers_t.length - 1].neurons.length; j++) {
-//                System.out.println(layers_t[layers_t.length - 1].neurons[j].fValue);
-//            }
-//        }
-//
-//        writeWeightAndBias("weights");
-//        writeTotalErrors("totalError");
-//    }
-
-
     /**
      * Constructor
      */

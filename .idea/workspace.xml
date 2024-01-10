@@ -6,112 +6,19 @@
   <component name="ChangeListManager">
     <list default="true" id="bac7beb3-b481-4739-8d37-be367157b92a" name="Changes" comment="fixed some bugs, continued on Totalerror">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Projektbericht.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/Projektbericht_Reise.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/R1_layerConfig.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/R2_layerConfig.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/R3_layerConfig.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/R4_layerConfig.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/R5_layerConfig.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Src/Main/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/Main/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzVic/NeuralNetworkVic.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/Main/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkVic.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/Src/NetzVic/NeuralNetworkVic.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R1_Compared_NNR_MINUS_NNV_whole_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R1_Compared_NNR_MINUS_NNV_whole_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R1_Unknown_NNR_partial_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R1_Unknown_NNR_partial_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R1_Unknown_NNR_whole_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R1_Unknown_NNR_whole_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R1_Unknown_NNV_whole_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R1_Unknown_NNV_whole_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R2_Compared_NNR_MINUS_NNV_whole_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R2_Compared_NNR_MINUS_NNV_whole_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R2_Unknown_NNR_partial_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R2_Unknown_NNR_partial_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R2_Unknown_NNR_whole_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R2_Unknown_NNR_whole_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R2_Unknown_NNV_whole_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/behaving_on_unknown_data/R2_Unknown_NNV_whole_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R1_Runtime_Compared_clean_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R1_Runtime_Compared_clean_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R1_Runtime_NNR_clean_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R1_Runtime_NNR_clean_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R1_Runtime_NNV_clean_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R1_Runtime_NNV_clean_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R2_Runtime_Compared_clean_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R2_Runtime_Compared_clean_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R2_Runtime_NNR_clean_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R2_Runtime_NNR_clean_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R2_Runtime_NNV_clean_dataset.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R2_Runtime_NNV_clean_dataset.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R3_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R3_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R3_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R4_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R4_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R4_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R5_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R5_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/R5_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V10_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V10_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V10_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V1_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V1_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V1_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V2_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V2_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V2_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V3_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V3_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V3_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V4_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V4_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V4_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V5_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V5_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V5_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V6_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V6_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V6_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V7_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V7_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/runtime/V7_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/target_total_error/R1_required_iteration_clean_dataset" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/target_total_error/R1_required_iteration_clean_dataset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/target_total_error/R1_required_iteration_noise_dataset" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/target_total_error/R1_required_iteration_noise_dataset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/target_total_error/R1_required_iteration_whole_dataset" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/results/target_total_error/R1_required_iteration_whole_dataset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data/V6_tData.csv" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/HBRS-neural-network/training_data/V6_tData.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/behaving_on_unknown_data/R1_Compared_NNR_MINUS_NNV_whole_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/behaving_on_unknown_data/R1_Unknown_NNR_partial_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/behaving_on_unknown_data/R1_Unknown_NNR_whole_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/behaving_on_unknown_data/R1_Unknown_NNV_whole_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/behaving_on_unknown_data/R2_Compared_NNR_MINUS_NNV_whole_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/behaving_on_unknown_data/R2_Unknown_NNR_partial_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/behaving_on_unknown_data/R2_Unknown_NNR_whole_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/behaving_on_unknown_data/R2_Unknown_NNV_whole_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R1_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R1_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R1_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R2_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R2_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R2_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R3_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R3_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R3_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R4_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R4_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R4_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R5_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R5_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/R5_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V10_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V10_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V10_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V1_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V1_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V1_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V2_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V2_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V2_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V3_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V3_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V3_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V4_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V4_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V4_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V5_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V5_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V5_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V6_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V6_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V6_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V7_Runtime_Compared_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V7_Runtime_NNR_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/runtime/V7_Runtime_NNV_clean_dataset.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/target_total_error/R1_required_iteration_clean_dataset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/target_total_error/R1_required_iteration_noise_dataset" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/results/target_total_error/R1_required_iteration_whole_dataset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java" beforeDir="false" afterPath="$PROJECT_DIR$/Src/NetzReise/NeuralNetworkReise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/V10_layerConfig.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/known_training_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/layerConfig.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/unknown_data.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/weights.csv" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +93,12 @@
       <recent name="Src.NetzVic" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="?" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="Src.NetzReise.Main" />
       <module name="HBRS-neural-network" />

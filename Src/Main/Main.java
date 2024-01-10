@@ -29,6 +29,7 @@ import java.util.Arrays;
  *      "training_data_merge_clean_noise"
  * - datasets containing around 85% of the whole dataset (known_data) in directory "training_data_known"
  * - datasets containing around 15% of the whole dataset (partial_data) in directory "training_data_unknown"
+ * - for understanding the data, look into file "data explanation"
  *
  * 1. all clean datasets have been created using logical statements in Microsoft Excel (MIN and MAX Function)
  * 2. all datasets containing decimal numbers have been converted from the clean dataset by using the method
@@ -54,7 +55,7 @@ public class  Main {
 
         // CONSTANT End
 
-        // Init Begin
+        // Declaration Begin
         String sPathTargetDir;
         String sPathTargetDirRuntime;
         String sPathTargetDirUnknown;
@@ -66,8 +67,6 @@ public class  Main {
         String sPathTrainingDataMerged;
         String sPathTrainingDataKnown;
         String sPathTrainingDataUnknown;
-        String filename;
-        String sDataType;
         File dirTrainingClean;
         File dirTrainingNoise;
         File dirTrainingMerge;
@@ -82,10 +81,11 @@ public class  Main {
         File[] dirTrainingUnknownListing;
         File[] dirLayerListing;
         File[] dirLayerAlternativeListing;
-        // Init End
+        // Declaration End
 
-        // Stats Code Begin
+        // Evaluation Code Begin
 
+        // Init Begin
         sPathTargetDir = "results\\";
         sPathTargetDirRuntime = sPathTargetDir + "runtime\\";
         sPathTargetDirTargetTotalError = sPathTargetDir + "target_total_error\\";
@@ -104,6 +104,7 @@ public class  Main {
         dirTrainingUnknownListing = dirTrainingUnknown.listFiles();
         dirLayerListing = dirLayer.listFiles();
         dirLayerAlternativeListing = dirLayerAlternative.listFiles();
+        // Init End
 
         Arrays.sort(dirTrainingCleanListing);
         Arrays.sort(dirTrainingNoiseListing);
@@ -206,7 +207,7 @@ public class  Main {
             }
         }
 
-        // Stats Code End
+        // Evaluation Code End
 
         // Reise CODE End
 
@@ -218,9 +219,9 @@ public class  Main {
 
 
         // Victors Platz End
-       // compareTotalError();
-       // learnrates();
-        //learnratesUnknowndata();
+        // compareTotalError();
+        // learnrates();
+        // learnratesUnknowndata();
 
         
         // Philips Platz Begin
@@ -232,15 +233,19 @@ public class  Main {
 
     // Reise Method Begin
 
+    /**
+     * method for comparing the runtime of both networks with the given parameters
+     * -> will write result to "targetDir" as csv file
+     * */
     public static void runtimeComparison(String pathLayerConfig, String pathTrainingData, String targetDir,
                                          int trainingIteration, float learningRate, int runtimeIteration,
                                          String dataType) throws IOException {
 //        try {
         long[][] runtimeR = runtimeReise(pathLayerConfig, pathTrainingData,
-                trainingIteration, learningRate, runtimeIteration);
+                trainingIteration, learningRate, runtimeIteration); // get runtime for OOP network
         long[][] runtimeV = runtimeVictor(pathLayerConfig, pathTrainingData,
-                trainingIteration, learningRate, runtimeIteration);
-        long[][] runtimeC = getComparisonReiseMinusVictor(runtimeR, runtimeV);
+                trainingIteration, learningRate, runtimeIteration); // get runtime for Array network
+        long[][] runtimeC = getComparisonReiseMinusVictor(runtimeR, runtimeV); // get comparison
 //        double[][] runtimeD = getComparisonReiseDividedVictor(runtimeR, runtimeV);
 
         File name_t = new File(pathLayerConfig);
@@ -253,9 +258,9 @@ public class  Main {
         filenameC = targetDir + filenameC;
 //        String filenameD = sName.substring(0, sName.indexOf("_") + 1) + "Runtime_Compared_Division_" + dataType;
 //        filenameD = targetDir + filenameD;
-        writeRuntime(filenameR, runtimeR, pathLayerConfig, trainingIteration, learningRate, dataType);
-        writeRuntime(filenameV, runtimeV, pathLayerConfig, trainingIteration, learningRate, dataType);
-        writeRuntime(filenameC, runtimeC, pathLayerConfig, trainingIteration, learningRate, dataType);
+        writeRuntime(filenameR, runtimeR, pathLayerConfig, trainingIteration, learningRate, dataType); // write to csv
+        writeRuntime(filenameV, runtimeV, pathLayerConfig, trainingIteration, learningRate, dataType); // write to csv
+        writeRuntime(filenameC, runtimeC, pathLayerConfig, trainingIteration, learningRate, dataType); // write to csv
 //        writeRuntimeDouble(filenameD, runtimeD, pathLayerConfig, trainingIteration, learningRate, dataType);
 //        }
 //        catch(IOException e) {
@@ -263,6 +268,10 @@ public class  Main {
 //        }
     }
 
+    /**
+     * method for comparing both networks on unknown data with the given parameters
+     * -> will write result to "targetDir" as csv file
+     * */
     public static void unknownDataComparison(String pathLayerConfig, String pathTrainingData,
                                              String pathUnkownTrainingData, String targetDir, int trainingIteration,
                                              float learningRate, String dataType) {
@@ -299,6 +308,10 @@ public class  Main {
         }
     }
 
+    /**
+     * method for comparing both networks on required Iteration for reaching a given target total error with the given parameters
+     * -> will write result to "targetDir" as csv file
+     * */
     public static void requiredIterationComparison(String pathLayerConfig, String pathTrainingData,
                                                    double targetTotalError, String targetDir, float learningRate,
                                                    String dataType) {
@@ -326,7 +339,10 @@ public class  Main {
         writeIterationDataToCSV(filename, allInformation, trainAndLayer, learningRate);
     }
 
-
+    /**
+     * calculate the needed runtime for OOP network on given parameters for "runtimeIteration" times
+     * -> will return 2d array with all times
+     * */
     public static long[][] runtimeReise(String pathLayerConfig, String pathTrainingData,
                                          int trainingIteration, float learningRate, int runtimeIteration) {
         long timesR[][] = new long[runtimeIteration][4];
@@ -355,13 +371,13 @@ public class  Main {
         return timesR;
     }
 
+    /**
+     * calculate the needed runtime for Array network on given parameters for "runtimeIteration" times
+     * -> will return 2d array with all times
+     * */
     public static long[][] runtimeVictor(String pathLayerConfig, String pathTrainingData,
                                          int trainingIteration, float learningRate,
                                          int runtimeIteration) throws IOException {
-//        String[] func = getSigmoidFuncOnly(pathLayerConfig);
-        int[] layerConfig = NeuralUtilReise.getlayerConfig(pathLayerConfig);
-        int inlen = layerConfig[0];
-        int outlen = layerConfig[layerConfig.length - 1];
         long timesV[][] = new long[runtimeIteration][4];
         for(int i = 0; i < runtimeIteration; i++) {
             long start = System.nanoTime(); // time start
@@ -388,6 +404,9 @@ public class  Main {
         return timesV;
     }
 
+    /**
+     * subtract the needed runtimes of Array network from OOP network
+     * */
     public static long[][] getComparisonReiseMinusVictor(long[][] resultNNR, long[][] resultNNV)
             throws IndexOutOfBoundsException {
         if(resultNNR.length != resultNNV.length) {
@@ -408,6 +427,9 @@ public class  Main {
         return compared2D;
     }
 
+    /**
+     * still dev
+     * */
     public static double[][] getComparisonReiseDividedVictor(long[][] resultNNR, long[][] resultNNV)
             throws IndexOutOfBoundsException {
         if(resultNNR.length != resultNNV.length) {
@@ -433,6 +455,9 @@ public class  Main {
         return compared2D;
     }
 
+    /**
+     * write runtime to csv file
+     * */
     public static void writeRuntime(String filename, long[][] arrTimes, String pathLayerConfig, int trainingIteration,
                                     float learningRate, String note) {
         PrintWriter printWriter;
@@ -547,6 +572,9 @@ public class  Main {
         }
     }
 
+    /**
+     * still dev
+     * */
     public static void writeRuntimeDouble(String filename, double[][] arrTimes, String pathLayerConfig, int trainingIteration,
                                     float learningRate, String note) {
         PrintWriter printWriter;
@@ -661,6 +689,9 @@ public class  Main {
         }
     }
 
+    /**
+     * calculate mean for given long array
+     * */
     public static long mean(long[] arr) {
         long mean = 0;
         for(long num : arr) {
@@ -671,6 +702,9 @@ public class  Main {
         return mean;
     }
 
+    /**
+     * helper method for Array network
+     * */
     public static String[] getSigmoidFuncOnly(String path) {
         int[] layerConfig = NeuralUtilReise.getlayerConfig(path);
         String[] func = new String[layerConfig.length];
@@ -683,6 +717,9 @@ public class  Main {
         return func;
     }
 
+    /**
+     * write total errors to csv file
+     * */
     public static void writeTotalErrorToCSV(String filename, double[] arr, int trainingIteration, float learningRate,
                                             String note) {
         PrintWriter printWriter;
@@ -710,6 +747,9 @@ public class  Main {
         }
     }
 
+    /**
+     * get required iterations for a target total error for OOP network or Array Network
+     * */
     public static double[] getIterationForDeltaGoal(String networkType, double deltaGoal, String pathLayerConfig,
                                                String pathTrainingData, float trainingRate) {
         int trainIterations = 0;
@@ -764,6 +804,9 @@ public class  Main {
         return resultData;
     }
 
+    /**
+     * write required iteration to csv file
+     * */
     public static void writeIterationDataToCSV(String filename, double[] iterationData, String[]  trainAndlayerData,
                                                float learningRate) {
         PrintWriter printWriter;
